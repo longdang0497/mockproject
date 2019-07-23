@@ -139,15 +139,26 @@ GEM
       railties (>= 3.2, < 6.1)
     erubi (1.8.0)
     execjs (2.7.0)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
+    forecast_io (2.0.2)
+      faraday
+      hashie
+      multi_json
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gon (6.2.1)
+      actionpack (>= 3.0)
+      multi_json
+      request_store (>= 1.0)
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
+    hashie (3.6.0)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     impressionist (1.6.1)
@@ -200,6 +211,7 @@ GEM
       railties (>= 3.1)
     msgpack (1.3.0)
     multi_json (1.13.1)
+    multipart-post (2.1.1)
     nio4r (2.4.0)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -251,6 +263,8 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.6.0)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
@@ -338,6 +352,8 @@ DEPENDENCIES
   devise
   dotenv (~> 2.7, >= 2.7.4)
   dotenv-rails
+  forecast_io
+  gon
   impressionist
   jbuilder (~> 2.5)
   jquery-rails

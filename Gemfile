@@ -47,6 +47,12 @@ gem 'ckeditor'
 gem 'paperclip'
 gem 'mini_magick'
 
+# Use forcast-io for weather
+gem 'forecast_io'
+
+# Use gon for passing data to javascript
+gem 'gon'
+
 # Use social-share-button for sharing facebook, instagram, twitter,...
 gem 'social-share-button'
 
