@@ -17,10 +17,10 @@ ActiveAdmin.register BlogHashtag do
   index do
     selectable_column
     column :id
-    column "Blog" do |i|
+    column :blog do |i|
       i.blog.blog_detail.title
     end
-    column "Hashtag" do |i|
+    column :hashtag do |i|
       i.hashtag.tag_name
     end
     actions
@@ -28,18 +28,18 @@ ActiveAdmin.register BlogHashtag do
 
   show do
     attributes_table do
-      row "Blog" do |i|
+      row :blog do |i|
         i.blog.blog_detail.title
       end
-      row "Hashtag" do |i|
+      row :hashtag do |i|
         i.hashtag.tag_name
       end
     end
     active_admin_comments
   end
 
-  filter :blog
-  filter :hashtag
+  filter :blog, :as => :select, :collection => Blog.all.collect {|blog| [blog.blog_detail.title, blog.id] }
+  filter :hashtag, :as => :select, :collection => Hashtag.all.collect {|hashtag| [hashtag.tag_name, hashtag.id] }
 
   form do |f|
     f.inputs do

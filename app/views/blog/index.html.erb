@@ -50,7 +50,7 @@
             <div class="header_search_block ex_main_search">
               <%= search_form_for @search, url: search_blog_index_path , class: "ex_main_form" do |f| %>
                 <div class="header_exp_block">
-                  <%= f.search_field :categories_category_name_has_any_term, class: "blog_search_cat", id: "BlogCat"%>
+                  <%= f.search_field :categories_category_name_has_any_term, class: "blog_search_cat", id: "BlogCat", autocomplete: "off" %>
                   <div class="header_exp_popup" id="BlogCatPop">
                     <div class="" id="BlogCat_Choose">
                       <ul class="top_mv_place_list">
@@ -61,9 +61,9 @@
                     </div>
                   </div>
                 </div>
-                <%= f.search_field :hashtags_tag_name_has_any_term, class: 'blog_search_key'%>
+                <%= f.search_field :hashtags_tag_name_has_any_term, class: 'blog_search_key', autocomplete: "off" %>
                 <div class="header_exp_block">
-                  <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "ExSearchPlace"%>
+                  <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
                   <div class="header_exp_popup" id="ExPlacePop">
                     <div class="" id="EXSearchPlace_Choose">
                       <ul class="top_mv_place_list">

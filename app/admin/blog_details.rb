@@ -30,8 +30,7 @@ ActiveAdmin.register BlogDetail do
     active_admin_comments
   end
 
-  filter :title
-  filter :content
+  filter :title, :as => :select, :collection => BlogDetail.all.collect {|blog| [blog.title] }
 
   form do |f|
     f.inputs do

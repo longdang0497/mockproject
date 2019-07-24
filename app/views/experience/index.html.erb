@@ -24,7 +24,7 @@
                   <%= image_tag("ex/new_icon") %>
                 </p>
                 <div class="ex_info_box">
-                  <a href="" class="ex_info_title"><%= @hot_exp.experience_detail.title %></a>
+                  <a href="<%= experience_path(@hot_exp) %>" class="ex_info_title"><%= @hot_exp.experience_detail.title %></a>
                   <div class="ex_info_inner">
                     <a href="" class="ex_info_left"><span><%= @hot_exp.location.province %></span></a>
                     <% if @hot_exp.categories.present? %>
@@ -45,9 +45,9 @@
           <div class="ex_main_right">
             <div class="header_search_block ex_main_search">
             <%= search_form_for @search,url: search_experience_index_path , class: "ex_main_form" do |f| %>
-              <%= f.search_field :location_province_in, name: "ex_date", autocomplete: "off", class: "header_search_date", id: "ExSearchDate"%>
+              <%= f.search_field :location_province_in, name: "ex_date", autocomplete: "off", class: "header_search_date", id: "ExSearchDate", autocomplete: "off" %>
               <div class="header_exp_block">
-                <%= f.search_field :location_province_in, autocomplete: "off", class: "header_search_place", id: "ExSearchPlace"%>
+                <%= f.search_field :location_province_in, autocomplete: "off", class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
                 <div class="header_exp_popup" id="ExPlacePop">
                   <div class="" id="EXSearchPlace_Choose">
                     <ul class="top_mv_place_list">
@@ -59,7 +59,7 @@
                 </div>
               </div>
               <div class="header_exp_block">
-                <%= f.search_field :categories_category_name_in, class: "header_search_exp", id: "BlogCat"%>
+                <%= f.search_field :categories_category_name_in, class: "header_search_exp", id: "BlogCat", autocomplete: "off" %>
                 <div class="header_exp_popup" id="BlogCatPop">
                   <div class="" id="BlogCat_Choose">
                     <ul class="top_mv_place_list">
@@ -90,7 +90,11 @@
           <% @experiences.each do |exp| %>
             <article class="ex_comon_list">
               <a href="<%= experience_path(exp) %>" class="ex_common_up">
-                <div class="ex_common_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
+                <% if exp.experience_detail.image.attached? %>
+                  <div class="ex_common_pic" style="background: url(<%= url_for(exp.experience_detail.image)%>) center center no-repeat;background-size: cover;">
+                <%else%>
+                  <div class="ex_common_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
+                <%end%>
                   <div class="filter"></div>
                   <span class="price_tag">
                     <%= number_to_currency(exp.experience_detail.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%>

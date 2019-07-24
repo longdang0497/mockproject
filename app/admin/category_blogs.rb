@@ -18,12 +18,12 @@ ActiveAdmin.register CategoryBlog do
   index do
     selectable_column
     id_column
-    # column :category do
-        column "Category" do |category|
-          link_to category.category_id
-        end
-    # end
-    column :blog_id
+    column "Category" do |i|
+      i.category.category_name
+    end
+    column "Blog" do |i|
+      i.blog.blog_detail.title
+    end
     actions
   end
 
@@ -39,8 +39,8 @@ ActiveAdmin.register CategoryBlog do
     active_admin_comments
   end
 
-  filter :blog
-  filter :category
+  filter :blog, :collection => Blog.all.collect {|blog| [blog.blog_detail.title, blog.id] }
+  filter :category, :collection => Category.all.collect {|category| [category.category_name, category.id] }
 
   form do |f|
     f.inputs do

@@ -175,7 +175,11 @@
     </section>
     <aside class="exdetail_right_block">
       <div class="exdetail_right_top">
-        <div class="exdetail_main_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;"></div>
+        <% if @experience.experience_detail.image.attached?%>
+          <div class="exdetail_main_pic" style="background: url(<%= url_for(@experience.experience_detail.image)%>) center center no-repeat;background-size: cover;"></div>
+        <%else%>
+          <div class="exdetail_main_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;"></div>
+        <%end%>
         <div class="exdetail_calendar">
           <div class="top_fair_calendar">
             <p class="top_fair_calendar_pager">

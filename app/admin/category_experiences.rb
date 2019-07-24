@@ -17,12 +17,12 @@ ActiveAdmin.register CategoryExperience do
   index do
     selectable_column
     id_column
-    # column :category do
-        column "Category" do |category|
-          link_to category.category_id
-        end
-    # end
-    column :experience_id
+    column "Experience" do |i|
+      i.experience.experience_detail.title
+    end
+    column "Category" do |i|
+      i.category.category_name
+    end
     actions
   end
 
@@ -38,8 +38,8 @@ ActiveAdmin.register CategoryExperience do
     active_admin_comments
   end
 
-  filter :experience
-  filter :category
+  filter :experience, :as => :select, :collection => ExperienceDetail.all.collect {|loca| [loca.title, loca.id] }
+  filter :category, :collection => Category.all.collect {|category| [category.category_name, category.id] }
 
   form do |f|
     f.inputs do
