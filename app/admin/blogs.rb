@@ -12,19 +12,41 @@ ActiveAdmin.register Blog do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  permit_params :admin_user_id, :location_id
   index do
     selectable_column
     column :id
+    column "Location" do |i|
+      i.location.province
+    end
+    column :impressions_count  
     column :created_at
-    column :updated_at
-    column :location_id
-    column :impressions_count    
+    column :updated_at  
     actions
   end
+  show do
+    attributes_table do
+      row "Location" do |i|
+        i.location.province
+      end
+      row "Admin user" do |i|
+        i.admin_user.email
+      end
+      row :impressions_count
+      row :created_at
+      row :updated_at
+    end
+    active_admin_comments
+  end
 
-  filter :id
-  filter :impressions_count
-  filter :created_at
-  filter :updated_at
-  filter :location_id
+  filter :location
+  filter :admin_user
+
+  form do |f|
+    f.inputs do
+      f.input :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
+      f.input :admin_user, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.email, ad.id] }
+    end
+    f.actions
+  end
 end

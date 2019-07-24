@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  expFrom: 2019-07-23 10:22:35
+  expTo: 2019-07-23 10:22:35
+  month: 1
+  year: 1
+  experience_detail_id: 
+
+two:
+  expFrom: 2019-07-23 10:22:35
+  expTo: 2019-07-23 10:22:35
+  month: 1
+  year: 1
+  experience_detail_id: 

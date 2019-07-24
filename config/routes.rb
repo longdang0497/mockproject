@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get 'sendrequest', to: "experience#send_request"
       get 'payment', to: "experience#payment"
       get 'complete', to: "experience#complete"
+      match 'search' => 'experience#search', :via => [:get, :post], :as => :search
     end
   end
 
