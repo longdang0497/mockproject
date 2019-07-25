@@ -7,7 +7,7 @@ class ExperienceController < ApplicationController
     @search = Experience.ransack(params[:q])
     @categories = CategoryService.new.call
     @locations = LocationService.new.call
-    @search.sorts = 'experience_details.title desc' if @search.sorts.empty?
+    @search.sorts = 'title desc' if @search.sorts.empty?
     @experiences = @search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
     @page = params[:page].to_i
     respond_to do |format|
@@ -21,7 +21,7 @@ class ExperienceController < ApplicationController
     @recommends = ExperienceService.new.recommend(@experience)
     @host = AdminUser.find(@experience.admin_user_id)
 
-    @exp_dates = ExperienceDate.where(["experience_detail_id = ?", @experience.experience_detail.id])
+    @exp_dates = ExperienceDate.where(["experience_id = ?", @experience.id])
 
     gon.year = "2019"
     puts gon.months = @exp_dates.select(:month).distinct
