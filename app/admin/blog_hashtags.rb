@@ -38,8 +38,8 @@ ActiveAdmin.register BlogHashtag do
     active_admin_comments
   end
 
-  filter :blog, :as => :select, :collection => Blog.all.collect {|blog| [blog.blog_detail.title, blog.id] }
-  filter :hashtag, :as => :select, :collection => Hashtag.all.collect {|hashtag| [hashtag.tag_name, hashtag.id] }
+  # filter :blog, :as => :select, :collection => Blog.all.collect {|blog| [blog.blog_detail.title, blog.id] }
+  # filter :hashtag, :as => :select, :collection => Hashtag.all.collect {|hashtag| [hashtag.tag_name, hashtag.id] }
 
   form do |f|
     f.inputs do

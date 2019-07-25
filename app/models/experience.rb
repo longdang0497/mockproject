@@ -1,6 +1,6 @@
 class Experience < ApplicationRecord
   has_one :experience_detail
-
+  has_one_attached :image
   belongs_to :location
   paginates_per 6
   has_many :category_experiences
