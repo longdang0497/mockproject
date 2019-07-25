@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_23_085503) do
+ActiveRecord::Schema.define(version: 2019_07_25_042944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,9 @@ ActiveRecord::Schema.define(version: 2019_07_23_085503) do
     t.bigint "location_id"
     t.integer "impressions_count", default: 0
     t.bigint "admin_user_id"
+    t.string "title"
+    t.text "short_description"
+    t.text "content"
     t.index ["admin_user_id"], name: "index_blogs_on_admin_user_id"
     t.index ["location_id"], name: "index_blogs_on_location_id"
   end
@@ -195,13 +198,17 @@ ActiveRecord::Schema.define(version: 2019_07_23_085503) do
     t.date "expTo"
     t.integer "month"
     t.integer "year"
-    t.bigint "experience_detail_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["experience_detail_id"], name: "index_experience_dates_on_experience_detail_id"
+    t.bigint "experience_id"
+    t.index ["experience_id"], name: "index_experience_dates_on_experience_id"
   end
 
-  create_table "experience_details", force: :cascade do |t|
+  create_table "experiences", force: :cascade do |t|
+    t.bigint "location_id"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "title"
     t.decimal "price_adult"
     t.decimal "price_children"
@@ -209,18 +216,10 @@ ActiveRecord::Schema.define(version: 2019_07_23_085503) do
     t.string "duration"
     t.string "age"
     t.string "language"
-    t.bigint "experience_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.text "short_description"
     t.text "description"
-    t.string "image"
-    t.index ["experience_id"], name: "index_experience_details_on_experience_id"
-  end
-
-  create_table "experiences", force: :cascade do |t|
-    t.bigint "location_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "admin_user_id"
+    t.index ["admin_user_id"], name: "index_experiences_on_admin_user_id"
     t.index ["location_id"], name: "index_experiences_on_location_id"
   end
 

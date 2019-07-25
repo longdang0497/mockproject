@@ -39,8 +39,8 @@ ActiveAdmin.register Blog do
     active_admin_comments
   end
 
-  filter :location, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
-  filter :admin_user, :collection => AdminUser.all.collect {|ad| [ad.email, ad.id] }
+  # filter :location, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
+  # filter :admin_user, :collection => AdminUser.all.collect {|ad| [ad.email, ad.id] }
 
   form do |f|
     f.inputs do

@@ -21,13 +21,13 @@ class BlogController < ApplicationController
       format.html
       format.json { render json: @blogs }
     end
-
   end
   
   def show
     @categories = CategoryService.new.call
     @blog = Blog.find(params[:id])
     @popular_blogs = Blog.popular
+    @hashtags = Hashtag.all
 
     @location_id = @blog.location_id
     @hot_exp = ExperienceService.new.hotexperience(@location_id)
@@ -36,7 +36,7 @@ class BlogController < ApplicationController
     @recommend_blogs = Blog.hashtags_and_location_in_common(@blog)
     # breacrumb
     add_breadcrumb 'Blog', :blog_index_path
-    add_breadcrumb @blog.blog_detail.title, :blog_path
+    add_breadcrumb @blog.title, :blog_path
   end
 
   def search

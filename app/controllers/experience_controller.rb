@@ -9,7 +9,10 @@ class ExperienceController < ApplicationController
     @locations = LocationService.new.call
     @search.sorts = 'experience_details.title desc' if @search.sorts.empty?
     @experiences = @search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
-
+    @page = params[:page].to_i
+    if @page > @experiences.total_pages
+      redirect_to experience_index_url
+    end
     respond_to do |format|
       format.html
       format.json { render json: @experiences }
@@ -21,14 +24,20 @@ class ExperienceController < ApplicationController
     @recommends = ExperienceService.new.recommend(@experience)
     @host = AdminUser.find(@experience.admin_user_id)
 
+    @exp_dates = ExperienceDate.where(["experience_detail_id = ?", @experience.experience_detail.id])
+
+    gon.year = "2019"
+    puts gon.months = @exp_dates.select(:month).distinct
+    # gon.year = @exp_dates.year
+
     # breacrumb
     add_breadcrumb 'Experience', :experience_index_path
-    add_breadcrumb @experience.experience_detail.title, :experience_path
+    add_breadcrumb @experience.title, :experience_path
   end
 
   def search
-    # CategoryService.new.search
-    # render :index
+    index
+    render :index
   end 
   def payment
   end
