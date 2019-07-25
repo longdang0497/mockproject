@@ -96,8 +96,12 @@
     <section class="ex_list_block">
       <div class="ex_list_top_area">
         <p class="ex_list_num">
-          <%= page_entries_info @blogs, entry_name: 'blogs' %>
-          <%= paginate @blogs%>
+          <%if @page > @blogs.total_pages%>
+          No blogs found
+          <%else%>
+            <%= page_entries_info @blogs, entry_name: 'blogs' %>
+            <%= paginate @blogs%>
+          <%end%>
       </div>
       <section class="blog_ranking_wrap clearfix">
       <% @popular_blogs.each_with_index do |blog, index|%>
@@ -186,7 +190,11 @@
   </section>
 
   <ul class="ex_list_up_pager bottom">
-    <%= paginate @blogs, theme: 'bottom_page_theme' %>
+    <%if @page > @blogs.total_pages%>
+     
+    <%else%>
+      <%= paginate @blogs, theme: 'bottom_page_theme' %>
+    <%end%>
   </ul>
 </section>
 <!--
