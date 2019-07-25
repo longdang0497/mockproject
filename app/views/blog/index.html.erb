@@ -65,7 +65,7 @@
                     <div class="" id="BlogCat_Choose">
                       <ul class="top_mv_place_list">
                         <% @categories.each do |cate| %>
-                          <li class="top_mv_place_item" data-cat="<%= cate.category_name %>"><%= cate.category_name %></li>
+                          <li class="top_mv_place_item <%= cur_stick_active(cate.category_name,'categories_category_name_has_any_term') %>" data-cat="<%= cate.category_name %>"><%= cate.category_name %></li>
                         <%end%>
                       </ul>
                     </div>
@@ -78,7 +78,7 @@
                     <div class="" id="EXSearchPlace_Choose">
                       <ul class="top_mv_place_list">
                         <% @locations.each do |loca| %>
-                          <li class="top_mv_place_item" data-explace="<%= loca.province %>"><%= loca.province %></li>
+                          <li class="top_mv_place_item <%= cur_stick_active(loca.province, :location_province_has_any_term) %>" data-explace="<%= loca.province %>"><%= loca.province %></li>
                         <%end%>
                       </ul>
                     </div>

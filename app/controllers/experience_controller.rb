@@ -27,7 +27,7 @@ class ExperienceController < ApplicationController
     @exp_dates = ExperienceDate.where(["experience_detail_id = ?", @experience.experience_detail.id])
 
     gon.year = "2019"
-    puts gon.months = @exp_dates.select(:month).distinct
+    gon.months = @exp_dates.select(:month).distinct
     # gon.year = @exp_dates.year
 
     # breacrumb
