@@ -162,9 +162,11 @@
                   <div class="back" style="background: rgba(0,0,0,0.8);">
                     <!-- 裏コンテンツエリア -->
                     <h2 class="top_hot_title"><%= exp.experience_detail.title %></h2>
-                    <p class="top_hot_text">
-                      <%= exp.experience_detail.description.truncate(140) %>
-                    </p>
+                    <%if exp.experience_detail.description.present?%>
+                      <p class="top_hot_text">
+                        <%= exp.experience_detail.description.truncate(140) %>
+                      </p>
+                    <%end%>
                     <ul class="top_hot_list">
                       <li class="top_hot_item bg01">
                         <a href="" class="top_hot_link"><%= exp.location.province %></a>

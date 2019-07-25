@@ -21,13 +21,13 @@ class BlogController < ApplicationController
       format.html
       format.json { render json: @blogs }
     end
-
   end
   
   def show
     @categories = CategoryService.new.call
     @blog = Blog.find(params[:id])
     @popular_blogs = Blog.popular
+    @hashtags = Hashtag.all
 
     @location_id = @blog.location_id
     @hot_exp = ExperienceService.new.hotexperience(@location_id)

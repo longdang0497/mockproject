@@ -47,7 +47,7 @@
             <%= search_form_for @search,url: search_experience_index_path , class: "ex_main_form" do |f| %>
               <%= f.search_field :location_province_in, name: "ex_date", autocomplete: "off", class: "header_search_date", id: "ExSearchDate", autocomplete: "off" %>
               <div class="header_exp_block">
-                <%= f.search_field :location_province_in, autocomplete: "off", class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
+                <%= f.search_field :location_province_has_any_term, autocomplete: "off", class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
                 <div class="header_exp_popup" id="ExPlacePop">
                   <div class="" id="EXSearchPlace_Choose">
                     <ul class="top_mv_place_list">
@@ -59,7 +59,7 @@
                 </div>
               </div>
               <div class="header_exp_block">
-                <%= f.search_field :categories_category_name_in, class: "header_search_exp", id: "BlogCat", autocomplete: "off" %>
+                <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "BlogCat", autocomplete: "off" %>
                 <div class="header_exp_popup" id="BlogCatPop">
                   <div class="" id="BlogCat_Choose">
                     <ul class="top_mv_place_list">
@@ -100,7 +100,7 @@
                     <%= number_to_currency(exp.experience_detail.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%>
                   </span>
                 </div>
-                <h1 class="title"><%= link_to exp.experience_detail.title, exp %></h1>
+                <h1 class="title"><%= exp.experience_detail.title%></h1>
                 <p class="text">
                 <%if exp.experience_detail.description.present?%>
                   <%= exp.experience_detail.description.truncate(140) %>
@@ -108,15 +108,11 @@
                 </p>
               </a>
               <div class="ex_common_down">
-                <a href="" class="place"><span><%= exp.location.province %></span></a>
+                <%= link_to exp.location.province, search_experience_index_path(:q =>{:location_province_has_any_term => exp.location.province }), class: "place" %>
                 <% if exp.categories.present? %>
-                  <a href="" class="tag">
-                    <span>
-                      <% exp.categories.each do |category| %>
-                        <%= category.category_name %>
-                      <% end %>
-                    </span>
-                  </a>
+                  <%unless exp.categories.first.nil? %>
+                    <%= link_to exp.categories.first.category_name, search_experience_index_path(:q =>{:categories_category_name_has_any_term => exp.categories.first.category_name }), class: "tag" %>
+                  <% end %>
                 <% end %>
               </div>
             </article>
