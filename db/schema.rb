@@ -166,7 +166,6 @@ ActiveRecord::Schema.define(version: 2019_07_25_042944) do
 
   create_table "experiences", force: :cascade do |t|
     t.bigint "location_id"
-    t.bigint "admin_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"

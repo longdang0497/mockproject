@@ -108,7 +108,7 @@
                 <a href="<%= experience_path(exp) %>" class="ex_common_up">
                   <div class="ex_common_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
                     <div class="filter"></div>
-                    <span class="price_tag"><%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%></span>
+                    <span class="price_tag"><%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
                   </div>
                   <h1 class="title"><%= exp.title %></h1>
                   <p class="text">

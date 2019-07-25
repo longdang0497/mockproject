@@ -154,37 +154,39 @@
         <% if @hot_exp.present? %>      
           <% @hot_exp.each do |exp| %>
             <% if exp.present? %>  
-              <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-                <div class="flipper">
-                  <div class="front" style="background: url(<%= image_url('top/pic01')%>) center center no-repeat;background-size: cover;">
-                    <!-- 表コンテンツエリア -->
-                  </div>
-                  <div class="back" style="background: rgba(0,0,0,0.8);">
-                    <!-- 裏コンテンツエリア -->
-                    <h2 class="top_hot_title"><%= exp.title %></h2>
-                    <%if exp.description.present?%>
-                      <p class="top_hot_text">
-                        <%= exp.description.truncate(140) %>
-                      </p>
-                    <%end%>
-                    <ul class="top_hot_list">
-                      <li class="top_hot_item bg01">
-                        <a href="" class="top_hot_link"><%= exp.location.province %></a>
-                      </li>
-                      <% if exp.categories.present? %>
-                        <li class="top_hot_item bg02">                      
-                          <a href="" class="top_hot_link">
-                            <% exp.categories.each do |category| %>
-                              <%= category.category_name %>
-                            <% end %>
-                          </a>
+              <a href="<%= experience_path(@hot_exp) %>">
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                  <div class="flipper">
+                    <div class="front" style="background: url(<%= image_url('top/pic01')%>) center center no-repeat;background-size: cover;">
+                      <!-- 表コンテンツエリア -->
+                    </div>
+                    <div class="back" style="background: rgba(0,0,0,0.8);">
+                      <!-- 裏コンテンツエリア -->
+                      <h2 class="top_hot_title"><%= exp.title %></h2>
+                      <%if exp.description.present?%>
+                        <p class="top_hot_text">
+                          <%= exp.description.truncate(90) %>
+                        </p>
+                      <%end%>
+                      <ul class="top_hot_list">
+                        <li class="top_hot_item bg01">
+                          <a href="" class="top_hot_link"><%= exp.location.province %></a>
                         </li>
-                      <% end %>                    
-                    </ul>
-                    <span class="top_hot_tag"><%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%></span>
+                        <% if exp.categories.present? %>
+                          <li class="top_hot_item bg02">                      
+                            <a href="" class="top_hot_link">
+                              <% exp.categories.each do |category| %>
+                                <%= category.category_name %>
+                              <% end %>
+                            </a>
+                          </li>
+                        <% end %>                    
+                      </ul>
+                      <span class="top_hot_tag"><%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             <% else %>
               There is no data.
             <% end %>
