@@ -15,18 +15,14 @@ ActiveAdmin.register AdminUser do
     actions
   end
 
-  filter :email
-  filter :current_sign_in_at
-  filter :sign_in_count
-  filter :created_at
+  filter :role, :collection => Role.all.collect {|role| [role.name, role.id] }
 
   form do |f|
     f.inputs do
       f.input :email
-      f.input :fullname
-      f.input :avatar
-      f.input :bio
-      f.input :role_id
+      f.input :password
+      f.input :password_confirmation
+      f.input :role, :as => :select, :collection => Role.all.collect {|role| [role.name, role.id] }
     end
     f.actions
   end

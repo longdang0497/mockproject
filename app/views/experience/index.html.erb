@@ -24,7 +24,7 @@
                   <%= image_tag("ex/new_icon") %>
                 </p>
                 <div class="ex_info_box">
-                  <a href="" class="ex_info_title"><%= @hot_exp.experience_detail.title %></a>
+                  <a href="<%= experience_path(@hot_exp) %>" class="ex_info_title"><%= @hot_exp.experience_detail.title %></a>
                   <div class="ex_info_inner">
                     <a href="" class="ex_info_left"><span><%= @hot_exp.location.province %></span></a>
                     <% if @hot_exp.categories.present? %>
@@ -43,50 +43,36 @@
             <% end %>
           </div>
           <div class="ex_main_right">
+            <div class="header_search_block ex_main_search">
             <%= search_form_for @search,url: search_experience_index_path , class: "ex_main_form" do |f| %>
-              <div class="header_search_block ex_main_search">
-                <input type="text" name="ex_date" autocomplete="off" class="header_search_date" id="ExSearchDate">
-                <div class="header_exp_block">
-                  <input type="text" name="ex_place" autocomplete="off" class="header_search_place" id="ExSearchPlace">
-                  <div class="header_exp_popup" id="ExPlacePop">
-              
-                    <div class="" id="EXSearchPlace_Choose">
-                      <ul class="top_mv_place_list">
-                        <li class="top_mv_place_item" data-explace="博多 hakata">博多 hakata</li>
-                        <li class="top_mv_place_item" data-explace="天神 tenjin">天神 tenjin</li>
-                        <li class="top_mv_place_item" data-explace="中洲 Nakasu">中洲 Nakasu</li>
-                        <li class="top_mv_place_item" data-explace="大濠公園 Ohori Park">大濠公園 Ohori Park</li>
-                        <li class="top_mv_place_item" data-explace="百道浜 Momochihama">百道浜 Momochihama</li>
-                        <li class="top_mv_place_item" data-explace="西新 Nishijin">西新 Nishijin</li>
-                        <li class="top_mv_place_item" data-explace="西区 Nishiku">西区 Nishiku</li>
-                        <li class="top_mv_place_item" data-explace="東区 Higashiku">東区 Higashiku</li>
-                      </ul>
-                    </div>
-                      
+              <%= f.search_field :location_province_in, name: "ex_date", autocomplete: "off", class: "header_search_date", id: "ExSearchDate", autocomplete: "off" %>
+              <div class="header_exp_block">
+                <%= f.search_field :location_province_in, autocomplete: "off", class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
+                <div class="header_exp_popup" id="ExPlacePop">
+                  <div class="" id="EXSearchPlace_Choose">
+                    <ul class="top_mv_place_list">
+                      <% @locations.each do |loca| %>
+                        <li class="top_mv_place_item" data-explace="<%= loca.province %>"><%= loca.province %></li>
+                      <%end%>
+                    </ul>
                   </div>
                 </div>
-                <div class="header_exp_block">
-                  <input type="text" name="ex_exp" autocomplete="off" class="header_search_exp" id="ExSearchExp">
-                  <div class="header_exp_popup" id="ExSearchPop">
-                    
-                    <div class="checkbox_style">
-                      <input type="checkbox" name="ex_experience" value="exp01" id="Ex01" data-excheck="アート">
-                      <label for="Ex01"><span>アート</span></label>
-                    </div>
-                    <div class="checkbox_style">
-                      <input type="checkbox" name="ex_experience" value="exp02" id="Ex02" data-excheck="ライフスタイル">
-                      <label for="Ex02"><span>ライフスタイル</span></label>
-                    </div>
-                    <div class="checkbox_style">
-                      <input type="checkbox" name="ex_experience" value="exp03" id="Ex03" data-excheck="フード＆ドリンク">
-                      <label for="Ex03"><span>フード＆ドリンク</span></label>			
-                    </div>
-                    
-                  </div>
-                </div>
-                <%= f.submit "Search", class: "header_search_submit" %>
               </div>
-            <% end %>
+              <div class="header_exp_block">
+                <%= f.search_field :categories_category_name_in, class: "header_search_exp", id: "BlogCat", autocomplete: "off" %>
+                <div class="header_exp_popup" id="BlogCatPop">
+                  <div class="" id="BlogCat_Choose">
+                    <ul class="top_mv_place_list">
+                      <% @categories.each do |cate| %>
+                        <li class="top_mv_place_item" data-cat="<%= cate.category_name %>"><%= cate.category_name %></li>
+                      <%end%>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+               <%= f.submit "Search", class: "header_search_submit"%>
+            <%end%>
+            </div>
           </div>
         </div>
       </div>
@@ -104,9 +90,15 @@
           <% @experiences.each do |exp| %>
             <article class="ex_comon_list">
               <a href="<%= experience_path(exp) %>" class="ex_common_up">
-                <div class="ex_common_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
+                <% if exp.experience_detail.image.attached? %>
+                  <div class="ex_common_pic" style="background: url(<%= url_for(exp.experience_detail.image)%>) center center no-repeat;background-size: cover;">
+                <%else%>
+                  <div class="ex_common_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
+                <%end%>
                   <div class="filter"></div>
-                  <span class="price_tag"><%= number_to_currency(exp.experience_detail.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%></span>
+                  <span class="price_tag">
+                    <%= number_to_currency(exp.experience_detail.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%>
+                  </span>
                 </div>
                 <h1 class="title"><%= link_to exp.experience_detail.title, exp %></h1>
                 <p class="text">

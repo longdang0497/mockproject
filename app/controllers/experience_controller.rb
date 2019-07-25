@@ -34,19 +34,8 @@ class ExperienceController < ApplicationController
 
   def search
     # CategoryService.new.search
-    # index
     # render :index
   end 
-  
-  def application_form
-  end
-
-  def confirm  
-  end
-
-  def send_request
-  end
-
   def payment
   end
 

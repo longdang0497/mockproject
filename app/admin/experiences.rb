@@ -13,15 +13,36 @@ ActiveAdmin.register Experience do
   #   permitted
   # end
   
-  permit_params :location_id, :admin_user_id
+  permit_params :admin_user_id, :location_id
 
-  filter :location
-  filter :admin_user_id
+  index do
+    selectable_column
+    id_column
+    column :location do |i|
+      i.location.province
+    end
+    column :admin_user_id
+    actions
+  end
+
+  show do
+    attributes_table do
+      row "Location" do |i|
+        i.location.province
+      end
+      row :admin_user_id
+      
+    end
+    active_admin_comments
+  end
+
+  filter :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
 
   form do |f|
     f.inputs do
-      f.input :location_id
-      f.input :admin_user_id
+      f.input :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
+      f.input :admin_user_id, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.id] }
+      
     end
     f.actions
   end

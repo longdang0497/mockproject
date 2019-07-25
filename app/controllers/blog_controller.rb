@@ -14,37 +14,34 @@ class BlogController < ApplicationController
     @locations = LocationService.new.call
     @search.sorts = 'created_at desc' if @search.sorts.empty?
     @blogs = @search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(3)
-    
+    if @page > @blogs.total_pages
+      redirect_to blog_index_url
+    end
     respond_to do |format|
       format.html
       format.json { render json: @blogs }
     end
+
   end
- 
+  
   def show
+    @categories = CategoryService.new.call
     @blog = Blog.find(params[:id])
     @popular_blogs = Blog.popular
-    @hashtags = Hashtag.all
 
     @location_id = @blog.location_id
     @hot_exp = ExperienceService.new.hotexperience(@location_id)
 
+    #recommend with hashtags and location in common
+    @recommend_blogs = Blog.hashtags_and_location_in_common(@blog)
     # breacrumb
     add_breadcrumb 'Blog', :blog_index_path
     add_breadcrumb @blog.blog_detail.title, :blog_path
   end
 
   def search
-    unless params[:q][:categories_category_name_in].nil?
-      params[:q][:categories_category_name_in] = params[:q][:categories_category_name_in].split(",")
-      unless params[:q][:hashtags_tag_name_or_hashtags_tag_name_cont_any].nil?
-        params[:q][:hashtags_tag_name_or_hashtags_tag_name_cont_any] = params[:q][:hashtags_tag_name_or_hashtags_tag_name_cont_any].split(" ")
-        unless params[:q][:location_province_in].nil?
-          params[:q][:location_province_in] = params[:q][:location_province_in].split(",")
-        end
-      end
-    end
     index
     render :index
   end
+
 end

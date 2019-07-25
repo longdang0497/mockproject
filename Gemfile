@@ -59,6 +59,7 @@ gem 'gon'
 
 # Use social-share-button for sharing facebook, instagram, twitter,...
 gem 'social-share-button'
+gem 'shareable'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

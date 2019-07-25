@@ -12,7 +12,7 @@
         <div class="common_inner">
           <ul class="pankuzu_list">
             <%= render_breadcrumbs :tag => "li class='pankuzu_item'", :separator => "" %>
-          </ul>
+          </ul> 
         </div>
       </div>
       <div class="top_mv_filter" id="MvExpFilter"></div>
@@ -20,20 +20,22 @@
         <div class="ex_main_block_inner">
           <div class="ex_main_left">
             <div class="ex_main_pic" style="background: url(<%= image_url("ex/sample_pic") %>) center center no-repeat;background-size: cover;">
+            <% if @blog_first.categories.any? %>
               <span class="blog_main_left_tag">
                 <% @blog_first.categories.each do |category| %>
                   <%= category.category_name %>
                 <% end %>
               </span>
+            <% end %>
               <div class="blog_main_center_block">
-                <h2 class="title"><a href=""><%= @blog_first.blog_detail.title%></a></h2>
+                <h2 class="title">
+                  <%= link_to @blog_first.blog_detail.title, blog_path(@blog_first) %>
+                </h2>
                 <div class="bottom">
                   <ul class="tag_list">
                     <% @blog_first.hashtags.each do |hash_tag| %>
                       <li>
-                        <a href="" class="tag">
-                          #<%= hash_tag.tag_name %>
-                        </a>
+                        <%= link_to "##{hash_tag.tag_name}", search_blog_index_path(:q => {:hashtags_tag_name_has_any_term => hash_tag.tag_name}), class: "tag" %>
                       </li>
                     <% end %>
                   </ul>
@@ -42,15 +44,15 @@
               </div>
               <span class="blog_main_place_tag">
                 <%= image_tag("common/place_icon_w.png") %>
-                <a href=""><%= @blog_first.location.province%></a>
+                <%= link_to @blog_first.location.province, search_blog_index_path(:q =>{:location_province_has_any_term => @blog_first.location.province }) %>
               </span>
             </div>
           </div>
           <div class="ex_main_right">
             <div class="header_search_block ex_main_search">
-              <%= search_form_for @search,url: search_blog_index_path , class: "ex_main_form" do |f| %>
+              <%= search_form_for @search, url: search_blog_index_path , class: "ex_main_form" do |f| %>
                 <div class="header_exp_block">
-                  <%= f.search_field :categories_category_name_in, class: "blog_search_cat", id: "BlogCat"%>
+                  <%= f.search_field :categories_category_name_has_any_term, class: "blog_search_cat", id: "BlogCat", autocomplete: "off" %>
                   <div class="header_exp_popup" id="BlogCatPop">
                     <div class="" id="BlogCat_Choose">
                       <ul class="top_mv_place_list">
@@ -61,9 +63,9 @@
                     </div>
                   </div>
                 </div>
-                <%= f.search_field :hashtags_tag_name_or_hashtags_tag_name_cont_any, class: 'blog_search_key'%>
+                <%= f.search_field :hashtags_tag_name_has_any_term, class: 'blog_search_key', autocomplete: "off" %>
                 <div class="header_exp_block">
-                  <%= f.search_field :location_province_in, class: "header_search_place", id: "ExSearchPlace"%>
+                  <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
                   <div class="header_exp_popup" id="ExPlacePop">
                     <div class="" id="EXSearchPlace_Choose">
                       <ul class="top_mv_place_list">
@@ -86,8 +88,8 @@
     <section class="ex_list_block">
       <div class="ex_list_top_area">
         <p class="ex_list_num">
-        <%= page_entries_info @blogs, entry_name: 'blogs' %>
-        <%= paginate @blogs%>
+          <%= page_entries_info @blogs, entry_name: 'blogs' %>
+          <%= paginate @blogs%>
       </div>
       <section class="blog_ranking_wrap clearfix">
       <% @popular_blogs.each_with_index do |blog, index|%>
@@ -147,14 +149,13 @@
           <div class="bottom">
             <p class="place">
               <%= image_tag("common/place_icon.png") %>
-              <a href=""><%= blog.location.province%></a>
+              
+              <%= link_to blog.location.province, search_blog_index_path(:q =>{:location_province_has_any_term => blog.location.province }) %>
             </p>
             <ul class="tag_list">
               <% blog.hashtags.each do |hash_tag| %>
-                <li>
-                  <a href="" class="tag">
-                      #<%= hash_tag.tag_name %>
-                  </a>
+                <li>                  
+                  <%= link_to "##{hash_tag.tag_name}", search_blog_index_path(:q => {:hashtags_tag_name_has_any_term => hash_tag.tag_name}), class: "tag" %>
                 </li>
               <% end %>
             </ul>

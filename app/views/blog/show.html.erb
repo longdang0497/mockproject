@@ -39,96 +39,52 @@
           Blog keywords
         </p>
         <ul class="tag_list">
-          <% @hashtags.each do |hash_tag| %>
+          <% @blog.hashtags.each do |hash_tag| %>
             <li>
               <a href="" class="tag">
                   #<%= hash_tag.tag_name %>
               </a>
             </li>
           <% end %>
-          <li>
-            <a href="" class="tag">
-              #High Ratings
-            </a>
-          </li>
         </ul>
       </div>
       <div class="blogdetail_recommend_wrap">
         <p class="blogdetail_common_title">
           Recommended blogs for you
         </p>
-        <article class="blog_common_block clearfix detail">
-          <a href="" class="blog_pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;">
-            <span class="tag">Shopping</span>
-          </a>
-          <div class="right">
-            <a href="" class="blog_main_link">
-              <h1 class="blogdetail_title">Souvenirs in Hakata station</h1>
-              <p class="text">
-                There are plenty of regular souvenirs but why not taking time to choose something a bit more special? We selected 10 items that you can easily find in the city center. We excluded items that you can immediately find on the internet; at the Airport or at the station.....
-              </p>
-              <p class="date">2017/08/14</p>
+        <% @recommend_blogs.each do |recommend_blog|%>
+          <article class="blog_common_block clearfix detail">
+            <a href="" class="blog_pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;">
+              <span class="tag"><%= recommend_blog.categories.first.category_name %></span>
             </a>
-            <div class="bottom">
-              <p class="place">
-                <%= image_tag("common/place_icon") %>
-                <a href="">Momochihama</a>
-              </p>
-              <ul class="tag_list">
-                <li>
-                  <a href="" class="tag">
-                    #Ramen
-                  </a>
-                </li>
-                <li>
-                  <a href="" class="tag">
-                    #Photogenic
-                  </a>
-                </li>
-              </ul>
+            <div class="right">
+              <a href="" class="blog_main_link">
+                <h1 class="blogdetail_title"><%= recommend_blog.blog_detail.title %></h1>
+                <p class="text">
+                  <%= recommend_blog.blog_detail.description %>
+                </p>
+                <p class="date"><%= recommend_blog.blog_detail.updated_at.strftime('%Y/%m/%d')%></p>
+              </a>
+              <div class="bottom">
+                <p class="place">
+                  <%= image_tag("common/place_icon") %>
+                  <%= link_to recommend_blog.location.province, search_blog_index_path(:q =>{:location_province_has_any_term => recommend_blog.location.province }) %>
+                </p>
+                <ul class="tag_list">
+                <% recommend_blog.hashtags.each do |hashtag|%>
+                  <li>
+                    <%= link_to "##{hashtag.tag_name}", search_blog_index_path(:q => {:hashtags_tag_name_has_any_term => hashtag.tag_name}), class: "tag" %>
+                  </li>
+                <% end %> 
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="people_area">
-            <div class="pic BlogPeople" style="background: url(<%= image_url('common/sample_people')%>) center center no-repeat;background-size: cover;"></div>
-            <span class="talk">No Ramen, No Life!  by youyou</span>
-          </div>
-        </article>
-        <article class="blog_common_block clearfix detail">
-          <a href="" class="blog_pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;">
-            <span class="tag">Shopping</span>
-          </a>
-          <div class="right">
-            <a href="" class="blog_main_link">
-              <h1 class="title">Souvenirs in Hakata station</h1>
-              <p class="text">
-                There are plenty of regular souvenirs but why not taking time to choose something a bit more special? We selected 10 items that you can easily find in the city center. We excluded items that you can immediately find on the internet; at the Airport or at the station.....
-              </p>
-              <p class="date">2017/08/14</p>
-            </a>
-            <div class="bottom">
-              <p class="place">
-                <%= image_tag("common/place_icon") %>
-                <a href="">Momochihama</a>
-              </p>
-              <ul class="tag_list">
-                <li>
-                  <a href="" class="tag">
-                    #Ramen
-                  </a>
-                </li>
-                <li>
-                  <a href="" class="tag">
-                    #Photogenic
-                  </a>
-                </li>
-              </ul>
+            <div class="people_area">
+              <div class="pic BlogPeople" style="background: url(<%= image_url('common/sample_people')%>) center center no-repeat;background-size: cover;"></div>
+              <span class="talk">No Ramen, No Life!  by youyou</span>
             </div>
-          </div>
-          <div class="people_area">
-            <div class="pic BlogPeople" style="background: url(<%= image_url('common/sample_people')%>) center center no-repeat;background-size: cover;"></div>
-            <span class="talk">No Ramen, No Life!  by youyou</span>
-          </div>
-        </article>
+          </article>
+        <% end %>
       </div>
       <div class="blogdetail_ex_wrap clearfix">
         <p class="blogdetail_common_title sp">
@@ -193,10 +149,10 @@
       </div>
       <div class="blodetail_aside_ranking">
         <p class="blogdetail_aside_title">Blog category</p>
-        <select name="category_choose" class="blogdetail_aside_select">
-          <option value="Culture">Culture</option>
-          <option value="Shoppint">Shopping</option>
-        </select>
+        <%= form_tag search_blog_index_path, :method => 'get' do %>
+          
+     <%= select_tag("q[categories_category_name_has_any_term]", options_for_select(@categories.collect{|cat| [cat.category_name, cat.category_name]}), onchange: 'this.form.submit();', class: "blogdetail_aside_select") %>
+        <% end %>
       </div>
     </aside>
   </div>
