@@ -9,7 +9,10 @@ class ExperienceController < ApplicationController
     @locations = LocationService.new.call
     @search.sorts = 'experience_details.title desc' if @search.sorts.empty?
     @experiences = @search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
-
+    @page = params[:page].to_i
+    if @page > @experiences.total_pages
+      redirect_to experience_index_url
+    end
     respond_to do |format|
       format.html
       format.json { render json: @experiences }
@@ -27,8 +30,8 @@ class ExperienceController < ApplicationController
   end
 
   def search
-    # CategoryService.new.search
-    # render :index
+    index
+    render :index
   end 
   def payment
   end

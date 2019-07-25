@@ -1,10 +1,14 @@
-# # This file should contain all the record creation needed to seed the database with its default values.
-# # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# # # This file should contain all the record creation needed to seed the database with its default values.
+# # # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-# # Examples:
+# # # Examples:
 
-# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-# #   Character.create(name: 'Luke', movie: movies.first)
+# # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+# # #   Character.create(name: 'Luke', movie: movies.first)
+# Role.create(name: 'admin')
+# Role.create(name: 'host')
+
+# AdminUser.create(fullname: 'admin', email: 'abc@example.com', password: '123456', role_id: '1')
 
 # Location.create(province: 'Ho Chi Minh')
 # Location.create(province: 'Ha Noi')
@@ -27,21 +31,21 @@
 
 
 # Blog.create(location_id: 1, admin_user_id: 1)
-# Blog.create(location_id: 2, admin_user_id: 2)
+# Blog.create(location_id: 2, admin_user_id: 1)
 # Blog.create(location_id: 3, admin_user_id: 1)
 # Blog.create(location_id: 4, admin_user_id: 1)
-# Blog.create(location_id: 5, admin_user_id: 2)
+# Blog.create(location_id: 5, admin_user_id: 1)
 # Blog.create(location_id: 6, admin_user_id: 1)
-# Blog.create(location_id: 2, admin_user_id: 2)
-# Blog.create(location_id: 2, admin_user_id: 2)
+# Blog.create(location_id: 2, admin_user_id: 1)
+Blog.create(location_id: 2, admin_user_id: 1)
 
 # Experience.create(location_id: 1, admin_user_id: 1)
-# Experience.create(location_id: 2, admin_user_id: 2)
-# Experience.create(location_id: 3, admin_user_id: 2)
+# Experience.create(location_id: 2, admin_user_id: 1)
+# Experience.create(location_id: 3, admin_user_id: 1)
 # Experience.create(location_id: 4, admin_user_id: 1)
-# Experience.create(location_id: 5, admin_user_id: 2)
+# Experience.create(location_id: 5, admin_user_id: 1)
 # Experience.create(location_id: 6, admin_user_id: 1)
-# Experience.create(location_id: 2, admin_user_id: 2)
+# Experience.create(location_id: 2, admin_user_id: 1)
 
 # BlogHashtag.create(blog_id: 1, hashtag_id: 1)
 # BlogHashtag.create(blog_id: 1, hashtag_id: 2)
@@ -81,7 +85,7 @@
 # BlogDetail.create(blog_id: 4, title: 'Blog4', content: '123')
 # BlogDetail.create(blog_id: 5, title: 'Blog5', content: '123')
 # BlogDetail.create(blog_id: 6, title: 'Blog6', content: '123')
-# BlogDetail.create(blog_id: 7, title: 'Blog7', content: '123')
+BlogDetail.create(blog_id: 7, title: 'Blog7', content: '123')
 
 # ExperienceDetail.create(experience_id: 1, title: 'Experience1', price_adult: '12000', price_children: '6000', price_infant: '0', duration: '2 hours', age: '12 and over', language: 'English, Chinese')
 # ExperienceDetail.create(experience_id: 2, title: 'Experience2', price_adult: '24000', price_children: '12000', price_infant: '0', duration: '3 hours', age: 'from 6 to 10', language: 'English, Vietnamese')
@@ -103,9 +107,5 @@
 # ExperienceDate.create(expFrom: '01/07/2019', expTo: '03/07/2019', month: '7', year: '2019', experience_detail_id: '1')
 # ExperienceDate.create(expFrom: '08/07/2019', expTo: '10/07/2019', month: '7', year: '2019', experience_detail_id: '1')
 
-# Role.create(name: 'admin')
-# Role.create(name: 'host')
 
-AdminUser.create(fullname: 'admin', email: 'abc@example.com', password: '123456', role_id: '1')
-
-# AdminUser.create(fullname: 'admin1', email: 'admin1@example.com', password: '123456', role_id: '2')
+# # AdminUser.create(fullname: 'admin1', email: 'admin1@example.com', password: '123456', role_id: '2')
