@@ -22,7 +22,7 @@ ActiveAdmin.register Category do
     actions
   end
 
-  filter :category_name, :as => :select, :collection => Category.all.collect {|ca| [ca.category_name] }
+  # filter :category_name, :as => :select, :collection => Category.all.collect {|ca| [ca.category_name] }
 
   form do |f|
     f.inputs do

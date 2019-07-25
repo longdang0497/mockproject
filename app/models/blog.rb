@@ -1,5 +1,6 @@
 class Blog < ApplicationRecord
   has_one :blog_detail
+  has_one_attached :image
 
   belongs_to :admin_user
   belongs_to :location

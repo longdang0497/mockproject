@@ -36,7 +36,7 @@ class BlogController < ApplicationController
     @recommend_blogs = Blog.hashtags_and_location_in_common(@blog)
     # breacrumb
     add_breadcrumb 'Blog', :blog_index_path
-    add_breadcrumb @blog.blog_detail.title, :blog_path
+    add_breadcrumb @blog.title, :blog_path
   end
 
   def search

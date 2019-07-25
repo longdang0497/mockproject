@@ -23,7 +23,7 @@ ActiveAdmin.register Hashtag do
     actions
   end
 
-  filter :tag_name, :as => :select, :collection => Hashtag.all.collect {|tag| [tag.tag_name] }
+  # filter :tag_name, :as => :select, :collection => Hashtag.all.collect {|tag| [tag.tag_name] }
 
   form do |f|
     f.inputs do

@@ -5,7 +5,7 @@
   <section class="ex_mv_wrap">
     <div class="">
       <h1 class="ex_main_title">
-        <%= @experience.experience_detail.title %>
+        <%= @experience.title %>
       </h1>
       <div class="pankuzu_wrap">
         <div class="common_inner">
@@ -19,7 +19,7 @@
   <div class="exdetail_wrap clearfix">
     <section class="exdetail_left_block">
       <h1 class="exdetail_title">
-        <%= @experience.experience_detail.title %>
+        <%= @experience.title %>
       </h1>
       <div class="exdetail_info_wrap">
         <h2 class="exdetail_writer">Hosted by <%= @host.fullname %></h2>
@@ -39,25 +39,25 @@
       <ul class="exdetail_intro_wrap">
         <li class="exdetail_intro_item money">
           <%= image_tag  "ex/money_icon" %>
-          <%= number_to_currency(@experience.experience_detail.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%> / guest
+          <%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%> / guest
         </li>
         <li class="exdetail_intro_item child">
         <%= image_tag  "ex/baby_icon" %>
-          ages <%= @experience.experience_detail.age %>
+          ages <%= @experience.age %>
         </li>
         <li class="exdetail_intro_item time">
           <%= image_tag  "ex/time_icon02" %>
-          <%= @experience.experience_detail.duration %> total
+          <%= @experience.duration %> total
         </li>
         <li class="exdetail_intro_item language">
           <%= image_tag  "ex/talk_icon" %>
-          Offered in <%= @experience.experience_detail.language %>
+          Offered in <%= @experience.language %>
         </li>
       </ul>
       <div class="exdetail_what_block">
         <h3 class="exdetail_common_title">What we will do</h3>
         <p class="exdetail_common_text">
-          <%= @experience.experience_detail.description %>
+          <%= @experience.description %>
         </p>
       </div>
       <div class="exdetail_what_block sp">
@@ -91,8 +91,8 @@
               <%= image_tag  "ex/money_icon" %>
             </th>
             <td>
-              <p class="big"><%= number_to_currency(@experience.experience_detail.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%> / guest</p>
-              <p class="small">Children <%= number_to_currency(@experience.experience_detail.price_children.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%>   Infants <%= number_to_currency(@experience.experience_detail.price_infant.to_f, unit: "$US", precision: 2, separator: ",", delimiter: ".", format: "%u %n")%></p>
+              <p class="big"><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%> / guest</p>
+              <p class="small">Children <%= number_to_currency(@experience.price_children.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%>   Infants <%= number_to_currency(@experience.price_infant.to_f, unit: "$US", precision: 2, separator: ",", delimiter: ".", format: "%u %n")%></p>
             </td>
           </tr>
           <tr>
@@ -100,8 +100,8 @@
               <%= image_tag  "ex/baby_icon" %>
             </th>
             <td>
-              <p class="big">ages <%= @experience.experience_detail.age %></p>
-              <p class="small">All guests must be at least <%= @experience.experience_detail.age %>.</p>
+              <p class="big">ages <%= @experience.age %></p>
+              <p class="small">All guests must be at least <%= @experience.age %>.</p>
             </td>
           </tr>
           <tr>
@@ -109,7 +109,7 @@
               <%= image_tag  "ex/time_icon02" %>
             </th>
             <td>
-              <p class="big"><%= @experience.experience_detail.duration %> total</p>
+              <p class="big"><%= @experience.duration %> total</p>
               <p class="small">It does not include the clean up time</p>
             </td>
           </tr>
@@ -118,7 +118,7 @@
               <%= image_tag  "ex/talk_icon" %>
             </th>
             <td>
-              <p class="big">Offered in <%= @experience.experience_detail.language %></p>
+              <p class="big">Offered in <%= @experience.language %></p>
               <p class="small">If you need a interpreter..... </p>
             </td>
           </tr>
@@ -175,8 +175,8 @@
     </section>
     <aside class="exdetail_right_block">
       <div class="exdetail_right_top">
-        <% if @experience.experience_detail.image.attached?%>
-          <div class="exdetail_main_pic" style="background: url(<%= url_for(@experience.experience_detail.image)%>) center center no-repeat;background-size: cover;"></div>
+        <% if @experience.image.attached?%>
+          <div class="exdetail_main_pic" style="background: url(<%= url_for(@experience.image)%>) center center no-repeat;background-size: cover;"></div>
         <%else%>
           <div class="exdetail_main_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;"></div>
         <%end%>

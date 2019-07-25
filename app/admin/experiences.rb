@@ -36,7 +36,7 @@ ActiveAdmin.register Experience do
     active_admin_comments
   end
 
-  filter :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
+  # filter :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
 
   form do |f|
     f.inputs do
