@@ -296,6 +296,7 @@
                   <% elsif @forecast.currently.icon.include? "snow" %>
                     <i class="fas fa-snowflake" style="font-size:2.8rem"></i><br>                  
                   <% end %>
+                  <br>
                   <%= @forecast.currently.icon.gsub('-', ' ') %>
                 </p>
               <% end %>
