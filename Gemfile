@@ -19,8 +19,9 @@ gem 'cancan'
 # Use Activeadmin for admin management
 gem 'activeadmin', '~> 2.2'
 
-#Gem for create breadcrumbs
+# Gem for create breadcrumbs
 gem "breadcrumbs_on_rails"
+
 # Use SCSS for stylesheets
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
@@ -31,6 +32,9 @@ gem 'bxslider-rails'
 
 gem 'sass-rails', '~> 5.0'
 gem 'compass-rails'
+
+# Use fontawesome for UI
+gem 'font-awesome-rails'
 
 # Use kaminari for pagination
 gem 'kaminari'
@@ -46,6 +50,12 @@ gem 'ransack'
 gem 'ckeditor'
 gem 'paperclip'
 gem 'mini_magick'
+
+# Use forcast-io for weather
+gem 'forecast_io'
+
+# Use gon for passing data to javascript
+gem 'gon'
 
 # Use social-share-button for sharing facebook, instagram, twitter,...
 gem 'social-share-button'
