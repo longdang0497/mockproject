@@ -24,6 +24,12 @@ class ExperienceController < ApplicationController
     @recommends = ExperienceService.new.recommend(@experience)
     @host = AdminUser.find(@experience.admin_user_id)
 
+    @exp_dates = ExperienceDate.where(["experience_detail_id = ?", @experience.experience_detail.id])
+
+    gon.year = "2019"
+    puts gon.months = @exp_dates.select(:month).distinct
+    # gon.year = @exp_dates.year
+
     # breacrumb
     add_breadcrumb 'Experience', :experience_index_path
     add_breadcrumb @experience.title, :experience_path

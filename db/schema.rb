@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 2019_07_25_033210) do
     t.string "language"
     t.text "short_description"
     t.text "description"
-    t.index ["admin_user_id"], name: "index_experiences_on_admin_user_id"
+    t.string "image"
     t.index ["location_id"], name: "index_experiences_on_location_id"
   end
 
@@ -220,6 +220,5 @@ ActiveRecord::Schema.define(version: 2019_07_25_033210) do
   add_foreign_key "bookings", "experiences"
   add_foreign_key "category_experiences", "categories"
   add_foreign_key "category_experiences", "experiences"
-  add_foreign_key "experiences", "admin_users"
   add_foreign_key "experiences", "locations"
 end
