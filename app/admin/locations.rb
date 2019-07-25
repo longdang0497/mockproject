@@ -21,7 +21,7 @@ ActiveAdmin.register Location do
     actions
   end
 
-  # filter :province, :as => :select, :collection => Location.all.collect {|loca| [loca.province] }
+  filter :province, :as => :select, :collection => Location.all.collect {|loca| [loca.province] }
 
   form do |f|
     f.inputs do
