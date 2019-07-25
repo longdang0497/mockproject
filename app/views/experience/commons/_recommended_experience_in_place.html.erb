@@ -7,7 +7,7 @@
             <div class="slide">
               <a href="<%= experience_path(rec) %>">
                 <div class="pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
-                  <span class="price_tag"><%= number_to_currency(rec.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%></span>
+                  <span class="price_tag"><%= number_to_currency(rec.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
                 </div>
                 <p class="text"><%= rec.title %></p>
               </a>

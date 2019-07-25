@@ -39,7 +39,7 @@
       <ul class="exdetail_intro_wrap">
         <li class="exdetail_intro_item money">
           <%= image_tag  "ex/money_icon" %>
-          <%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%> / guest
+          <%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%> / guest
         </li>
         <li class="exdetail_intro_item child">
         <%= image_tag  "ex/baby_icon" %>
@@ -91,8 +91,8 @@
               <%= image_tag  "ex/money_icon" %>
             </th>
             <td>
-              <p class="big"><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%> / guest</p>
-              <p class="small">Children <%= number_to_currency(@experience.price_children.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%>   Infants <%= number_to_currency(@experience.price_infant.to_f, unit: "$US", precision: 2, separator: ",", delimiter: ".", format: "%u %n")%></p>
+              <p class="big"><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%> / guest</p>
+              <p class="small">Children <%= number_to_currency(@experience.price_children.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%>   Infants <%= number_to_currency(@experience.price_infant.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
             </td>
           </tr>
           <tr>
@@ -192,7 +192,7 @@
         <p class="exdetail_open">
           Opening hours <span>10:00~18:00</span>
         </p>
-        <a href="" class="exdetail_book_btn">Go to Application form</a>
+        <a href="<%= applicationform_experience_index_path %>" class="exdetail_book_btn">Go to Application form</a>
       </div>
     </aside>
   </div>  

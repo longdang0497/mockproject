@@ -14,4 +14,5 @@ ActiveAdmin.register Role do
   # end
   # filter :name, :as => :select, :collection => Role.all.collect {|role| [role.name] }
 
+  filter :name
 end
