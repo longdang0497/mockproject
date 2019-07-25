@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_033210) do
+ActiveRecord::Schema.define(version: 2019_07_25_042944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -172,6 +172,17 @@ ActiveRecord::Schema.define(version: 2019_07_25_033210) do
     t.index ["experience_id"], name: "index_category_experiences_on_experience_id"
   end
 
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "data_fingerprint"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
+  end
+
   create_table "experience_dates", force: :cascade do |t|
     t.date "expFrom"
     t.date "expTo"
@@ -196,6 +207,8 @@ ActiveRecord::Schema.define(version: 2019_07_25_033210) do
     t.string "language"
     t.text "short_description"
     t.text "description"
+    t.bigint "admin_user_id"
+    t.index ["admin_user_id"], name: "index_experiences_on_admin_user_id"
     t.index ["location_id"], name: "index_experiences_on_location_id"
   end
 
