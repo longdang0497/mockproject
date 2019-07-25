@@ -143,6 +143,7 @@
         <% if @hot_exp.present? %>      
           <% @hot_exp.each do |exp| %>
             <% if exp.present? %>  
+              <a href="<%= experience_path(@hot_exp) %>">
               <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
                 <div class="flipper">
                   <div class="front" style="background: url(<%= image_url('top/pic01')%>) center center no-repeat;background-size: cover;">
@@ -153,7 +154,7 @@
                     <h2 class="top_hot_title"><%= exp.title %></h2>
                     <%if exp.description.present?%>
                       <p class="top_hot_text">
-                        <%= exp.description.truncate(140) %>
+                        <%= exp.description.truncate(90) %>
                       </p>
                     <%end%>
                     <ul class="top_hot_list">
@@ -163,13 +164,13 @@
                       <% if exp.categories.present? %>
                         <li class="top_hot_item bg02">                      
                           <%= link_to exp.categories.first.category_name, experience_index_path(:q =>{:categories_category_name_has_any_term => exp.categories.first.category_name }), class: "top_hot_link" %>
-                        </li>
-                      <% end %>                    
-                    </ul>
-                    <span class="top_hot_tag"><%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%></span>
+                        </li>                
+                      </ul>
+                      <span class="top_hot_tag"><%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             <% else %>
               There is no data.
             <% end %>
@@ -279,6 +280,7 @@
                   <% elsif @forecast.currently.icon.include? "snow" %>
                     <i class="fas fa-snowflake" style="font-size:2.8rem"></i><br>                  
                   <% end %>
+                  <br>
                   <%= @forecast.currently.icon.gsub('-', ' ') %>
                 </p>
               <% end %>
