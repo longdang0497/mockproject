@@ -12,6 +12,6 @@ ActiveAdmin.register Role do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  filter :name, :as => :select, :collection => Role.all.collect {|role| [role.name] }
+  # filter :name, :as => :select, :collection => Role.all.collect {|role| [role.name] }
 
 end
