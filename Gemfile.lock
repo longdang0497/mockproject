@@ -142,6 +142,8 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.1)
+    font-awesome-rails (4.7.0.5)
+      railties (>= 3.2, < 6.1)
     forecast_io (2.0.2)
       faraday
       hashie
@@ -352,6 +354,7 @@ DEPENDENCIES
   devise
   dotenv (~> 2.7, >= 2.7.4)
   dotenv-rails
+  font-awesome-rails
   forecast_io
   gon
   impressionist

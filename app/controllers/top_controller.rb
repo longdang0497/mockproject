@@ -4,7 +4,7 @@ class TopController < ApplicationController
     @popular_blogs = Blog.popular
     @hot_exp = ExperienceService.new.hottest
 
-    forecast = ForecastIO.forecast(10.774305, 106.6859997)
-    byebug
+    @forecast = ForecastIO.forecast(10.774305, 106.6859997)
+    
   end
 end

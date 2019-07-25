@@ -13,7 +13,7 @@
  *= require style
  *= require reset
  *= require_self
-	
+ *= require font-awesome
  *= require daterangepicker
  *= require ./hover/style_common
  *= require ./hover/style2
@@ -23,10 +23,11 @@
  *= require social-share-button
  */
 
-
+@import "font-awesome";
  /*=====Import Bootstrap=====*/
 @import 'https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css';
 /*======== WEB FONT ========*/
+
 
 @font-face {
 	font-family: 'ElegantIcons';

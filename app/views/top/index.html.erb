@@ -248,8 +248,7 @@
         <%= image_tag('top/top_title04')%>
       </h1>
       <div class="top_weather_main">
-        <div class="top_weather_left">
-          <%= @forecast %>
+        <div class="top_weather_left">          
           <div class="pc">
             <%= image_tag('common/map', class: "map")%>
             <%= image_tag('common/pin_icon03', class: "pin", id: "WeatherPin")%>
@@ -258,8 +257,59 @@
             <%= image_tag('common/map_sp', class: "map_sp")%>
           </div>
         </div>
-        <div class="top_weather_right">
-          <!-- API 入れる -->
+        <div class="top_weather_right clearfix">
+          <% if @forecast.present? %>
+          <ul class="top_money_list">
+            <li class="top_money_item top_exchange" style="width:15rem">
+              <p class="top_money_contury">
+                <i class="fas fa-map-pin" style="font-size:2.8rem"></i>&nbsp;
+                <b>Latitude</b><br><%= @forecast.latitude if @forecast.latitude.present? %>
+              </p>
+            </li>
+            <li class="top_money_item top_exchange" style="width:15rem">
+              <p class="top_money_contury">
+                <i class="fas fa-map-pin" style="font-size:2.8rem"></i>&nbsp;
+                <b>Longtitude</b><br><%= @forecast.longitude if @forecast.longitude.present? %>
+              </p>
+            </li>
+            <li class="top_money_item top_exchange" style="width:15rem">
+              <p class="top_money_contury">
+                <i class="fas fa-clock" style="font-size:2.8rem"></i>&nbsp;
+                <b>Timezone</b><br><%= @forecast.timezone if @forecast.timezone.present? %>
+              </p>
+            </li>
+            <li class="top_money_item top_exchange" style="width:15rem">
+              <% if @forecast.currently.icon.present? %>
+                <p class="top_money_contury">
+                  <% if @forecast.currently.icon.include? "rain" %>
+                    <i class="fas fa-cloud-rain" style="font-size:2.8rem"></i>
+                  <% elsif @forecast.currently.icon.include? "cloud" %>
+                    <i class="fas fa-cloud" style="font-size:2.8rem"></i><br>
+                  <% elsif @forecast.currently.icon.include? "sun" %>
+                    <i class="fas fa-sun" style="font-size:2.8rem"></i><br>
+                  <% elsif @forecast.currently.icon.include? "wind" %>
+                    <i class="fas fa-wind" style="font-size:2.8rem"></i><br>
+                  <% elsif @forecast.currently.icon.include? "snow" %>
+                    <i class="fas fa-snowflake" style="font-size:2.8rem"></i><br>                  
+                  <% end %>
+                  <%= @forecast.currently.icon.gsub('-', ' ') %>
+                </p>
+              <% end %>
+            </li>
+            <li class="top_money_item top_exchange" style="width:15rem">
+              <p class="top_money_contury">
+                <i class="fas fa-umbrella" style="font-size:2.8rem"></i><br>
+                <%= @forecast.currently.summary if @forecast.currently.summary.present? %>
+              </p>
+            </li> 
+            <li class="top_money_item top_exchange" style="width:15rem">
+              <p class="top_money_contury">
+                <i class="fas fa-temperature-high" style="font-size:2.8rem"></i><br>
+                <%= @forecast.currently.temperature if @forecast.currently.temperature.present? %>
+              </p>
+            </li>            
+          </ul>
+          <% end %>
         </div>
       </div>
     </div>
