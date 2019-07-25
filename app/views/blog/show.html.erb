@@ -12,8 +12,8 @@
     </div>
     <div class="blogdetail_wrap clearfix">
       <section class="blogdetail_main">
-        <% if @blog.blog_detail.image.attached? %>
-          <div class="blogdetail_mv_pic" style="background: url(<%= url_for(@blog.blog_detail.image)%>) center center no-repeat;background-size: cover;"></div>
+        <% if @blog.image.attached? %>
+          <div class="blogdetail_mv_pic" style="background: url(<%= url_for(@blog.image)%>) center center no-repeat;background-size: cover;"></div>
         <%else%>
           <div class="blogdetail_mv_pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;"></div>
         <%end%>
@@ -24,11 +24,11 @@
                 <%= category.category_name %>
               </p>
             <% end %>
-            <p class="date"><%= @blog.blog_detail.updated_at.strftime('%Y/%m/%d') %></p>
+            <p class="date"><%= @blog.updated_at.strftime('%Y/%m/%d') %></p>
           </p>
         </div>
         <h1 class="blogdetail_title">
-          <%= @blog.blog_detail.title.truncate(45)%>
+          <%= @blog.title.truncate(45) if @blog.title.present?%>
         </h1>
         <p class="main_place">
           <%= image_tag("common/place_icon")%>
@@ -36,7 +36,7 @@
         </p>
       </div>
       <div class="blogdetail_textarea">
-        <%= @blog.blog_detail.content.try(:html_safe)%>
+        <%= @blog.content.try(:html_safe)%>
       </div>
       <div class="blogdetail_keywords_wrap">
         <p class="blogdetail_common_title">
@@ -58,8 +58,8 @@
         </p>
         <% @recommend_blogs.each do |recommend_blog|%>
           <article class="blog_common_block clearfix detail">
-            <% if recommend_blog.blog_detail.image.attached? %>
-              <a href="" class="blog_pic" style="background: url(<%= url_for(recommend_blog.blog_detail.image)%>)  center center no-repeat;background-size: cover;">
+            <% if recommend_blog.image.attached? %>
+              <a href="" class="blog_pic" style="background: url(<%= url_for(recommend_blog.image)%>)  center center no-repeat;background-size: cover;">
             <%else%>
               <a href="" class="blog_pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;">
             <%end%>
@@ -73,8 +73,8 @@
             </a>
             <div class="right">
               <a href="" class="blog_main_link">
-                <h1 class="blogdetail_title"><%= recommend_blog.blog_detail.title.truncate(10) %></h1>
-                <p class="date"><%= recommend_blog.blog_detail.updated_at.strftime('%Y/%m/%d')%></p>
+                <h1 class="blogdetail_title"><%= recommend_blog.title.truncate(10) if recommend_blog.title.present? %></h1>
+                <p class="date"><%= recommend_blog.updated_at.strftime('%Y/%m/%d')%></p>
               </a>
               <div class="bottom">
                 <p class="place">
@@ -108,11 +108,11 @@
                 <a href="<%= experience_path(exp) %>" class="ex_common_up">
                   <div class="ex_common_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
                     <div class="filter"></div>
-                    <span class="price_tag"><%= number_to_currency(exp.experience_detail.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%></span>
+                    <span class="price_tag"><%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%></span>
                   </div>
-                  <h1 class="title"><%= exp.experience_detail.title %></h1>
+                  <h1 class="title"><%= exp.title %></h1>
                   <p class="text">
-                    <%= exp.experience_detail.description.truncate(140) if exp.experience_detail.description.present? %>
+                    <%= exp.description.truncate(140) if exp.description.present? %>
                   </p>
                 </a>
                 <div class="ex_common_down">
@@ -151,13 +151,13 @@
           <article class="blogdetail_ranking_block">
             <a href="<%= blog_path(blog) %>" class="link clearfix">
               <%= rank(index) %>
-              <% if blog.blog_detail.image.attached? %>
-                <div class="pic" style="background: url(<%= url_for(blog.blog_detail.image)%>) center center no-repeat;background-size: cover;">
+              <% if blog.image.attached? %>
+                <div class="pic" style="background: url(<%= url_for(blog.image)%>) center center no-repeat;background-size: cover;">
               <%else%>
                 <div class="pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;">
               <%end%>
               </div>
-              <h1 class="title"><%= blog.blog_detail.title.truncate(10)%></h1>
+              <h1 class="title"><%= blog.title.truncate(10) if blog.title.present?%></h1>
             </a>
           </article>
         <%end%>

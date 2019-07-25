@@ -19,8 +19,8 @@
       <div class="ex_main_block">
         <div class="ex_main_block_inner">
           <div class="ex_main_left">
-            <% if @blog_first.blog_detail.image.attached? %>
-              <div class="ex_main_pic" style="background: url(<%= url_for(@blog_first.blog_detail.image)%>)  center center no-repeat;background-size: cover;">
+            <% if @blog_first.image.attached? %>
+              <div class="ex_main_pic" style="background: url(<%= url_for(@blog_first.image)%>)  center center no-repeat;background-size: cover;">
             <%else%>
               <div class="ex_main_pic" style="background: url(<%= image_url("ex/sample_pic") %>) center center no-repeat;background-size: cover;">
             <%end%>
@@ -33,7 +33,7 @@
             <% end %>
               <div class="blog_main_center_block">
                 <h2 class="title">
-                  <%= link_to @blog_first.blog_detail.title.truncate(10), blog_path(@blog_first)%>
+                  <%= link_to @blog_first.title.truncate(10), blog_path(@blog_first) if @blog_first.title.present?%>
                 </h2>
                 <div class="bottom">
                   <ul class="tag_list">
@@ -43,8 +43,8 @@
                       </li>
                     <% end %>
                   </ul>
-                  <% if @blog_first.blog_detail.image.attached? %>
-                    <div class="people" style="background: url(<%= url_for(@blog_first.blog_detail.image)%>)  center center no-repeat;background-size: cover;"></div>
+                  <% if @blog_first.image.attached? %>
+                    <div class="people" style="background: url(<%= url_for(@blog_first.image)%>)  center center no-repeat;background-size: cover;"></div>
                   <%else%>
                     <div class="people" style="background: url(<%= image_url("common/sample_pic.jpg") %>) center center no-repeat;background-size: cover;"></div>
                   <%end%>
@@ -105,8 +105,8 @@
           <a href="<%= blog_path(blog) %>" class="link clearfix">
             <%= rank(index) %>
             <div class="right">
-              <% if blog.blog_detail.image.attached? %>
-                <div class="pic" style="background: url(<%= url_for(blog.blog_detail.image)%>) center center no-repeat;background-size: cover;">
+              <% if blog.image.attached? %>
+                <div class="pic" style="background: url(<%= url_for(blog.image)%>) center center no-repeat;background-size: cover;">
               <%else%>
                 <div class="pic" style="background: url(<%= image_url("common/sample_pic.jpg") %>) center center no-repeat;background-size: cover;">
               <%end%>
@@ -118,7 +118,7 @@
                   </span>
                 <% end %>
               </div>
-              <h1 class="title"><%= blog.blog_detail.title.truncate(10)%></h1>
+              <h1 class="title"><%= blog.title.truncate(10) if blog.title.present?%></h1>
             </div>
           </a>
         </article>
@@ -130,8 +130,8 @@
     <% @blogs.each do |blog| %>
 
       <article class="blog_common_block clearfix">
-        <% if blog.blog_detail.image.attached? %>
-          <a href="<%= blog_path(blog) %>" class="blog_pic" style="background: url(<%= url_for(blog.blog_detail.image)%>) center center no-repeat;background-size: cover;">
+        <% if blog.image.attached? %>
+          <a href="<%= blog_path(blog) %>" class="blog_pic" style="background: url(<%= url_for(blog.image)%>) center center no-repeat;background-size: cover;">
         <%else%>
           <a href="<%= blog_path(blog) %>" class="blog_pic" style="background: url(<%= image_url("common/sample_pic.jpg") %>) center center no-repeat;background-size: cover;">
         <%end%>
@@ -149,13 +149,13 @@
           <%= link_to blog, class: "blog_main_link" do %>
           
             <h1 class="title">
-              <%= blog.blog_detail.title.truncate(10) %> 
+              <%= blog.title.truncate(10) if blog.title.present? %> 
             </h1>
 
             <p class="text" id="block-with-text">
-              <%= blog.blog_detail.description %>
+              <%= blog.short_description if blog.short_description.present? %>
             </p>
-            <p class="date"> <%= blog.blog_detail.updated_at.strftime("%Y/%m/%d") %> </p>
+            <p class="date"> <%= blog.updated_at.strftime("%Y/%m/%d") %> </p>
 
 
           <% end %>

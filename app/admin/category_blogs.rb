@@ -39,8 +39,8 @@ ActiveAdmin.register CategoryBlog do
     active_admin_comments
   end
 
-  filter :blog, :collection => Blog.all.collect {|blog| [blog.blog_detail.title, blog.id] }
-  filter :category, :collection => Category.all.collect {|category| [category.category_name, category.id] }
+  # filter :blog, :collection => Blog.all.collect {|blog| [blog.blog_detail.title, blog.id] }
+  # filter :category, :collection => Category.all.collect {|category| [category.category_name, category.id] }
 
   form do |f|
     f.inputs do

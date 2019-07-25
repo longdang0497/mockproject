@@ -26,7 +26,7 @@ class ExperienceController < ApplicationController
 
     # breacrumb
     add_breadcrumb 'Experience', :experience_index_path
-    add_breadcrumb @experience.experience_detail.title, :experience_path
+    add_breadcrumb @experience.title, :experience_path
   end
 
   def search
