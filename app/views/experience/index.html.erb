@@ -19,7 +19,11 @@
         <div class="ex_main_block_inner">
           <div class="ex_main_left">
             <% if @hot_exp.present? && @hot_exp.present? %>
-              <div class="ex_main_pic" style="background: url(<%= image_url('ex/sample_pic')%>) center center no-repeat;background-size: cover;">
+              <% if @hot_exp.image.attached? %>
+                <div class="ex_main_pic" style="background: url(<%= url_for(@hot_exp.image) %>) center center no-repeat;background-size: cover;">
+              <%else%>
+                <div class="ex_main_pic" style="background: url(<%= image_url("ex/sample_pic") %>) center center no-repeat;background-size: cover;">
+              <%end%>              
                 <p class="ex_new_tag">
                   <%= image_tag("ex/new_icon") %>
                 </p>
@@ -91,7 +95,7 @@
             <article class="ex_comon_list">
               <a href="<%= experience_path(exp) %>" class="ex_common_up">
                 <% if exp.image.attached? %>
-                  <div class="ex_common_pic" style="background: url(<%= url_for(exp.image)%>) center center no-repeat;background-size: cover;">
+                  <div class="ex_common_pic" style="background: url(<%= url_for(exp.image) %>) center center no-repeat;background-size: cover;">
                 <%else%>
                   <div class="ex_common_pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
                 <%end%>
@@ -102,8 +106,8 @@
                 </div>
                 <h1 class="title"><%= exp.title%></h1>
                 <p class="text">
-                <%if exp.description.present?%>
-                  <%= exp.description.truncate(140) %>
+                <% if exp.short_description.present?%>
+                  <%= exp.short_description.truncate(140) %>
                 <%end%>
                 </p>
               </a>

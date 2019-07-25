@@ -157,8 +157,11 @@
               <a href="<%= experience_path(@hot_exp) %>">
                 <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
                   <div class="flipper">
-                    <div class="front" style="background: url(<%= image_url('top/pic01')%>) center center no-repeat;background-size: cover;">
-                      <!-- 表コンテンツエリア -->
+                    <% if exp.image.attached? %>
+                    <div class="front" style="background: url(<%= url_for(exp.image) %>) center center no-repeat;background-size: cover;">
+                    <% else %>
+                    <div class="front" style="background: url(<%= image_url('top/pic01') %>) center center no-repeat;background-size: cover;">
+                    <% end %>
                     </div>
                     <div class="back" style="background: rgba(0,0,0,0.8);">
                       <!-- 裏コンテンツエリア -->
@@ -424,7 +427,11 @@
             <% @popular_blogs.each do |blog|%>
             <article class="top_common_blog">
               <a href="<%= blog_path(blog) %>">
-                <div class="top_blog_pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;"></div>
+                <% if blog.image.attached? %>
+                <div class="top_blog_pic" style="background: url(<%= url_for(blog.image) %>) center center no-repeat;background-size: cover;"></div>
+                <% else %>
+                <div class="top_blog_pic" style="background: url(<%= image_url('common/sample_pic') %>) center center no-repeat;background-size: cover;"></div>
+                <% end %>
                 <div class="top_blog_info">
                   <h1 class="top_blog_title">
                     <span><%= blog.title%></span>
