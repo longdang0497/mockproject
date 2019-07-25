@@ -21,10 +21,10 @@
     var year = thisYear;
     var month = thisMonth;
     
-    var i;
-    for (i = 0; i < gon.months.size; i++) {
-      gon.months[i].month
-    }
+    // var i;
+    // for (i = 0; i < gon.months.size; i++) {
+    //   gon.months[i].month
+    // }
       
     month += n;
     if (month == 0) { year--; month=12; }
@@ -99,7 +99,7 @@ $(function() {
     $(".calen02").addClass("c_no_active");
     $(".calen03").addClass("c_no_active");
 
-    alert(gon.months.first.month);
+    // alert(gon.months.first.month);
     
     var pageCount=0;
     Page();

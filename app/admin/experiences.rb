@@ -13,36 +13,83 @@ ActiveAdmin.register Experience do
   #   permitted
   # end
   
-  permit_params :admin_user_id, :location_id
-
+  permit_params :title, :short_description, :description, :age, :language, :duration, :price_adult, :price_children, :price_infant, :location_id, :admin_user_id
+  
   index do
     selectable_column
     id_column
-    column :location do |i|
+    column :title
+    column :short_description
+    column :description
+    column "Location" do |i|
       i.location.province
     end
-    column :admin_user_id
+    column :age
+    column :duration
+    column :language
+    column "Adult", :price_adult
+    column "Children", :price_children
+    column "Infant", :price_infant
+    column "Created", :created_at
+    column "Updated", :updated_at  
     actions
   end
 
   show do
     attributes_table do
+      row :id
+      row :title
+      row :short_description
+      row :description
       row "Location" do |i|
         i.location.province
       end
-      row :admin_user_id
-      
+      row :age
+      row :duration
+      row :language
+      row :price_adult
+      row :price_children
+      row :price_infant
+      row "Created by" do |i|
+        i.admin_user.fullname
+      end
+      row "Admin user" do |i|
+        i.admin_user.email
+      end
+      row :created_at
+      row :updated_at
     end
     active_admin_comments
   end
 
-  # filter :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
-
+  filter :id
+  filter :title
+  filter :short_description
+  filter :description
+  filter :age
+  filter :duration
+  filter :language
+  filter :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
+  filter :price_adult
+  filter :price_children
+  filter :price_infant
+  filter :created_at
+  filter :updated_at
+  filter :admin_user, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.fullname, ad.id] }
+  
   form do |f|
     f.inputs do
+      f.input :title
+      f.input :short_description
+      f.input :description
       f.input :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
-      f.input :admin_user_id, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.id] }
-      
+      f.input :age
+      f.input :duration
+      f.input :language
+      f.input :price_adult
+      f.input :price_children
+      f.input :price_infant
+      f.input :admin_user, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.fullname, ad.id] }
     end
     f.actions
   end
