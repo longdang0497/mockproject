@@ -167,21 +167,35 @@ jQuery(function($){
 	});
 	
 	var MV_Ex = [];
-	
-	$("input[name='mv_experience']").on("click",function(){
-  	MV_Ex = [];
+	$("#MvSearchExp_Choose .top_mv_place_item").on("click",function(){
+		MV_Ex = [];
   	$(this).toggleClass("active");
-  	$("input[name='mv_experience']").each(function(){
+		$("#MvSearchExp_Choose .top_mv_place_item").each(function(){
     	if($(this).hasClass("active")){
       	
-      	MV_Ex.push($(this).data("ex"));
+				MV_Ex.push($(this).data("ex"));
     	}
     	
   	});
   	
-  	$("#MvSearchExp").attr("value",MV_Ex);
+		$("#MvSearchExp").attr("value", MV_Ex);
   	
-	});	
+	});
+	
+	// $("input[name='mv_experience']").on("click",function(){
+  // 	MV_Ex = [];
+  // 	$(this).toggleClass("active");
+  // 	$("input[name='mv_experience']").each(function(){
+  //   	if($(this).hasClass("active")){
+      	
+  //     	MV_Ex.push($(this).data("ex"));
+  //   	}
+    	
+  // 	});
+  	
+  // 	$("#MvSearchExp").attr("value",MV_Ex);
+  	
+	// });	
 	
 	/* Experienct search */
 	
