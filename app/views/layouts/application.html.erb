@@ -13,6 +13,7 @@
     <meta property="og:image" content=" ">
     <meta property="og:site_name" content=" ">
     <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" >
+      <meta name="turbolinks-visit-control" content="reload">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -38,7 +39,7 @@
       </a>
       <%= render 'layouts/footer'%>
     </div>
-    <script>
+    <script defer>
       jQuery(function($){
       
         	$(".top_blog_tag_link").click(function(){
@@ -156,7 +157,7 @@
       });
     </script>
     <!-- Movie -->
-    <script>
+    <script defer>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
       
