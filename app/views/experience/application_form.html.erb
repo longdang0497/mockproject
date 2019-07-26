@@ -275,7 +275,6 @@
   function plus(receiver, index) {
     if (count[index] >= 0) {
       count[index]++;
-      console.log(count[index]);
       $(receiver).html(count[index]);
     }
   }
@@ -300,13 +299,13 @@ $("#plus-adults").click(function() {
 
 
 $("#minus-infant").click(function() {
-    minus(".num-infant");
+    minus(".num-infant",0);
 });
 $("#minus-children").click(function() {
-    minus(".num-children");
+    minus(".num-children",1);
 });
 $("#minus-adults").click(function() {
-    minus(".num-adults");
+    minus(".num-adults",2);
 });
 
 $("#AcceptNotes, #AcceptTerms").click(function() {
