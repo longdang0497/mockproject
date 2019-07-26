@@ -1,6 +1,6 @@
 // カレンダーhtml
   var monthdays = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-  var month_en = new Array("January","February","March","April","May","June","July","August","September","October","Novembver","December");
+  var month_en = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
   var days = new Array("日", "月", "火", "水", "木", "金", "土");
   var days_en = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
   var days_en_b = new Array("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa");
@@ -91,15 +91,24 @@ var htmlStr = "<table class='calen0"+(n+1)+" fair_calendar_table'>\n" + "<tr cla
 
 $(function() {
   $(window).on("load",function(){
+    // var currentMonth = 0;
+
+    // for (var i = 0; i < gon.months.size; i++) {
+    //   alert(gon.months[i]);
+    //   if (thisMonth == gon.months[i]) 
+    //    currentMonth = thisMonth;
+    // }
+    console.log(gon.expfroms);
+    console.log(gon.exptos);
+
     for(var c_i=0; c_i<3; c_i++){
       $("#Calen").append(showCalen(c_i));
     }
+
     //カレンダー1個だけ出す
     $(".calen01").addClass("c_active");
     $(".calen02").addClass("c_no_active");
-    $(".calen03").addClass("c_no_active");
-
-    // alert(gon.months.first.month);
+    $(".calen03").addClass("c_no_active");    
     
     var pageCount=0;
     Page();
