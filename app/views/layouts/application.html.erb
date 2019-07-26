@@ -22,6 +22,7 @@
     <script src="https://kit.fontawesome.com/00da43cf5c.js"></script>
   </head>
   <body id="TOP">
+  <%= @test %>
     <%= render 'layouts/header'%>
     <div class="top_main_wrap">
       <% flash.each do |key, msg| %>
@@ -47,7 +48,6 @@
         	$(".top_blog_tag_link").click(function(){
             var tag_s_id = $(this).attr("id");
             console.log(tag_s_id);
-            
             // location.href 
           });
       

@@ -38,7 +38,7 @@
                     <% end %>
                   </div>
                 </div>
-                <span class="ex_main_price"><%= number_to_currency(@hot_exp.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%></span>
+                <span class="ex_main_price"><%= number_to_currency(@hot_exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
               </div>
             <% end %>
           </div>
@@ -101,7 +101,7 @@
                 <%end%>
                   <div class="filter"></div>
                   <span class="price_tag">
-                    <%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 0, separator: ",", delimiter: ".", format: "%u %n")%>
+                    <%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%>
                   </span>
                 </div>
                 <h1 class="title"><%= exp.title%></h1>
