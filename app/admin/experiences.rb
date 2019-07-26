@@ -13,16 +13,18 @@ ActiveAdmin.register Experience do
   #   permitted
   # end
   
-  permit_params :title, :short_description, :description, :age, :language, :duration, :price_adult, :price_children, :price_infant, :image, :location_id, :admin_user_id
-  
+  permit_params :title, :short_description, :description, :age, :language, :duration, :price_adult, :price_children, :price_infant, :location_id, :admin_user_id,
+  category_experiences_attributes: [:id, :experience_id, :category_id, :_destroy]
+
   index do
     selectable_column
     id_column
     column :title
-    column :short_description
-    column :description
     column "Location" do |i|
       i.location.province
+    end
+    column :categories do |cata|
+      cata.categories.map { |cata| cata.category_name }.join(", ").html_safe
     end
     column :age
     column :duration
@@ -30,9 +32,6 @@ ActiveAdmin.register Experience do
     column "Adult", :price_adult
     column "Children", :price_children
     column "Infant", :price_infant
-    column :image
-    column "Created", :created_at
-    column "Updated", :updated_at  
     actions
   end
 
@@ -44,6 +43,9 @@ ActiveAdmin.register Experience do
       row :description
       row "Location" do |i|
         i.location.province
+      end
+      row :categories do |cata|
+        cata.categories.map { |cata| cata.category_name }.join(", ").html_safe
       end
       row :age
       row :duration
@@ -64,19 +66,9 @@ ActiveAdmin.register Experience do
     active_admin_comments
   end
 
-  filter :id
   filter :title
-  filter :short_description
-  filter :description
-  filter :age
-  filter :duration
   filter :language
   filter :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
-  filter :price_adult
-  filter :price_children
-  filter :price_infant
-  filter :created_at
-  filter :updated_at
   filter :admin_user, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.fullname, ad.id] }
   
   form do |f|
@@ -85,6 +77,9 @@ ActiveAdmin.register Experience do
       f.input :short_description, :input_html => { :maxlength => 140  }
       f.input :description
       f.input :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
+      f.has_many :category_experiences, allow_destroy: true do |n_f|
+        n_f.input :category, :as => :select, :collection => Category.all.collect {|cata| [cata.category_name, cata.id] }
+      end
       f.input :age
       f.input :duration
       f.input :language

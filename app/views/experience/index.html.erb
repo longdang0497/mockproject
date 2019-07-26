@@ -79,9 +79,13 @@
   <div class="common_inner">
     <section class="ex_list_block">
       <div class="ex_list_top_area">
-        <p class="ex_list_num">          
-          <%= page_entries_info @experiences, entry_name: 'experiences' %>
-          <%= paginate @experiences%>
+        <p class="ex_list_num">  
+          <%if @page > @experiences.total_pages%> 
+            No experiences found
+          <%else%>       
+            <%= page_entries_info @experiences, entry_name: 'experiences' %>
+            <%= paginate @experiences%>
+          <%end%>
       </div>
       <div class="ex_list_loop_block clearfix">
         <% if @experiences.present? %>
@@ -117,8 +121,8 @@
           <% end %>
         <% end %>
       </div>
-      <ul class="ex_list_up_pager bottom">
-        <%= paginate @experiences, theme: 'bottom_page_theme' %>
+      <ul class="ex_list_up_pager bottom">      
+        <%= paginate @experiences, theme: 'bottom_page_theme' if @page <= @experiences.total_pages %>
       </ul>
     </section>
   </div>

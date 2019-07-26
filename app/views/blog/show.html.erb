@@ -28,7 +28,7 @@
           </p>
         </div>
         <h1 class="blogdetail_title">
-          <%= @blog.title.truncate(45) if @blog.title.present?%>
+          <%= @blog.title if @blog.title.present?%>
         </h1>
         <p class="main_place">
           <%= image_tag("common/place_icon")%>
