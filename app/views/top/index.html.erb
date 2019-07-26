@@ -144,27 +144,35 @@
           <% @hot_exp.each do |exp| %>
             <% if exp.present? %>  
               <a href="<%= experience_path(@hot_exp) %>">
-              <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-                <div class="flipper">
-                  <div class="front" style="background: url(<%= image_url('top/pic01')%>) center center no-repeat;background-size: cover;">
-                    <!-- 表コンテンツエリア -->
-                  </div>
-                  <div class="back" style="background: rgba(0,0,0,0.8);">
-                    <!-- 裏コンテンツエリア -->
-                    <h2 class="top_hot_title"><%= exp.title %></h2>
-                    <%if exp.description.present?%>
-                      <p class="top_hot_text">
-                        <%= exp.description.truncate(90) %>
-                      </p>
-                    <%end%>
-                    <ul class="top_hot_list">
-                      <li class="top_hot_item bg01">
-                        <%= link_to exp.location.province, experience_index_path(:q =>{:location_province_has_any_term => exp.location.province }), class: "top_hot_link" %>
-                      </li>
-                      <% if exp.categories.present? %>
-                        <li class="top_hot_item bg02">                      
-                          <%= link_to exp.categories.first.category_name, experience_index_path(:q =>{:categories_category_name_has_any_term => exp.categories.first.category_name }), class: "top_hot_link" %>
-                        </li>                
+                <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                  <div class="flipper">
+                    <% if exp.image.attached? %>
+                    <div class="front" style="background: url(<%= url_for(exp.image) %>) center center no-repeat;background-size: cover;">
+                    <% else %>
+                    <div class="front" style="background: url(<%= image_url('top/pic01') %>) center center no-repeat;background-size: cover;">
+                    <% end %>
+                    </div>
+                    <div class="back" style="background: rgba(0,0,0,0.8);">
+                      <!-- 裏コンテンツエリア -->
+                      <h2 class="top_hot_title"><%= exp.title %></h2>
+                      <%if exp.description.present?%>
+                        <p class="top_hot_text">
+                          <%= exp.description.truncate(90) %>
+                        </p>
+                      <%end%>
+                      <ul class="top_hot_list">
+                        <li class="top_hot_item bg01">
+                          <a href="" class="top_hot_link"><%= exp.location.province %></a>
+                        </li>
+                        <% if exp.categories.present? %>
+                          <li class="top_hot_item bg02">                      
+                            <a href="" class="top_hot_link">
+                              <% exp.categories.each do |category| %>
+                                <%= category.category_name %>
+                              <% end %>
+                            </a>
+                          </li>
+                        <% end %>                    
                       </ul>
                       <span class="top_hot_tag"><%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
                     </div>
@@ -408,7 +416,11 @@
             <% @popular_blogs.each do |blog|%>
             <article class="top_common_blog">
               <a href="<%= blog_path(blog) %>">
-                <div class="top_blog_pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;"></div>
+                <% if blog.image.attached? %>
+                <div class="top_blog_pic" style="background: url(<%= url_for(blog.image) %>) center center no-repeat;background-size: cover;"></div>
+                <% else %>
+                <div class="top_blog_pic" style="background: url(<%= image_url('common/sample_pic') %>) center center no-repeat;background-size: cover;"></div>
+                <% end %>
                 <div class="top_blog_info">
                   <h1 class="top_blog_title">
                     <span><%= blog.title%></span>

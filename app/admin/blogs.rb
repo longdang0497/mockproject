@@ -13,7 +13,7 @@ ActiveAdmin.register Blog do
   #   permitted
   # end
 
-  permit_params :title, :short_description, :content, :admin_user_id, :location_id
+  permit_params :title, :short_description, :content, :image, :admin_user_id, :location_id
 
   index do
     selectable_column
@@ -25,6 +25,7 @@ ActiveAdmin.register Blog do
       i.location.province
     end
     column "Views", :impressions_count  
+    column :image
     column "Created", :created_at
     column "Updated", :updated_at  
     actions
@@ -46,6 +47,7 @@ ActiveAdmin.register Blog do
         i.admin_user.email
       end
       row :impressions_count
+      row :image
       row :created_at
       row :updated_at
     end
@@ -65,6 +67,7 @@ ActiveAdmin.register Blog do
     f.inputs do
       f.input :title 
       f.input :content,  :as => :ckeditor
+      f.input :image, :as => :file 
       f.input :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
       f.input :admin_user, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.fullname, ad.id] }
       # f.input :hashtag

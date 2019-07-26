@@ -906,6 +906,7 @@ footer {
   background: #fff;
   margin: 0 0 385px;
   min-width: 1220px;
+  max-height: calc(100vh - 30rem)
 }
 @media only screen and (max-width: 960px) {
   .top_main_view {
@@ -4225,7 +4226,7 @@ footer {
   padding: 50px 0;
 }
 .privacy_wrap.greeting_wrap {
-  max-width: 840px;
+  max-width: calc(100vh - 20rem);
 }
 .privacy_wrap .text {
   font-size: 14px;
