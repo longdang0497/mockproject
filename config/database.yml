@@ -85,7 +85,7 @@ test:
 #
 production:
   <<: *default
-  database: da8cgabhf1gr0b
+  database: gdkxamekfpausj
   username: dtvinbdknwgqgo
   password: 535d7843f00c44c5a0c8dba9eff6b3974a583ae6244df7b8dd47054f4908cff2
   host: ec2-107-21-126-201.compute-1.amazonaws.com

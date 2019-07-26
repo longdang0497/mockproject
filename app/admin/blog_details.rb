@@ -1,4 +1,4 @@
-ActiveAdmin.register Hashtag do
+ActiveAdmin.register BlogDetail do
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -12,22 +12,30 @@ ActiveAdmin.register Hashtag do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
-  permit_params :tag_name
+  permit_params :title, :content, :blog_id
 
   index do
     selectable_column
-    id_column
-    column :tag_name
-    column :created_at
+    column :id
+    column :blog_id
+    column :title
     actions
   end
+  show do
+    attributes_table do
+      row :blog_id
+      row :title
+      row (:content) { |con| raw(con.content) }
+    end
+    active_admin_comments
+  end
 
-  # filter :tag_name, :as => :select, :collection => Hashtag.all.collect {|tag| [tag.tag_name] }
+  # filter :title, :as => :select, :collection => BlogDetail.all.collect {|blog| [blog.title] }
 
   form do |f|
     f.inputs do
-      f.input :tag_name
+      f.input :title
+      f.input :content,  :as => :ckeditor
     end
     f.actions
   end

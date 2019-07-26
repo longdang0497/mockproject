@@ -11,6 +11,11 @@ puts "Insert finished Role"
 AdminUser.create(fullname: 'admin', email: 'abc@example.com', password: '123456', role_id: '1')
 puts "Insert finished AdminUser"
 
+Role.create(name: 'admin')
+Role.create(name: 'host')
+
+AdminUser.create(fullname: 'admin', email: 'abc@example.com', password: '123456', role_id: '1')
+
 Location.create(province: 'Ho Chi Minh')
 Location.create(province: 'Ha Noi')
 Location.create(province: 'Quang Binh')
