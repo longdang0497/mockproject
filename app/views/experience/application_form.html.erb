@@ -1,3 +1,7 @@
+<%= content_for :title_header do %>
+  Booking | SUITO
+<% end %>
+
 <div class="top_main_view">
   <%= render 'experience/commons/ex_mv_wrap' %>
   <div class="common_inner">
@@ -21,7 +25,7 @@
               <p class="form_common_error_msg">*Required.</p>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
-                <input type="text" name="day01" class="form_day_input">
+                <input type="text" id="first-choice" name="first-choice" required="true" class="form_day_input">
                 <p class="form_common_title sp">Start time</p>
                 <select name="time01" class="form_time_select">
                   <option value="10:00">10:00</option>
@@ -32,7 +36,7 @@
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
-                <input type="text" name="day02" class="form_day_input">
+                <input type="text" id="second-choice" name="second-choice" class="form_day_input">
                 <p class="form_common_title sp">Start time</p>
                 <select name="time01" class="form_time_select">
                   <option value="10:00">10:00</option>
@@ -43,7 +47,7 @@
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
-                <input type="text" name="day03" class="form_day_input">
+                <input type="text" id="third-choice" name="third-choice" class="form_day_input">
                 <p class="form_common_title sp">Start time</p>
                 <select name="time01" class="form_time_select">
                   <option value="10:00">10:00</option>
@@ -60,25 +64,25 @@
                 <div class="form_people_common_block">
                   <p class="form_people_title">Adults</p>
                   <div class="num_wrap">
-                    <a href="" class="minus">−</a>
-                    <p class="num">1</p>
-                    <a href="" class="plus">＋</a>
+                    <p id="minus-adults" class="minus">−</a>
+                    <p class="num num-adults" id="adult" name="adult" >0</p>
+                    <p id="plus-adults" class="plus">＋</a>
                   </div>
                 </div>
                 <div class="form_people_common_block">
                   <p class="form_people_title">Children<span>(2-12)</span></p>
                   <div class="num_wrap">
-                    <a href="" class="minus">−</a>
-                    <p class="num">0</p>
-                    <a href="" class="plus">＋</a>
+                    <p id="minus-children" class="minus">−</a>
+                    <p class="num num-children" id="children" name="children">0</p>
+                    <p id="plus-children" class="plus">＋</a>
                   </div>
                 </div>
                 <div class="form_people_common_block">
                   <p class="form_people_title">Infants<span>(&lt;2)</span></p>
                   <div class="num_wrap">
-                    <a href="" class="minus">−</a>
-                    <p class="num">0</p>
-                    <a href="" class="plus">＋</a>
+                    <p id="minus-infant" class="minus">−</a>
+                    <p class="num num-infant" id="infant" name="infant">0</p>
+                    <p id="plus-infant" class="plus">＋</a>
                   </div>
                 </div>
               </div>
@@ -101,7 +105,7 @@
               <div class="form_profile_inner">
                 <div class="form_profile_title">
                   <p class="form_common_title">Title</p>
-                  <select name="gender" class="form_profile_select">
+                  <select id="guest-title" name="guest-title" class="form_profile_select">
                     <option value=""></option>
                     <!--                       <option value="✔">✔</option> -->
                     <option value="Mr.">Mr.</option>
@@ -179,7 +183,7 @@
                       </p>
                     </div>
                     <label for="Confirm02" class="form_interpreter_label">
-                      <input type="radio" name="confirm" id="Confirm02" class="form_radio_input">Please send the Confirmation Email and Payment information to guest and me.
+                      <input type="radio" name="confirm" id="Confirm02" class="form_radio_input noactive">Please send the Confirmation Email and Payment information to guest and me.
                     </label>
                   </div>
                 </div>
@@ -206,7 +210,7 @@
                 <label for="AcceptTerms"><span>have read and accepted <a href="" class="form_common_title">Terms of service<span>*</span></a>.</span></label>
               </div>
             </div>
-            <input type="submit" value="Go to Confirm page" class="form_subtmit_btn">
+            <input type="submit" value="Go to Confirm page" class="form_subtmit_btn noactive" />
           </form>
         </div>
       </section>
@@ -261,3 +265,53 @@
     </div>
   </div>
 </div>
+
+<script>
+  var count = new Array(3);
+
+  for (var i = 0; i < count.length; i++)
+    count[i] = 0;
+
+  function plus(receiver, index) {
+    if (count[index] >= 0) {
+      count[index]++;
+      console.log(count[index]);
+      $(receiver).html(count[index]);
+    }
+  }
+
+  function minus(receiver, index) {
+    if (count[index] > 0) {
+      count[index]--;
+      console.log(count[index]);
+      $(receiver).html(count[index]);
+    }
+  }
+
+$("#plus-infant").click(function() {
+    plus(".num-infant",0);
+});
+$("#plus-children").click(function() {
+    plus(".num-children",1);
+});
+$("#plus-adults").click(function() {
+    plus(".num-adults",2);
+});
+
+
+$("#minus-infant").click(function() {
+    minus(".num-infant");
+});
+$("#minus-children").click(function() {
+    minus(".num-children");
+});
+$("#minus-adults").click(function() {
+    minus(".num-adults");
+});
+
+$("#AcceptNotes, #AcceptTerms").click(function() {
+  if($("#AcceptNotes").prop("checked") == true && $("#AcceptTerms").prop("checked") == true){
+      $(".form_subtmit_btn").removeClass("noactive");
+  }
+});
+</script>
