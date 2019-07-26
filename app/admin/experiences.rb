@@ -13,7 +13,7 @@ ActiveAdmin.register Experience do
   #   permitted
   # end
   
-  permit_params :title, :short_description, :description, :age, :language, :duration, :price_adult, :price_children, :price_infant, :location_id, :admin_user_id,
+  permit_params :title, :short_description, :description, :image, :age, :language, :duration, :price_adult, :price_children, :price_infant, :location_id, :admin_user_id,
   category_experiences_attributes: [:id, :experience_id, :category_id, :_destroy]
 
   index do
@@ -53,7 +53,9 @@ ActiveAdmin.register Experience do
       row :price_adult
       row :price_children
       row :price_infant
-      row :image
+      row :image do |i|
+        image_tag url_for(i.image)
+      end
       row "Created by" do |i|
         i.admin_user.fullname
       end
