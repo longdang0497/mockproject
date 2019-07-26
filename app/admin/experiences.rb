@@ -13,7 +13,7 @@ ActiveAdmin.register Experience do
   #   permitted
   # end
   
-  permit_params :title, :short_description, :description, :age, :language, :duration, :price_adult, :price_children, :price_infant, :location_id, :admin_user_id
+  permit_params :title, :short_description, :description, :age, :language, :duration, :price_adult, :price_children, :price_infant, :image, :location_id, :admin_user_id
   
   index do
     selectable_column
@@ -30,6 +30,7 @@ ActiveAdmin.register Experience do
     column "Adult", :price_adult
     column "Children", :price_children
     column "Infant", :price_infant
+    column :image
     column "Created", :created_at
     column "Updated", :updated_at  
     actions
@@ -50,6 +51,7 @@ ActiveAdmin.register Experience do
       row :price_adult
       row :price_children
       row :price_infant
+      row :image
       row "Created by" do |i|
         i.admin_user.fullname
       end
@@ -80,7 +82,7 @@ ActiveAdmin.register Experience do
   form do |f|
     f.inputs do
       f.input :title
-      f.input :short_description
+      f.input :short_description, :input_html => { :maxlength => 140  }
       f.input :description
       f.input :location, :as => :select, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
       f.input :age
@@ -89,6 +91,7 @@ ActiveAdmin.register Experience do
       f.input :price_adult
       f.input :price_children
       f.input :price_infant
+      f.input :image, as: :file
       f.input :admin_user, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.fullname, ad.id] }
     end
     f.actions

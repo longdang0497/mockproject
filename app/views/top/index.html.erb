@@ -27,12 +27,12 @@
       <div class="top_mv_filter" id="MvExpFilter"></div>
       <h1 class="top_mv_title">Find Things to Do in FUKUOKA</h1>
       <div class="top_mv_search_wrap">
-        <form action="" method="" class="top_mv_form">
+        <%= search_form_for @search,url: experience_index_path, class: "top_mv_form" do |f| %>
           <div class="header_search_block top_mv">
             <input type="text" name="top_date" autocomplete="off" class="header_search_date" id="MvSearchDate" placeholder="Any Time">
-            <input type="text" name="top_place" autocomplete="off" class="header_search_place" id="MvSearchPlace" placeholder="Any Where">
+            <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "MvSearchPlace", autocomplete: "off", placeholder: "Any Where" %>
             <div class="header_exp_block">
-              <input type="text" name="top_exp" class="header_search_exp" autocomplete="off" id="MvSearchExp" placeholder="All Experience">
+              <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "MvSearchExp", autocomplete: "off", placeholder: "All Experience" %>
             </div>
             <input type="submit" value="検索" class="header_search_submit">
           </div>
@@ -40,34 +40,23 @@
             
             <div class="top_mv_search_inner" id="MvSearchPlace_Choose">
               <ul class="top_mv_place_list">
-                <li class="top_mv_place_item" data-place="博多 hakata">博多 hakata</li>
-                <li class="top_mv_place_item" data-place="天神 tenjin">天神 tenjin</li>
-                <li class="top_mv_place_item" data-place="中洲 Nakasu">中洲 Nakasu</li>
-                <li class="top_mv_place_item" data-place="大濠公園 Ohori Park">大濠公園 Ohori Park</li>
-                <li class="top_mv_place_item" data-place="百道浜 Momochihama">百道浜 Momochihama</li>
-                <li class="top_mv_place_item" data-place="西新 Nishijin">西新 Nishijin</li>
-                <li class="top_mv_place_item" data-place="西区 Nishiku">西区 Nishiku</li>
-                <li class="top_mv_place_item" data-place="東区 Higashiku">東区 Higashiku</li>
+                <% @locations.each do |loca| %>
+                  <li class="top_mv_place_item <%= cur_stick_active(loca.province, :location_province_has_any_term) %>" data-place="<%= loca.province %>"><%= loca.province %></li>
+                <% end %>
+              </ul>
+            </div>
+
+            <div class="top_mv_search_inner" id="MvSearchExp_Choose">
+              <ul class="top_mv_place_list">
+                <% @categories.each do |cate| %>
+                  <li class="top_mv_place_item <%= cur_stick_active(cate.category_name, :categories_category_name_has_any_term) %>" data-ex="<%= cate.category_name %>"><%= cate.category_name %></li>
+                <%end%>
               </ul>
             </div>
             
-            <div class="top_mv_search_inner" id="MvSearchExp_Choose">		
-              <div class="checkbox_style">
-                <input type="checkbox" name="mv_experience" value="header_exp01" id="mv_Exp01" data-ex="アート">
-                <label for="mv_Exp01"><span>アート</span></label>
-              </div>
-              <div class="checkbox_style">
-                <input type="checkbox" name="mv_experience" value="header_exp02" id="mv_Exp02" data-ex="ライフスタイル">
-                <label for="mv_Exp02"><span>ライフスタイル</span></label>
-              </div>
-              <div class="checkbox_style">
-                <input type="checkbox" name="mv_experience" value="header_exp03" id="mv_Exp03" data-ex="フード＆ドリンク">
-                <label for="mv_Exp03"><span>フード＆ドリンク</span></label>			
-              </div>
-            </div>
             
           </div>
-        </form>
+        <% end %>
       </div>
       <a href="#WhatWrap" class="top_mv_arrow_btn">
         <%= image_tag("top/top_mv_arrow.png") %>
@@ -157,8 +146,11 @@
               <a href="<%= experience_path(@hot_exp) %>">
                 <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
                   <div class="flipper">
-                    <div class="front" style="background: url(<%= image_url('top/pic01')%>) center center no-repeat;background-size: cover;">
-                      <!-- 表コンテンツエリア -->
+                    <% if exp.image.attached? %>
+                    <div class="front" style="background: url(<%= url_for(exp.image) %>) center center no-repeat;background-size: cover;">
+                    <% else %>
+                    <div class="front" style="background: url(<%= image_url('top/pic01') %>) center center no-repeat;background-size: cover;">
+                    <% end %>
                     </div>
                     <div class="back" style="background: rgba(0,0,0,0.8);">
                       <!-- 裏コンテンツエリア -->
@@ -424,7 +416,11 @@
             <% @popular_blogs.each do |blog|%>
             <article class="top_common_blog">
               <a href="<%= blog_path(blog) %>">
-                <div class="top_blog_pic" style="background: url(<%= image_url('common/sample_pic')%>) center center no-repeat;background-size: cover;"></div>
+                <% if blog.image.attached? %>
+                <div class="top_blog_pic" style="background: url(<%= url_for(blog.image) %>) center center no-repeat;background-size: cover;"></div>
+                <% else %>
+                <div class="top_blog_pic" style="background: url(<%= image_url('common/sample_pic') %>) center center no-repeat;background-size: cover;"></div>
+                <% end %>
                 <div class="top_blog_info">
                   <h1 class="top_blog_title">
                     <span><%= blog.title%></span>

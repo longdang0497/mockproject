@@ -4225,7 +4225,7 @@ footer {
   padding: 50px 0;
 }
 .privacy_wrap.greeting_wrap {
-  max-width: 840px;
+  max-width: calc(100vh - 20rem);
 }
 .privacy_wrap .text {
   font-size: 14px;

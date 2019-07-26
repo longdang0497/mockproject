@@ -10,9 +10,7 @@ class ExperienceController < ApplicationController
     @search.sorts = 'experience_details.title desc' if @search.sorts.empty?
     @experiences = @search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
     @page = params[:page].to_i
-    if @page > @experiences.total_pages
-      redirect_to experience_index_url
-    end
+    
     respond_to do |format|
       format.html
       format.json { render json: @experiences }
