@@ -54,7 +54,7 @@ ActiveAdmin.register Experience do
       row :price_children
       row :price_infant
       row :image do |i|
-        image_tag url_for(i.image)
+        image_tag url_for(i.image) if i.image.attached?
       end
       row "Created by" do |i|
         i.admin_user.fullname

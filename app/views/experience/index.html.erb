@@ -43,7 +43,7 @@
           <div class="ex_main_right">
             <div class="header_search_block ex_main_search">
             <%= search_form_for @search,url: search_experience_index_path , class: "ex_main_form" do |f| %>
-              <%= f.search_field :location_province_in, name: "ex_date", autocomplete: "off", class: "header_search_date", id: "ExSearchDate", autocomplete: "off" %>
+              <%= f.search_field :experience_dates_expFrom, autocomplete: "off", class: "header_search_date", id: "ExSearchDate" %>
               <div class="header_exp_block">
                 <%= f.search_field :location_province_has_any_term, autocomplete: "off", class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
                 <div class="header_exp_popup" id="ExPlacePop">

@@ -58,7 +58,7 @@ ActiveAdmin.register Blog do
       row :updated_at
       row :short_description
       row :image do |i|
-        image_tag url_for(i.image)
+        image_tag url_for(i.image) if i.image.attached?
       end
       row (:content) { |con| raw(con.content) }
     end

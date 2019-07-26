@@ -33,6 +33,9 @@ class ExperienceController < ApplicationController
   end
 
   def search
+    if params[:q] && params[:q][:experience_dates_expFrom].present?
+      params[:q][:experience_dates_expFrom_gteq_any], params[:q][:experience_dates_expFrom_lteq_any] = params[:q][:experience_dates_expFrom].split("-") 
+    end
     index
     render :index
   end 
