@@ -23,11 +23,9 @@ class ExperienceController < ApplicationController
     @host = AdminUser.find(@experience.admin_user_id)
 
     @exp_dates = ExperienceDate.where(["experience_id = ?", @experience.id])
-
-    # gon.year = "2019"
-    # puts gon.months = @exp_dates.select(:month).distinct
-    # gon.year = @exp_dates.year
-
+    gon.expfroms = ExperienceService.new.available_from(@exp_dates)
+    gon.exptos = ExperienceService.new.available_to(@exp_dates)
+    
     # breacrumb
     add_breadcrumb 'Experience', :experience_index_path
     add_breadcrumb @experience.title, :experience_path
