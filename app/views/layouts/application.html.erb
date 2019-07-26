@@ -155,6 +155,22 @@
       	    pager:false
       // 	    controls:false,
       	  });
+
+    $("input[name='confirm']").on("change",function(){
+      $("input[name='confirm']:checked").parent().addClass("active").siblings().removeClass("active");
+    });
+  	
+  	$("input[name='interpreter']").on("change",function(){
+    	$("input[name='interpreter']:checked").parent().addClass("active").siblings().removeClass("active");
+  	});
+  	
+  	$("#NotGuestCheck").on("change",function(){
+    	$(this).next().stop().slideToggle();
+  	});
+  	
+  	$("#OnlyMeBtn").on("click",function(){
+    	$(".form_confirm_popup").stop().slideToggle();
+  	});
       
       });
     </script>

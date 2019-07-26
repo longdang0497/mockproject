@@ -39,6 +39,8 @@ class ExperienceController < ApplicationController
   end
 
   def complete
+    @experience = Experience.find(params[:id])
+    @recommends = ExperienceService.new.recommend(@experience)
   end
 
 end
