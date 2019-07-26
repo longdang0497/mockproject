@@ -43,7 +43,7 @@
           <div class="ex_main_right">
             <div class="header_search_block ex_main_search">
             <%= search_form_for @search,url: search_experience_index_path , class: "ex_main_form" do |f| %>
-              <%= f.search_field :location_province_in, name: "ex_date", autocomplete: "off", class: "header_search_date", id: "ExSearchDate", autocomplete: "off" %>
+              <%= f.search_field :experience_dates_expFrom, autocomplete: "off", class: "header_search_date", id: "ExSearchDate" %>
               <div class="header_exp_block">
                 <%= f.search_field :location_province_has_any_term, autocomplete: "off", class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
                 <div class="header_exp_popup" id="ExPlacePop">
@@ -79,9 +79,13 @@
   <div class="common_inner">
     <section class="ex_list_block">
       <div class="ex_list_top_area">
-        <p class="ex_list_num">          
-          <%= page_entries_info @experiences, entry_name: 'experiences' %>
-          <%= paginate @experiences%>
+        <p class="ex_list_num">  
+          <%if @page > @experiences.total_pages%> 
+            No experiences found
+          <%else%>       
+            <%= page_entries_info @experiences, entry_name: 'experiences' %>
+            <%= paginate @experiences%>
+          <%end%>
       </div>
       <div class="ex_list_loop_block clearfix">
         <% if @experiences.present? %>
@@ -117,8 +121,8 @@
           <% end %>
         <% end %>
       </div>
-      <ul class="ex_list_up_pager bottom">
-        <%= paginate @experiences, theme: 'bottom_page_theme' %>
+      <ul class="ex_list_up_pager bottom">      
+        <%= paginate @experiences, theme: 'bottom_page_theme' if @page <= @experiences.total_pages %>
       </ul>
     </section>
   </div>

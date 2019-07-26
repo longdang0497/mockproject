@@ -31,7 +31,9 @@ ActiveAdmin.register ExperienceDate do
   show do
     attributes_table do
       row :id
-      row :expFrom
+      # row :expFrom do |i|
+      #   i.experience.expFrom.strftime("%Y/%m/%d")
+      # end
       row :expTo
       row :month
       row :year
@@ -44,14 +46,12 @@ ActiveAdmin.register ExperienceDate do
 
   filter :expFrom
   filter :expTo
-  filter :month
-  filter :year
   filter :experience, :as => :select, :collection => Experience.all.collect {|ad| [ad.title, ad.id] }
   
   form do |f|
     f.inputs do
-      f.input :expFrom
-      f.input :expTo
+      f.input :expFrom, as: :datepicker
+      f.input :expTo, as: :datepicker
       f.input :month
       f.input :year
       f.input :experience, :as => :select, :collection => Experience.all.collect {|ad| [ad.title, ad.id] }
