@@ -44,8 +44,6 @@ ActiveAdmin.register ExperienceDate do
 
   filter :expFrom
   filter :expTo
-  filter :month
-  filter :year
   filter :experience, :as => :select, :collection => Experience.all.collect {|ad| [ad.title, ad.id] }
   
   form do |f|

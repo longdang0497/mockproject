@@ -13,7 +13,7 @@ ActiveAdmin.register Blog do
   #   permitted
   # end
 
-  permit_params :title, :image, :short_description, :content, :admin_user_id, :location_id,
+  permit_params :title, :image, :short_description, :content, :admin_user_id, :location_id, :hashtag_id,
   blog_hashtags_attributes: [:id, :blog_id, :hashtag_id, :_destroy],
   category_blogs_attributes: [:id, :blog_id, :category_id, :_destroy]
 
@@ -54,7 +54,6 @@ ActiveAdmin.register Blog do
         cata.categories.map { |cata| cata.category_name }.join(", ").html_safe
       end
       row :impressions_count
-      row :image
       row :created_at
       row :updated_at
       row :short_description
@@ -69,6 +68,8 @@ ActiveAdmin.register Blog do
   filter :title
   filter :location, :collection => Location.all.collect {|loca| [loca.province, loca.id] }
   filter :admin_user, :as => :select, :collection => AdminUser.all.collect {|ad| [ad.fullname, ad.id] }
+  filter :hashtags, :as => :select, :collection => Hashtag.all.collect {|tag| [tag.tag_name, tag.id] }
+  filter :categories, :as => :select, :collection => Category.all.collect {|cata| [cata.category_name, cata.id] }
 
   form do |f|
     f.inputs do
