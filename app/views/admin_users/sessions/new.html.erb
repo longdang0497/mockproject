@@ -1,30 +1,38 @@
 <%= content_for :title_header do %>
     Sign in - Admin | SUITO
 <% end %>
-
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field form-group col-xs-5 col-sm-6 col-lg-4">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true,  placeholder: "Enter email", class: "form-control", autocomplete: "email" %>
-  </div>
-
-  <div class="field form-group col-xs-5 col-sm-6 col-lg-4">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, class: "form-control",  placeholder: "Enter password", autocomplete: "current-password" %>
-  </div>
-  <br>
-  <% if devise_mapping.rememberable? %>
-    <div class="field form-group col-xs-5 col-sm-6 col-lg-4">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="top_main_view">
+  <section class="ex_mv_wrap">
+    <div class="">
+      <h1 class="ex_main_title">
+        LOG IN
+      </h1>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in", class: "btn btn-primary btn-md" %>
+  </section>
+  <div class="common_inner">
+    <section class="privacy_wrap greeting_wrap">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+       <div class="form-col">
+        <div class="form-group">
+          <label for="inputEmail4">Email</label>
+          <%= f.email_field :email, autofocus: true,  placeholder: "Enter email", class: "form-control", autocomplete: "email" %>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword4">Password</label>
+          <%= f.password_field :password, class: "form-control",  placeholder: "Enter password", autocomplete: "current-password" %>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <% if devise_mapping.rememberable? %>
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            <% end %>
+          </div>
+        </div>
+        <%= f.submit "SIGN IN", class: "btn btn-primary btn-lg btn-block" %><br>
+      </div>
+      <% end %>
+      <%= render "admin_users/shared/links" %>
+    </section>
   </div>
-<% end %>
-
-<%= render "admin_users/shared/links" %>
+</div>

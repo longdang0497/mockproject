@@ -13,12 +13,16 @@
     <meta property="og:image" content=" ">
     <meta property="og:site_name" content=" ">
     <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" >
+      <meta name="turbolinks-visit-control" content="reload">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <%= include_gon %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag Ckeditor.cdn_url%>
+    <script src="https://kit.fontawesome.com/00da43cf5c.js"></script>
   </head>
   <body id="TOP">
+  <%= @test %>
     <%= render 'layouts/header'%>
     <div class="top_main_wrap">
       <% flash.each do |key, msg| %>
@@ -38,13 +42,12 @@
       </a>
       <%= render 'layouts/footer'%>
     </div>
-    <script>
+    <script defer>
       jQuery(function($){
       
         	$(".top_blog_tag_link").click(function(){
             var tag_s_id = $(this).attr("id");
             console.log(tag_s_id);
-            
             // location.href 
           });
       
@@ -152,11 +155,27 @@
       	    pager:false
       // 	    controls:false,
       	  });
+
+    $("input[name='confirm']").on("change",function(){
+      $("input[name='confirm']:checked").parent().addClass("active").siblings().removeClass("active");
+    });
+  	
+  	$("input[name='interpreter']").on("change",function(){
+    	$("input[name='interpreter']:checked").parent().addClass("active").siblings().removeClass("active");
+  	});
+  	
+  	$("#NotGuestCheck").on("change",function(){
+    	$(this).next().stop().slideToggle();
+  	});
+  	
+  	$("#OnlyMeBtn").on("click",function(){
+    	$(".form_confirm_popup").stop().slideToggle();
+  	});
       
       });
     </script>
     <!-- Movie -->
-    <script>
+    <script defer>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
       

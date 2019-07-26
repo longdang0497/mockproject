@@ -17,4 +17,15 @@ module ApplicationHelper
     'complete']
   end
 
+  def cur_stick_active(element, name_input)
+    unless params[:q].nil?
+      params[:q][name_input].include?(element) ? 'active': '' unless params[:q][name_input].nil?
+    end
+  end
+
+  def active_process path
+    return 'active' if path == request.path
+    nil
+  end
+
 end

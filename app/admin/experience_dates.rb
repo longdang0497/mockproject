@@ -13,7 +13,7 @@ ActiveAdmin.register ExperienceDate do
   #   permitted
   # end
   
-  permit_params :expFrom, :expTo, :month, :year, :experience_detail_id
+  permit_params :expFrom, :expTo, :month, :year, :experience_id
   
   index do
     selectable_column
@@ -22,23 +22,39 @@ ActiveAdmin.register ExperienceDate do
     column "To", :expTo
     column :month
     column :year
-    column :experience_detail_id
+    column "Experience" do |i|
+      i.experience.title
+    end
     actions
   end
 
-  # filter :expFrom
-  # filter :expTo
-  # filter :month
-  # filter :year
-  # filter :experience_detail_id
+  show do
+    attributes_table do
+      row :id
+      # row :expFrom do |i|
+      #   i.experience.expFrom.strftime("%Y/%m/%d")
+      # end
+      row :expTo
+      row :month
+      row :year
+      row "Experience" do |i|
+        i.experience.title
+      end
+    end
+    active_admin_comments
+  end
+
+  filter :expFrom
+  filter :expTo
+  filter :experience, :as => :select, :collection => Experience.all.collect {|ad| [ad.title, ad.id] }
   
   form do |f|
     f.inputs do
-      f.input :expFrom
-      f.input :expTo
+      f.input :expFrom, as: :datepicker
+      f.input :expTo, as: :datepicker
       f.input :month
       f.input :year
-      f.input :experience_detail_id
+      f.input :experience, :as => :select, :collection => Experience.all.collect {|ad| [ad.title, ad.id] }
     end
     f.actions
   end

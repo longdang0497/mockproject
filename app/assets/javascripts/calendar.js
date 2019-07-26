@@ -1,14 +1,14 @@
 // カレンダーhtml
   var monthdays = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-  var month_en = new Array("January","February","March","April","May","June","July","August","September","October","Novembver","December");
+  var month_en = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
   var days = new Array("日", "月", "火", "水", "木", "金", "土");
   var days_en = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
   var days_en_b = new Array("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa");
   //祝日は毎年変更しないと行けない!!!
   // 祝日1：何月の何日か？
-  var Holidays1 = new Array(1,1, 1,2, 1,9, 2,11, 3,20, 4,29, 5,3, 5,4, 5,5, 7,17, 8,11, 9,18, 9,23, 10,9, 11,3, 11,23, 12,23);
+  var Holidays1 = gon.expfroms;
   // 祝日2：何月の第何月曜日か？
-  var Holidays2 = new Array(1,1, 1,2, 3,4, 7,3, 9,3, 10,2);
+  // var Holidays2 = new Array(1,1, 1,2, 3,4, 7,3, 9,3, 10,2);
   
   // 現在の年、月、日の取得
   var now = new Date();
@@ -20,6 +20,11 @@
     // 表示年月の記憶
     var year = thisYear;
     var month = thisMonth;
+    
+    // var i;
+    // for (i = 0; i < gon.months.size; i++) {
+    //   gon.months[i].month
+    // }
       
     month += n;
     if (month == 0) { year--; month=12; }
@@ -43,10 +48,10 @@
       }
     }
     // 祝日2 の処理
-    var mondays = new Array();
-    var firstMonday = (startDay < 2) ? 2 - startDay: 9 - startDay;
-    for (i = 0; i < Holidays2.length; i += 2)
-      if (Holidays2[i] == month) holidays[(Holidays2[i+1] - 1) * 7 + firstMonday] = 1;
+    // var mondays = new Array();
+    // var firstMonday = (startDay < 2) ? 2 - startDay: 9 - startDay;
+    // for (i = 0; i < Holidays2.length; i += 2)
+    //   if (Holidays2[i] == month) holidays[(Holidays2[i+1] - 1) * 7 + firstMonday] = 1;
 //     var htmlStr = "<table class='calen0"+(n+1)+" fair_calendar_table'>\n" + "<tr class='bg1 fair_calendar_title'><th colspan=7>" + year + " " + month + " " + month_en[month-1] +"</th></tr>\n";
 var htmlStr = "<table class='calen0"+(n+1)+" fair_calendar_table'>\n" + "<tr class='bg1 fair_calendar_title'><th colspan=7>" + month_en[month-1] + " " + year +"</th></tr>\n";
     htmlStr += "<tr class='bg2'><th class='sun fair_calendar_day'>" + days_en_b[0] + "</th>";
@@ -59,18 +64,17 @@ var htmlStr = "<table class='calen0"+(n+1)+" fair_calendar_table'>\n" + "<tr cla
     }
     for (i = 1; i <= dateMax; i++) {
       if (col == 0) htmlStr += "<tr>";
-      if (flag == 1 && i == today) {
+      if (flag == 1 && i<today){
+        htmlStr += "<td class='fair_calendar_date old " + days_en[col] + "' data-old='" + i + "'data-old-month='" + month + "' data-date='" + year + "-" + (month < 10 ? '0' : '') + month + "-" + (i < 10 ? '0' : '') + i + "'>";
+      }
+      else if (flag == 1 && i == today) {
         if (holidays[i] == 1) htmlStr += "<td class='today fair_calendar_date holiday "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +" data-date='"+ year + "-" + (month<10 ? '0' : '') + month + "-" + (i<10 ? '0' : '')+i +"'>";
-        else if (col == 0) htmlStr += "<td class='today fair_calendar_date weekend "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
-        else if (col == 6) htmlStr += "<td class='today fair_calendar_date weekend "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
-        else if (col == 2 && holidays[i] == 0) htmlStr += "<td class='today fair_calendar_date old "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
-        else htmlStr += "<td class='today fair_calendar_date "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
+        else if (holidays[i] == 0) htmlStr += "<td class='today fair_calendar_date old "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
+        else htmlStr += "<td class='today fair_calendar_date old "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
       }
       else if (holidays[i] == 1) htmlStr += "<td class='fair_calendar_date holiday "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
-      else if (col == 0) htmlStr += "<td class='fair_calendar_date weekend "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
-      else if (col == 6) htmlStr += "<td class='fair_calendar_date weekend "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
-      else if (col == 2 && holidays[i] == 0) htmlStr += "<td class='fair_calendar_date old "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
-      else htmlStr += "<td class='fair_calendar_date "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
+      else if (holidays[i] == 0) htmlStr += "<td class='fair_calendar_date old "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
+      else htmlStr += "<td class='fair_calendar_date old "+days_en[col]+"' data-old='"+ i +"'data-old-month='"+ month +"' data-date='"+ year + "-" + (month<10 ? '0' : '') +month + "-" + (i<10 ? '0' : '')+i +"'>";
       htmlStr +=  (i<10 ? '0' : '')+i + "</td>";
       if (col == 6) { htmlStr += "</tr>\n"; col=0; } else col++;
     }
@@ -86,13 +90,24 @@ var htmlStr = "<table class='calen0"+(n+1)+" fair_calendar_table'>\n" + "<tr cla
 
 $(function() {
   $(window).on("load",function(){
+    // var currentMonth = 0;
+
+    // for (var i = 0; i < gon.months.size; i++) {
+    //   alert(gon.months[i]);
+    //   if (thisMonth == gon.months[i]) 
+    //    currentMonth = thisMonth;
+    // }
+    console.log(gon.expfroms);
+    console.log(gon.exptos);
+
     for(var c_i=0; c_i<3; c_i++){
       $("#Calen").append(showCalen(c_i));
     }
+
     //カレンダー1個だけ出す
     $(".calen01").addClass("c_active");
     $(".calen02").addClass("c_no_active");
-    $(".calen03").addClass("c_no_active");
+    $(".calen03").addClass("c_no_active");    
     
     var pageCount=0;
     Page();

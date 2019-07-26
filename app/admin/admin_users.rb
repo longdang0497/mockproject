@@ -15,7 +15,10 @@ ActiveAdmin.register AdminUser do
     actions
   end
 
-  # filter :role, :collection => Role.all.collect {|role| [role.name, role.id] }
+  filter :fullname
+  filter :email
+  filter :bio
+  filter :role, :collection => Role.all.collect {|role| [role.name, role.id] }
 
   form do |f|
     f.inputs do

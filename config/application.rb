@@ -14,6 +14,7 @@ module Mockproject
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
 
+    ForecastIO.api_key = 'bb09dda172f778cf4e0ff090f4137867'
     #config for middleware page 404
     config.exceptions_app = self.routes
     # Settings in config/environments/* take precedence over those specified here.
