@@ -15,12 +15,15 @@ Rails.application.routes.draw do
   end
   
   resources :experience do
-    collection do
+    member do
       get 'applicationform', to: "experience#application_form"
       get 'confirm', to: "experience#confirm"
       get 'sendrequest', to: "experience#send_request"
       get 'payment', to: "experience#payment"
-      get 'complete', to: "experience#complete"
+      get 'complete', to: "experience#complete" 
+    end
+    
+    collection do
       match 'search' => 'experience#search', :via => [:get, :post], :as => :search
     end
   end
