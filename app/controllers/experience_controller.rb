@@ -38,7 +38,11 @@ class ExperienceController < ApplicationController
     end
     index
     render :index
-  end 
+  end
+  
+  def application_form
+  end
+
   def payment
   end
 
