@@ -41,13 +41,29 @@ jQuery(function($){
   });
 
   $("#btnBooking").click(function() {
+    localStorage.clear();
+
+    let adults = $("#numAdults").text() ? $("#numAdults").text() : 0;
+    let children= $("#numChildren").text() ? $("#numChildren").text() : 0;
+    let infants = $("#numInfants").text() ? $("#numInfants").text() : 0;
+
+    console.log(gon.price_adult);
+    console.log(gon.price_children);
+    console.log(gon.price_infant);
+
+    let expTotal = parseInt(adults) * gon.price_adult + parseInt(infants) * gon.price_infant + parseInt(children) * gon.price_children;
+
     let myObj = {
       // first_choice: ,
       // second_choice:,
       // third_choice:,
       // num_of_people:,
-      // interpreter:,
+      interpreter: $("input[name='interpreter']:checked").val(),
       // experience_id:,
+      numAdults: adults,
+      numChildren: children,
+      numInfants: infants,
+      total: expTotal,
       guest_firstnam: $("#guest-firstname").val(),
       guest_lastname: $("#guest-lastname").val(),
       guest_title: $("#guest-title").val(),
@@ -57,11 +73,11 @@ jQuery(function($){
       phone_number: $("#phone-number").val(),
       email: $("#email").val(),
       address: $("#address").val(),
-      // representative_firstname: document.getElementById("guest-lastname").value,
-      // representative_lastname: document.getElementById("guest-lastname").value,
-      // representative_title: document.getElementById("guest-lastname").value,
-      // representative_email: document.getElementById("guest-lastname").value,
-      // send_mail_only_representative: document.getElementById("guest-lastname").value,
+      representative_firstname: $("#representative-firstname").val(),
+      representative_lastname: $("#representative-lastname").val(),
+      representative_title: $("#representative-title").val(),
+      representative_email: $("#representative-email").val(),
+      // send_mail_only_representative: $("#guest-lastname").val(),
     }
 
 

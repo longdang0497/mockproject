@@ -43,11 +43,14 @@ class ExperienceController < ApplicationController
   
   def application_form
     @experience = find_exp_id(params[:id])
+    gon.price_adult = @experience.price_adult.to_f
+    gon.price_children = @experience.price_children.to_f
+    gon.price_infant = @experience.price_infant.to_f
   end
 
   def payment
   end
-  
+
   def complete
     @experience = find_exp_id(params[:id])
     @recommends = ExperienceService.new.recommend(@experience)

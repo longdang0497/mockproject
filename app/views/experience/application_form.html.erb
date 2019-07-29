@@ -9,7 +9,7 @@
     <div class="exdetail_wrap clearfix">
       <section class="exdetail_left_block">
         <div class="form_wrap">
-          <form action="" method="">
+          <form action="<%= confirm_experience_path(@experience.id) %>">
             <p class="form_top_text">
               Please fill out the form shown below. <span class="red">(*Required)</span><br>
               Let us see your offer, we will get back to you again.&nbsp; For more information click <span class="bold">[How to book]</span>.
@@ -65,7 +65,7 @@
                   <p class="form_people_title">Adults</p>
                   <div class="num_wrap">
                     <p id="minus-adults" class="minus">−</a>
-                    <p class="num num-adults" id="adult" name="adult" >0</p>
+                    <p class="num num-adults" id="numAdults" name="numAdults" >0</p>
                     <p id="plus-adults" class="plus">＋</a>
                   </div>
                 </div>
@@ -73,7 +73,7 @@
                   <p class="form_people_title">Children<span>(2-12)</span></p>
                   <div class="num_wrap">
                     <p id="minus-children" class="minus">−</a>
-                    <p class="num num-children" id="children" name="children">0</p>
+                    <p class="num num-children" id="numChildren" name="numChildren">0</p>
                     <p id="plus-children" class="plus">＋</a>
                   </div>
                 </div>
@@ -81,7 +81,7 @@
                   <p class="form_people_title">Infants<span>(&lt;2)</span></p>
                   <div class="num_wrap">
                     <p id="minus-infant" class="minus">−</a>
-                    <p class="num num-infant" id="infant" name="infant">0</p>
+                    <p class="num num-infant" id="numInfants" name="numInfants">0</p>
                     <p id="plus-infant" class="plus">＋</a>
                   </div>
                 </div>
@@ -92,10 +92,10 @@
               <p class="form_common_error_msg">*Required.</p>
               <div class="form_interpreter_inner">
                 <label for="Need" class="form_interpreter_label">
-                  <input type="radio" name="interpreter" id="Need" class="form_radio_input">Need
+                  <input type="radio" name="interpreter" id="Need" value="true" class="form_radio_input">Need
                 </label>
                 <label for="Unnecessary" class="form_interpreter_label">
-                  <input type="radio" name="interpreter" id="Unnecessary" class="form_radio_input">Unnecessary
+                  <input type="radio" name="interpreter" id="Unnecessary" value="false" class="form_radio_input">Unnecessary
                 </label>
               </div>
               <p class="form_subtext">We will charge you an additional <span>2,160yen</span> for requesting an interpreter.</p>
@@ -171,7 +171,7 @@
                   </div>
                   <p class="form_common_title">Your Email<span>*</span></p>
                   <p class="form_common_error_msg">*Required.</p>
-                  <input type="email" class="form_sub_input_long">
+                  <input type="email" id="representative-email" name="representative-email" class="form_sub_input_long">
                   <div class="form_guest_confirm">
                     <label for="Confirm01" class="form_interpreter_label">
                       <input type="radio" name="confirm" id="Confirm01" class="form_radio_input">Please send the Confirmation Email and Payment information <span id="OnlyMeBtn">only to me</span>.
