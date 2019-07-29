@@ -1,3 +1,7 @@
+<%= content_for :title_header do %>
+  Booking - Confirm | SUITO
+<% end %>
+
 <div class="top_main_view">
   <%= render 'experience/commons/ex_mv_wrap' %>
   <div class="common_inner">
@@ -5,7 +9,7 @@
     <div class="exdetail_wrap clearfix">
       <section class="exdetail_left_block">
         <div class="form_wrap">
-          <form action="" method="">
+          <form action="<%= sendrequest_experience_path(@experience.id) %>">
             <div class="form_day_wrap">
               <div class="form_day_title_block">
                 <p class="form_common_title">Day</p>
@@ -38,19 +42,27 @@
               <div class="form_confirm_people_inner">
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first">Adults</p>
-                  <p class="form_confirm_text">2</p>
+                  <p class="form_confirm_text" id="show-num-adults"></p>
                   <p class="form_confirm_text">x</p>
-                  <p class="form_confirm_text">¥2,400</p>
+                  <p class="form_confirm_text"><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
                   <p class="form_confirm_text">=</p>
-                  <p class="form_confirm_text">¥4,800</p>
+                  <p class="form_confirm_text" id="show-total-adults"></p>
                 </div>
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first">Children<span>(2-12)</span></p>
-                  <p class="form_confirm_text">1</p>
+                  <p class="form_confirm_text" id="show-num-children"></p>
                   <p class="form_confirm_text">x</p>
-                  <p class="form_confirm_text">¥1,200</p>
+                  <p class="form_confirm_text"><%= number_to_currency(@experience.price_children.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
                   <p class="form_confirm_text">=</p>
-                  <p class="form_confirm_text">¥1,200</p>
+                  <p class="form_confirm_text" id="show-total-children"></p>
+                </div>
+                <div class="form_confirm_people_common">
+                  <p class="form_confirm_text first">Infants<span>(<2)</span></p>
+                  <p class="form_confirm_text" id="show-num-infants"></p>
+                  <p class="form_confirm_text">x</p>
+                  <p class="form_confirm_text"><%= number_to_currency(@experience.price_infant.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
+                  <p class="form_confirm_text">=</p>
+                  <p class="form_confirm_text" id="show-total-infants"></p>
                 </div>
               </div>
             </div>
@@ -64,7 +76,7 @@
               <div class="form_confirm_interpreter_bottom clearfix">
                 <div class="total">
                   <p class="form_confirm_text">Total</p>
-                  <p class="form_confirm_text">¥8,160</p>
+                  <p class="form_confirm_text" id="show-total" ></p>
                 </div>
               </div>
             </div>
@@ -82,25 +94,25 @@
             <div class="form_sub_profile_wrap">
               <p class="form_common_title">Guest Information</p>
               <p class="form_common_title">Name<span>*</span></p>
-              <p class="form_confirm_text">Ms. Abby Suzuki</p>
+              <p class="form_confirm_text" id="show-guest-name"></p>
               <p class="form_common_title">Age<span>*</span></p>
-              <p class="form_confirm_text">30</p>
+              <p class="form_confirm_text" id="show-guest-age"></p>
               <p class="form_common_title">Nationality</p>
-              <p class="form_confirm_text">Japan</p>
+              <p class="form_confirm_text" id="show-guest-nationality"></p>
               <p class="form_common_title">Language<span>*</span></p>
-              <p class="form_confirm_text">Japanese</p>
+              <p class="form_confirm_text" id="show-guest-language"></p>
               <p class="form_common_title">Phone number</p>
-              <p class="form_confirm_text">81-00-0000-0000</p>
+              <p class="form_confirm_text" id="show-guest-phone"></p>
               <p class="form_common_title">Email<span>*</span></p>
-              <p class="form_confirm_text">abbyabby@gmail.com</p>
+              <p class="form_confirm_text" id="show-guest-email"></p>
               <p class="form_common_title">Current address in Japan</p>
-              <p class="form_confirm_text">Shinjuku Station Hotel</p>
+              <p class="form_confirm_text" id="show-guest-address"></p>
               <div class="form_sub_others_confirm">
                 <p class="form_sub_confirm_text"><span class="bold">I'm not guest.</span> I'm making this booking for someone else.</p>
                 <p class="form_common_title">Name<span>*</span></p>
-                <p class="form_confirm_text">Mr.Yuya Yamamoto</p>
+                <p class="form_confirm_text" id="show-representative-name"></p>
                 <p class="form_common_title">Email<span>*</span></p>
-                <p class="form_confirm_text">azarashi@gmail.com</p>
+                <p class="form_confirm_text" id="show-representative-email"></p>
                 <p class="form_sub_confirm_text">Please send the Confirmation Email and Payment information <span class="red">only to me.</span></p>
               </div>
             </div>
@@ -110,16 +122,21 @@
       </section>
       <aside class="exdetail_right_block" style="height: 1816px;">
         <div class="exdetail_right_top" style="position: absolute; top: 0px;">
+          <% if @experience.image.attached? %>
+          <div class="exdetail_main_pic" style="background: url(<%= url_for(@experience.image) %>) center center no-repeat;background-size: cover;"></div>
+          <% else %>
           <div class="exdetail_main_pic" style="background: url(<%= image_url("ex/pic01.jpg") %>) center center no-repeat;background-size: cover;"></div>
-          <p class="form_aside_pic_info"><a href="">Hosted by SUiTO</a></p>
+          <% end %>
+          <p class="form_aside_pic_info"><a href="">Hosted by <%= @experience.admin_user.fullname %></a></p>
           <table class="form_aside_table">
             <tbody>
               <tr>
                 <th>
+                  
                   <img src=<%= image_path("form/money.png") %> alt="money">
                 </th>
                 <td>
-                  <span>¥2,400</span>/guest
+                  <span><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>/guest
                 </td>
               </tr>
               <tr>
@@ -127,7 +144,7 @@
                   <img src=<%= image_path("form/time.png") %> alt="time">
                 </th>
                 <td>
-                  2 hours total
+                  <%= @experience.duration %> total
                 </td>
               </tr>
               <tr>
@@ -135,7 +152,7 @@
                   <img src=<%= image_path("form/place.png") %> alt="place">
                 </th>
                 <td>
-                  Momochihama
+                  <%= @experience.location.province %>
                 </td>
               </tr>
             </tbody>

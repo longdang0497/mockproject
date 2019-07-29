@@ -19,7 +19,7 @@ class ExperienceController < ApplicationController
   end
 
   def show
-    @experience = find_exp_id(params[:id])
+    find_exp
 
     @recommends = ExperienceService.new.recommend(@experience)
     @host = AdminUser.find(@experience.admin_user_id)
@@ -42,18 +42,33 @@ class ExperienceController < ApplicationController
   end
   
   def application_form
-    @experience = find_exp_id(params[:id])
+    call
+  end
+
+  def confirm 
+    call
+  end
+
+  def payment
+    call
+  end
+
+  def complete
+    find_exp
+    @recommends = ExperienceService.new.recommend(@experience)
+    # @myObj = ActiveSupport::JSON.decode(params[:data_value])
+  end
+
+  private
+  def call
+    find_exp
     gon.price_adult = @experience.price_adult.to_f
     gon.price_children = @experience.price_children.to_f
     gon.price_infant = @experience.price_infant.to_f
   end
 
-  def payment
-  end
-
-  def complete
+  def find_exp 
     @experience = find_exp_id(params[:id])
-    @recommends = ExperienceService.new.recommend(@experience)
+    gon.experience_id = @experience.id 
   end
-
 end
