@@ -1,4 +1,6 @@
 class ExperienceController < ApplicationController
+  include ExperienceConcern
+
   def index
     add_breadcrumb 'Experience', :experience_index_path
     # @experiences = Experience.all.order(updated_at: :DESC).page(params[:page]).per(6)
@@ -17,7 +19,8 @@ class ExperienceController < ApplicationController
   end
 
   def show
-    @experience = Experience.find(params[:id])
+    @experience = find_exp_id(params[:id])
+
     @recommends = ExperienceService.new.recommend(@experience)
     @host = AdminUser.find(@experience.admin_user_id)
 
@@ -39,13 +42,14 @@ class ExperienceController < ApplicationController
   end
   
   def application_form
+    @experience = find_exp_id(params[:id])
   end
 
   def payment
   end
-
+  
   def complete
-    @experience = Experience.find(params[:id])
+    @experience = find_exp_id(params[:id])
     @recommends = ExperienceService.new.recommend(@experience)
   end
 
