@@ -44,6 +44,10 @@
     </div>
     <script defer>
       jQuery(function($){
+          if ( localStorage.getItem("choosedday") !== null ){
+            $('.form_day_input').find(`option[value="${localStorage.choosedday}"]`).attr('selected','selected')
+          }
+          
       
         	$(".top_blog_tag_link").click(function(){
             var tag_s_id = $(this).attr("id");

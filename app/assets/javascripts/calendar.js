@@ -6,7 +6,8 @@
   var days_en_b = new Array("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa");
   //祝日は毎年変更しないと行けない!!!
   // 祝日1：何月の何日か？
-  var Holidays1 = gon.expfroms;
+	var Holidays1 = gon.avalailabledates;
+	
   // 祝日2：何月の第何月曜日か？
   // var Holidays2 = new Array(1,1, 1,2, 3,4, 7,3, 9,3, 10,2);
   
@@ -89,6 +90,7 @@ var htmlStr = "<table class='calen0"+(n+1)+" fair_calendar_table'>\n" + "<tr cla
   }  
 
 $(function() {
+  
   $(window).on("load",function(){
     // var currentMonth = 0;
 
@@ -97,8 +99,9 @@ $(function() {
     //   if (thisMonth == gon.months[i]) 
     //    currentMonth = thisMonth;
     // }
-    console.log(gon.expfroms);
-    console.log(gon.exptos);
+    console.log(gon.avalailabledates);
+    console.log(gon.exfroms);
+    console.log(gon.extos);
 
     for(var c_i=0; c_i<3; c_i++){
       $("#Calen").append(showCalen(c_i));
@@ -169,6 +172,14 @@ $(function() {
     $(".fair_calendar_date").on("click",function(){
       $(this).addClass("fair_date_isactive").siblings().removeClass("fair_date_isactive").parent().siblings().find(".fair_calendar_date").removeClass("fair_date_isactive");
       
+      if (localStorage.getItem("choosedday") === null) {
+        // choosedday not exist 
+        localStorage.choosedday = $(this).data('date');
+      }
+      else{
+        localStorage.choosedday = $(this).data('date');
+      }
+
       var dateactive = $(this).data("date").split("-");
       var dayactive = new Date( dateactive[0], dateactive[1]-1, dateactive[2] );
       var datemonth = Number(dateactive[1]);
@@ -189,3 +200,4 @@ $(function() {
   });
   
 });
+

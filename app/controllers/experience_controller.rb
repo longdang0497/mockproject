@@ -1,3 +1,4 @@
+require 'date'
 class ExperienceController < ApplicationController
   def index
     add_breadcrumb 'Experience', :experience_index_path
@@ -21,14 +22,13 @@ class ExperienceController < ApplicationController
     @recommends = ExperienceService.new.recommend(@experience)
     @host = AdminUser.find(@experience.admin_user_id)
 
-    @exp_dates = ExperienceDate.where(["experience_id = ?", @experience.id])
-    gon.expfroms = ExperienceService.new.available_from(@exp_dates)
-    gon.exptos = ExperienceService.new.available_to(@exp_dates)
-    
+    load_availableDates
+
     # breacrumb
     add_breadcrumb 'Experience', :experience_index_path
     add_breadcrumb @experience.title, :experience_path
   end
+
 
   def search
     if params[:q] && params[:q][:experience_dates_expFrom].present?
@@ -39,6 +39,8 @@ class ExperienceController < ApplicationController
   end
   
   def application_form
+    @experience = Experience.find(params[:id])
+    @dates = @experience.available_dates
   end
 
   def payment
@@ -47,6 +49,13 @@ class ExperienceController < ApplicationController
   def complete
     @experience = Experience.find(params[:id])
     @recommends = ExperienceService.new.recommend(@experience)
+  end
+
+  private 
+  def load_availableDates
+    @exp_dates = ExperienceDate.where(["experience_id = ?", @experience.id])
+    @mergeddates = ExperienceService.new.available_dates(@exp_dates)
+    gon.avalailabledates = @mergeddates
   end
 
 end

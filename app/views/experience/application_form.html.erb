@@ -25,7 +25,9 @@
               <p class="form_common_error_msg">*Required.</p>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
-                <input type="text" id="first-choice" name="first-choice" required="true" class="form_day_input">
+                
+                <%= select_tag "first-choice", options_for_select(@dates, @dates[1]), class: 'form_day_input', required: true
+%>
                 <p class="form_common_title sp">Start time</p>
                 <select name="time01" class="form_time_select">
                   <option value="10:00">10:00</option>
