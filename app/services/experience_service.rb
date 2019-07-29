@@ -28,21 +28,14 @@ class ExperienceService
     @hot_exp = Experience.where(["location_id = ?", location]).first(2)
   end 
 
-  def available_from(date)    
-    exp_froms = []
+  def available(date)    
+    exp_date = []
     date.each_with_index do |obj, i|
-      exp_froms << obj.expFrom.to_date.month
-      exp_froms << obj.expFrom.to_date.day      
+      exp_date << obj.expFrom.to_date.month
+      exp_date << obj.expFrom.to_date.day    
+      exp_date << obj.expTo.to_date.month
+      exp_date << obj.expTo.to_date.day  
     end 
-    return exp_froms
-  end 
-  
-  def available_to(date)    
-    exp_tos = []
-    date.each_with_index do |obj, i|
-      exp_tos << obj.expTo.to_date.month
-      exp_tos << obj.expTo.to_date.day
-    end 
-    return exp_tos
+    return exp_date
   end
 end 
