@@ -14,6 +14,7 @@ class ExperienceController < ApplicationController
       format.html
       format.json { render json: @experiences }
     end
+    
   end
 
   def show
