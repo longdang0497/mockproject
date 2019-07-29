@@ -27,9 +27,9 @@
       <div class="top_mv_filter" id="MvExpFilter"></div>
       <h1 class="top_mv_title">Find Things to Do in FUKUOKA</h1>
       <div class="top_mv_search_wrap">
-        <%= search_form_for @search,url: experience_index_path, class: "top_mv_form" do |f| %>
+        <%= search_form_for @search, url: experience_index_path, class: "top_mv_form" do |f| %>
           <div class="header_search_block top_mv">
-            <input type="text" name="top_date" autocomplete="off" class="header_search_date" id="MvSearchDate" placeholder="Any Time">
+            <%= f.search_field :experience_dates_expFrom, autocomplete: "off", class: "header_search_date", id: "ExSearchDate", placeholder: "Any Time" %>
             <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "MvSearchPlace", autocomplete: "off", placeholder: "Any Where" %>
             <div class="header_exp_block">
               <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "MvSearchExp", autocomplete: "off", placeholder: "All Experience" %>
@@ -154,7 +154,7 @@
                     </div>
                     <div class="back" style="background: rgba(0,0,0,0.8);">
                       <!-- 裏コンテンツエリア -->
-                      <h2 class="top_hot_title"><%= exp.title %></h2>
+                      <h2 class="top_hot_title"><%= exp.title.truncate(10) %></h2>
                       <%if exp.description.present?%>
                         <p class="top_hot_text">
                           <%= exp.description.truncate(90) %>
@@ -438,7 +438,7 @@
                     </div>
                     <div class="top_blog_people_pic" style="background: url(<%= image_url('common/sample_people')%>) center center no-repeat;background-size: cover;"></div>
                   </div>
-                  <p class="top_blog_text">
+                  <p class="top_blog_text" id="block-with-text">
                     <%= blog.short_description%>
                   </p>
                 </div>

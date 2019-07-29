@@ -14,6 +14,7 @@ class ExperienceController < ApplicationController
       format.html
       format.json { render json: @experiences }
     end
+    
   end
 
   def show
@@ -32,7 +33,7 @@ class ExperienceController < ApplicationController
 
   def search
     if params[:q] && params[:q][:experience_dates_expFrom].present?
-      params[:q][:experience_dates_expFrom_gteq_any], params[:q][:experience_dates_expFrom_lteq_any] = params[:q][:experience_dates_expFrom].split("-") 
+      params[:q][:experience_dates_expFrom_gteq_any], params[:q][:experience_dates_expTo_lteq_any] = params[:q][:experience_dates_expFrom].split("-") 
     end
     index
     render :index
