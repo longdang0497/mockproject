@@ -429,7 +429,7 @@
                     <div class="left">
                       <p class="date"><%= blog.updated_at.strftime("%Y/%m/%d") %></p>
                       <ul class="top_blog_tag">
-                        <% blog.hashtags.each do |hash_tag| %>
+                        <% blog.hashtags.take(3).each do |hash_tag| %>
                           <li class="top_blog_tag_item">
                             <p class="top_blog_tag_link" id="<%= hash_tag.tag_name %>">#<%= hash_tag.tag_name %></p>
                           </li>
