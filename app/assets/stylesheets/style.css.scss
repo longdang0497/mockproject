@@ -4566,6 +4566,7 @@ footer {
 .form_people_wrap .form_people_common_block .num_wrap .minus:hover,
 .form_people_wrap .form_people_common_block .num_wrap .plus:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 .form_people_wrap .form_people_common_block .num_wrap .num {
   font-size: 18px;

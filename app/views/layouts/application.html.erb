@@ -13,6 +13,7 @@
     <meta property="og:image" content=" ">
     <meta property="og:site_name" content=" ">
     <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" >
+    <meta name="turbolinks-cache-control" content="no-cache">
     <!--<meta name="turbolinks-visit-control" content="reload">-->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <%= Gon::Base.render_data %>
@@ -22,30 +23,30 @@
     <script src="https://kit.fontawesome.com/00da43cf5c.js"></script>
      <script defer>
       $(document).on('turbolinks:load', function() {
-          if ( localStorage.getItem("choosedday") !== null ){
-            $('#first-choice.form_day_input').find(`option[value="${localStorage.choosedday}"]`).attr('selected','selected')
+        if ( localStorage.getItem("choosedday") !== null ){
+          $('#first-choice.form_day_input').find(`option[value="${localStorage.choosedday}"]`).attr('selected','selected')
+        }
+        
+    
+        $(".top_blog_tag_link").click(function(){
+          var tag_s_id = $(this).attr("id");
+          console.log(tag_s_id);
+          // location.href 
+        });
+      
+      
+        Modernizr.load({
+          test: Modernizr.csstransforms3d && Modernizr.csstransitions,
+          yep : ['<%= javascript_url("jquery.hoverfold.js") %>'],
+          nope: '<%= stylesheet_url("hover/fallback.css") %>',
+          callback : function( url, result, key ) {
+    
+            if( url === '<%= javascript_url("jquery.hoverfold.js") %>') {
+              $( '.top_common_title' ).hoverfold();
+            }
+    
           }
-          
-      
-        	$(".top_blog_tag_link").click(function(){
-            var tag_s_id = $(this).attr("id");
-            console.log(tag_s_id);
-            // location.href 
-          });
-      
-      
-        	Modernizr.load({
-      			test: Modernizr.csstransforms3d && Modernizr.csstransitions,
-      			yep : ['<%= javascript_url("jquery.hoverfold.js")%>'],
-      			nope: '<%= stylesheet_url("hover/fallback.css") %>',
-      			callback : function( url, result, key ) {
-      
-      				if( url === '<%= javascript_url("jquery.hoverfold.js")%>') {
-      					$( '.top_common_title' ).hoverfold();
-      				}
-      
-      			}
-      		});
+        });
       
       /*
       	$('input[name="header_date"]').daterangepicker({
@@ -124,19 +125,16 @@
           	$(".thanks_mail_wrap").stop().slideToggle();
         	});
       
-      
-      
-      
         $(".ex_comon_list").matchHeight();
-      
-      		$('.exdetail_bxslider').bxSlider({
-      	    slideWidth: 255,
-      	    minSlides: 1,
-      	    maxSlides: 3,
-      	    slideMargin: 40,
-      	    pager:false
-      // 	    controls:false,
-      	  });
+    
+        $('.exdetail_bxslider').bxSlider({
+          slideWidth: 255,
+          minSlides: 1,
+          maxSlides: 3,
+          slideMargin: 40,
+          pager:false
+        // 	    controls:false,
+        });
 
       $("input[name='confirm']").on("change",function(){
         $("input[name='confirm']:checked").parent().addClass("active").siblings().removeClass("active");
