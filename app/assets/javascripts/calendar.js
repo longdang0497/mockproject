@@ -6,7 +6,7 @@
   var days_en_b = new Array("Su", "Mo", "Tu", "We", "Th", "Fr", "Sa");
   //祝日は毎年変更しないと行けない!!!
   // 祝日1：何月の何日か？
-	var Holidays1 = gon.avalailabledates;
+	var Holidays1 = gon.global.avalailabledates;
 	
   // 祝日2：何月の第何月曜日か？
   // var Holidays2 = new Array(1,1, 1,2, 3,4, 7,3, 9,3, 10,2);
@@ -89,20 +89,9 @@ var htmlStr = "<table class='calen0"+(n+1)+" fair_calendar_table'>\n" + "<tr cla
 
   }  
 
-$(function() {
+$(document).on('turbolinks:load', function() {  
   
-  $(window).on("load",function(){
-    // var currentMonth = 0;
-
-    // for (var i = 0; i < gon.months.size; i++) {
-    //   alert(gon.months[i]);
-    //   if (thisMonth == gon.months[i]) 
-    //    currentMonth = thisMonth;
-    // }
-    console.log(gon.avalailabledates);
-    console.log(gon.exfroms);
-    console.log(gon.extos);
-
+    console.log(gon.global.avalailabledates);
     for(var c_i=0; c_i<3; c_i++){
       $("#Calen").append(showCalen(c_i));
     }
@@ -197,7 +186,7 @@ $(function() {
     
     $(".fair_calendar_date.old").off("click");
       
-  });
+  
   
 });
 

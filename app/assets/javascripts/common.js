@@ -1,5 +1,4 @@
-jQuery(function($){
-  
+$(document).on('turbolinks:load', function() {
   $('input[name="header_date"]').daterangepicker({
 			autoUpdateInput: false,
 			locale: {

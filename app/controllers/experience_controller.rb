@@ -55,7 +55,7 @@ class ExperienceController < ApplicationController
   def load_availableDates
     @exp_dates = ExperienceDate.where(["experience_id = ?", @experience.id])
     @mergeddates = ExperienceService.new.available_dates(@exp_dates)
-    gon.avalailabledates = @mergeddates
+    Gon.global.avalailabledates = @mergeddates
   end
 
 end
