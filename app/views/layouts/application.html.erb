@@ -13,37 +13,15 @@
     <meta property="og:image" content=" ">
     <meta property="og:site_name" content=" ">
     <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" >
-      <meta name="turbolinks-visit-control" content="reload">
+    <!--<meta name="turbolinks-visit-control" content="reload">-->
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-    <%= include_gon %>
+    <%= Gon::Base.render_data %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag Ckeditor.cdn_url%>
     <script src="https://kit.fontawesome.com/00da43cf5c.js"></script>
-  </head>
-  <body id="TOP">
-  <%= @test %>
-    <%= render 'layouts/header'%>
-    <div class="top_main_wrap">
-      <% flash.each do |key, msg| %>
-        <div class="alert alert-info alert-dismissable" role="alert" style="margin: 2rem !important;">
-          <button type="button" data-dismiss="alert" class="close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <%= msg %>
-        </div>
-      <% end %>
-      <%= yield %>
-      <% unless hide_side_bar? %>
-        <%= render 'layouts/sns_sidebar'%>
-      <% end %>
-      <a href="#TOP" class="common_up_btn">
-        <%= image_tag("common/up_arrow.png", alt: "△") %>
-      </a>
-      <%= render 'layouts/footer'%>
-    </div>
-    <script defer>
-      jQuery(function($){
+     <script defer>
+      $(function($){
           if ( localStorage.getItem("choosedday") !== null ){
             $('.form_day_input').find(`option[value="${localStorage.choosedday}"]`).attr('selected','selected')
           }
@@ -160,21 +138,21 @@
       // 	    controls:false,
       	  });
 
-    $("input[name='confirm']").on("change",function(){
-      $("input[name='confirm']:checked").parent().addClass("active").siblings().removeClass("active");
-    });
-  	
-  	$("input[name='interpreter']").on("change",function(){
-    	$("input[name='interpreter']:checked").parent().addClass("active").siblings().removeClass("active");
-  	});
-  	
-  	$("#NotGuestCheck").on("change",function(){
-    	$(this).next().stop().slideToggle();
-  	});
-  	
-  	$("#OnlyMeBtn").on("click",function(){
-    	$(".form_confirm_popup").stop().slideToggle();
-  	});
+      $("input[name='confirm']").on("change",function(){
+        $("input[name='confirm']:checked").parent().addClass("active").siblings().removeClass("active");
+      });
+      
+      $("input[name='interpreter']").on("change",function(){
+        $("input[name='interpreter']:checked").parent().addClass("active").siblings().removeClass("active");
+      });
+      
+      $("#NotGuestCheck").on("change",function(){
+        $(this).next().stop().slideToggle();
+      });
+      
+      $("#OnlyMeBtn").on("click",function(){
+        $(".form_confirm_popup").stop().slideToggle();
+      });
       
       });
     </script>
@@ -222,5 +200,28 @@
         player.stopVideo();
       }
     </script>
+  </head>
+  <body id="TOP">
+  <%= @test %>
+    <%= render 'layouts/header'%>
+    <div class="top_main_wrap">
+      <% flash.each do |key, msg| %>
+        <div class="alert alert-info alert-dismissable" role="alert" style="margin: 2rem !important;">
+          <button type="button" data-dismiss="alert" class="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <%= msg %>
+        </div>
+      <% end %>
+      <%= yield %>
+      <% unless hide_side_bar? %>
+        <%= render 'layouts/sns_sidebar'%>
+      <% end %>
+      <a href="#TOP" class="common_up_btn">
+        <%= image_tag("common/up_arrow.png", alt: "△") %>
+      </a>
+      <%= render 'layouts/footer'%>
+    </div>
+   
   </body>
 </html>
