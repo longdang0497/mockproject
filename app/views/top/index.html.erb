@@ -7,18 +7,26 @@
       <ul class="top_mv_bxslider">
         <li class="top_mv_list" style="background: url(<%= image_url('top/top_slide01')%>) center center no-repeat;background-size: cover;">
           <div class="top_mv_info_block">
-            <a href="" class="top_mv_info_title">Mandala Workshop @Sep 23th</a>
+            <a href="" class="top_mv_info_title"><%= @head_exp.title %> @Sep 23th</a>
             <div class="top_mv_info_bottom">
-              <a href="" class="top_mv_info_place">Momochihama</a>
-              <a href="" class="top_mv_info_tag">Entertainment</a>
+              <a href="" class="top_mv_info_place"><%= @head_exp.location.province %></a>
+              
+              <% if @head_exp.categories.present? %>
+              <a href="" class="top_mv_info_tag">
+                <% @head_exp.categories.each do |exp| %>
+                  <%= exp.category_name %>
+                <% end %>
+              </a>
+              <% end %>
+              
             </div>
           </div>
         </li>
         <li class="top_mv_list" style="background: url(<%= image_url('top/top_slide02')%>) center center no-repeat;background-size: cover;">
           <div class="top_mv_info_block">
-            <a href="" class="top_mv_info_title">Mandala Workshop @Sep 23th</a>
+            <a href="" class="top_mv_info_title"><%= @head_exp.title %> @Sep 23th</a>
             <div class="top_mv_info_bottom">
-              <a href="" class="top_mv_info_place">Momochihama</a>
+              <a href="" class="top_mv_info_place"><%= @head_exp.location.province %></a>
               <a href="" class="top_mv_info_tag">Entertainment</a>
             </div>
           </div>
