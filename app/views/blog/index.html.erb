@@ -97,9 +97,9 @@
       <div class="ex_list_top_area">
         <p class="ex_list_num">
           <%if @page > @blogs.total_pages%>
-          No blogs found
+            <%= t('.no_blog_found') %>
           <%else%>
-            <%= page_entries_info @blogs, entry_name: 'blogs' %>
+            <%= page_entries_info @blogs, entry_name: 'blog' %>
             <%= paginate @blogs%>
           <%end%>
       </div>
@@ -205,6 +205,6 @@
   </div>
   <section class="common_bottom_pic_block">
     <%= image_tag("common/bottom_mv_pic.jpg") %>
-    <a href="" class="common_bottom_pic_btn"><span>Japanese Restaurant SUiTO</span></a>
+    <a href="" class="common_bottom_pic_btn"><span><%= t('.restaurant_sui') %></span></a>
   </section>
 </div>

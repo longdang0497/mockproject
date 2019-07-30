@@ -6,28 +6,32 @@
 			</a>
 			<nav class="header_top_menu">
 				<a href="/experience" class="header_menu_link">
-					Experience
+					<%= t('.experience') %>
 				</a>
 				<a href="/" class="header_menu_link">
-					Restaurant
+					<%= t('.restaurant') %>
 				</a>
 				<a href="/" class="header_menu_link">
-					Rental space
+					<%= t('.rental_space') %>
 				</a>
 				<a href="/blog" class="header_menu_link">
-					Blog
+					<%= t('.blog') %>
 				</a>
 				<a href="/" class="header_menu_link">
-					AccessSUiTO
+					<%= t('.accessSUiTO') %>
 				</a>
 				<a href="/" class="header_menu_link">
-					FAQ
+					<%= t('.faq') %>
 				</a>				
 			</nav>
-			<select name="language_choose" class="header_select">
-				<option value="English">English</option>
-				<option value="Chinese">Chinese</option>
-			</select>
+			<%= form_tag top_path, class: "locale" do %>
+				<%= select_tag 'set_locale', 
+					options_for_select(LANGUAGES, I18n.locale.to_s), 
+					onchange: 'this.form.submit()', class: "header_select"%> 
+				<%= submit_tag 'submit' %>
+				<%= javascript_tag "$('.locale input').hide()" %>
+			<% end %> 
+
 		</div>	
 	</div>
 	<div class="header_exp_filter" id="HeaderExpFilter"></div>
@@ -51,22 +55,22 @@
         </div>
         <nav class="header_nav_block">
       	  <a href="" class="header_menu_link">
-      			Experience
+      			<%= t('.experience') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			Restaurant
+      			<%= t('.restaurant') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			Rental space
+      			<%= t('.rental_space') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			Blog
+      			<%= t('.blog') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			AccessSUiTO
+      			<%= t('.accessSUiTO') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			FAQ
+      			<%= t('.faq') %>
       		</a>
         </nav>
 			</div>

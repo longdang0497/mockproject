@@ -1,0 +1,77 @@
+vi:
+  hello: "Xin chào"
+  helpers:
+      page_entries_info:
+        one_page:
+          display_entries:
+            zero: "Không tìm thấy %{entry_name}"
+            one: "<b>1</b> %{entry_name}"
+            other: "<b>Tìm thấy %{count}</b> %{entry_name}"
+        more_pages:
+          display_entries: "<b>%{first}&nbsp;-&nbsp;%{last}</b> / <b>%{total}</b> %{entry_name}"
+  layouts:
+    header:
+      experience: "Trải nghiệm"
+      restaurant: "Nhà Hàng"
+      rental_space: "Không gian cho thuê"
+      blog: "Blog"
+      accessSUiTO: "Truy cập SUiTO"
+      faq: "Câu hỏi thường gặp"
+    footer:
+      experience: "Trải nghiệm"
+      blog: "Blog"
+      weather: "Thời tiết ở đây"
+      greeting: "Lời nói đầu"
+      restaurant: "Nhà hàng"
+      trip_advisor: "Hướng dẫn viên"
+      exchange_money: "Chuyển đổi tiền tệ"
+      privacy_policy: "Chính sách riêng tư"
+      rental_space: "Không gian cho thuê"
+      facebook: "Facebook"
+      faq: "Câu hỏi thường gặp"
+      terms: "Quy định người dùng"
+      SUiTO: "Về SUiTO"
+      instagram: "Instagram"
+      contact: "Liên lạc"
+      site_map: "Bản đồ"
+      access: "Truy cập"
+    sns_sidebar:
+      share_fb: "Chia sẻ trên facebook"
+      share_in: "Chia sẻ trên instagram"
+      share_tw: "Chia sẻ trên twitter"
+      calculate: "chuyển"
+    form_header_info_block:
+      calligraphy: "Thư pháp Việt Nam"
+    form_date_and_header_info_button:
+      any_time: "Thời gian"
+      any_where: "Địa điểm"
+      all_exp: "Trải nghiệm"
+      how_to_book: "Làm sao để đặt"
+  top:
+    index:
+      find: "Tìm kiếm một vài thứ ở Việt Nam"
+      more: "xem thêm"
+      tourist: "Thông tin du lịch"
+      exp_booking: "Đặt trải nghiệm"
+      restaurant: "Nhà hàng Việt Nam"
+      rental_space: "Không gian cho thuê"
+      luggage: "Dịch vụ hành lí"
+      no_data: "Không có dữ liệu"
+      restaurant_sui: "Nhà hàng Việt Nam SUiTO"
+      calculate: "chuyển"
+  blog:
+    index:
+      blog: "Blog"
+      no_blog_found: "Không tìm thấy blog"
+      restaurant_sui: "Nhà hàng Việt Nam SUiTO"
+  experience:
+    index:
+      restaurant_sui: "Nhà hàng Việt Nam SUiTO"
+      find: "Tìm kiếm một vài thứ ở Việt Nam"
+      no_exp_found: "Không tìm thấy trải nghiệm"
+  breadcrumbs:
+    top: "Trang chủ"
+
+
+
+

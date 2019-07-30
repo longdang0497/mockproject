@@ -1,34 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
   helpers:
@@ -40,3 +9,66 @@ en:
             other: "<b>Find %{count}</b> %{entry_name}"
         more_pages:
           display_entries: "<b>%{first}&nbsp;-&nbsp;%{last}</b> / <b>%{total}</b> %{entry_name}"
+  layouts:
+    header:
+      experience: "Experience"
+      restaurant: "Restaurant"
+      rental_space: "Rental space"
+      blog: "Blog"
+      accessSUiTO: "AccessSUiTO"
+      faq: "FAQ"
+    footer:
+      experience: "Experience"
+      blog: "Blog"
+      weather: "Weather in here"
+      greeting: "Greeting"
+      restaurant: "Restaurant"
+      trip_advisor: "Trip advisor"
+      exchange_money: "Exchange money"
+      privacy_policy: "Privacy policy"
+      rental_space: "Rental space"
+      facebook: "Facebook"
+      faq: "FAQ"
+      terms: "Terms of Use"
+      SUiTO: "About SUiTO"
+      instagram: "Instagram"
+      contact: "Contact"
+      site_map: Site map"
+      access: "Access"
+    sns_sidebar:
+      share_fb: "share on facebook"
+      share_in: "share on instagram"
+      share_tw: "share on twitter"
+      calculate: "calculate"
+    form_header_info_block:
+      calligraphy: "Viet Nam Calligraphy"
+    form_date_and_header_info_button:
+      any_time: "Any time"
+      any_where: "Any where"
+      all_exp: "All Experience"
+      how_to_book: "How to book"
+  top:
+    index:
+      find: "Find Things to Do in Viet Nam"
+      more: "more"
+      tourist: "Tourist information"
+      exp_booking: "Experience booking"
+      restaurant: "Viet Nam restaurant"
+      rental_space: "Rental space"
+      luggage: "Luggage service"
+      no_data: "There is no data"
+      restaurant_sui: "Viet Nam Restaurant SUiTO"
+      calculate: "calculate"
+  blog:
+    index:
+      blog: "Blogs"
+      no_blog_found: "No blogs found"
+      restaurant_sui: "Viet Nam Restaurant SUiTO"
+  experience:
+    index:
+      restaurant_sui: "Viet Nam Restaurant SUiTO"
+      find: "Find Things to Do in Viet Nam"
+      no_exp_found: "No experiences found"
+  breadcrumbs:
+    top: "Top"
+
