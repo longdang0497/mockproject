@@ -1,5 +1,5 @@
 <%= content_for :title_header do %>
-  Experience | SUITO
+  <%= t('.experience') %> | SUITO
 <% end %>
 <div class="top_main_view">
   <section class="ex_mv_wrap">
@@ -36,7 +36,7 @@
                     <% end %>
                   </div>
                 </div>
-                <span class="ex_main_price"><%= number_to_currency(@hot_exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
+                <span class="ex_main_price"><%= number_to_currency(@hot_exp.price_adult.to_f)%></span>
               </div>
             <% end %>
           </div>
@@ -99,7 +99,7 @@
                 <%end%>
                   <div class="filter"></div>
                   <span class="price_tag">
-                    <%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%>
+                    <%= number_to_currency(exp.price_adult.to_f)%>
                   </span>
                 </div>
                 <h1 class="title"><%= exp.title%></h1>

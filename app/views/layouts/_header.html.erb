@@ -22,16 +22,12 @@
 				</a>
 				<a href="/" class="header_menu_link">
 					<%= t('.faq') %>
-				</a>				
+				</a>	
+				<%= form_tag top_path, :class => "select_form", :method => 'get' do %>
+     				<%= select_tag('set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit();', class: "header_select") %>
+        		<% end %>			
 			</nav>
-			<%= form_tag top_path, class: "locale" do %>
-				<%= select_tag 'set_locale', 
-					options_for_select(LANGUAGES, I18n.locale.to_s), 
-					onchange: 'this.form.submit()', class: "header_select"%> 
-				<%= submit_tag 'submit' %>
-				<%= javascript_tag "$('.locale input').hide()" %>
-			<% end %> 
-
+ 			
 		</div>	
 	</div>
 	<div class="header_exp_filter" id="HeaderExpFilter"></div>
@@ -45,8 +41,6 @@
 			<% else %>
 				<%= render 'layouts/form_header_info_block' %>
 			<% end %>
-		
-
 			<div class="header_right_block">
   			<div class="header_menu" id="MenuBtn">
           <span class="header_line header_top_line"></span>
