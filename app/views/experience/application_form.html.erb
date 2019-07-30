@@ -25,35 +25,23 @@
               <p class="form_common_error_msg">*Required.</p>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day2') %></p>
-                <input type="text" id="first-choice" name="first-choice" required="true" class="form_day_input">
+                <%= select_tag "first-choice", options_for_select(@dates, @dates[0]), class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start2') %></p>
-                <select name="time01" class="form_time_select">
-                  <option value="10:00">10:00</option>
-                  <option value="11:00">11:00</option>
-                  <option value="12:00">12:00</option>
-                </select>
+                <%= select_tag "time01", options_for_select([ "10:00", "11:00", "12:00" ], "10:00"), class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.first1') %><span>*</span></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day3') %></p>
-                <input type="text" id="second-choice" name="second-choice" class="form_day_input">
+                <%= select_tag "second-choice", options_for_select(@dates, ''), include_blank: "Please select", class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start3') %></p>
-                <select name="time01" class="form_time_select">
-                  <option value="10:00">10:00</option>
-                  <option value="11:00">11:00</option>
-                  <option value="12:00">12:00</option>
-                </select>
+                <%= select_tag "time02", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.second') %></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day4') %></p>
-                <input type="text" id="third-choice" name="third-choice" class="form_day_input">
+                <%= select_tag "third-choice", options_for_select(@dates, ''), include_blank: "Please select", class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start4') %></p>
-                <select name="time01" class="form_time_select">
-                  <option value="10:00">10:00</option>
-                  <option value="11:00">11:00</option>
-                  <option value="12:00">12:00</option>
-                </select>
+                <%= select_tag "time03", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.third') %></p>
               </div>
             </div>
@@ -94,7 +82,7 @@
                 <label for="Need" class="form_interpreter_label">
                   <input type="radio" name="interpreter" id="Need" value="true" class="form_radio_input"><%= t('.need') %>
                 </label>
-                <label for="Unnecessary" class="form_interpreter_label">
+                <label for="Unnecessary" class="form_interpreter_label active">
                   <input type="radio" name="interpreter" id="Unnecessary" value="false" class="form_radio_input"><%= t('.unnecessary') %>
                 </label>
               </div>
@@ -173,7 +161,7 @@
                   <p class="form_common_error_msg">*Required.</p>
                   <input type="email" id="representative-email" name="representative-email" class="form_sub_input_long">
                   <div class="form_guest_confirm">
-                    <label for="Confirm01" class="form_interpreter_label">
+                    <label for="Confirm01" class="form_interpreter_label active">
                       <input type="radio" name="confirm" id="Confirm01" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
                     </label>
                     <div class="form_confirm_popup">
