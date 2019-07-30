@@ -23,10 +23,10 @@
 				<a href="/" class="header_menu_link">
 					<%= t('.faq') %>
 				</a>	
-				<%= form_tag top_path, :class => "select_form", :method => 'get' do %>
-     				<%= select_tag('set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit();', class: "header_select") %>
-        		<% end %>			
 			</nav>
+			<%= form_tag top_path, :class => "select_form", :method => 'get' do %>
+     				<%= select_tag('set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit();', class: "header_select") %>
+        		<% end %>	
  			
 		</div>	
 	</div>

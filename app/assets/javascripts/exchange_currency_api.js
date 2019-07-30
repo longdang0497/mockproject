@@ -1,5 +1,6 @@
 // set endpoint and your access key
-$(document).ready(function () {
+
+$(document).on('turbolinks:load', function() {
     // const ACCESS_KEY = 'b9b2af1ed1d7f0141724746d4f9bce37';
     const SYMBOLS = 'USD,KRW,TWD,CNY,THB,GBP,HKD,AUD,JPY';
     CurencyAPI();
