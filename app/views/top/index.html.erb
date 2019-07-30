@@ -25,11 +25,11 @@
         </li>
       </ul>
       <div class="top_mv_filter" id="MvExpFilter"></div>
-      <h1 class="top_mv_title">Find Things to Do in FUKUOKA</h1>
+      <h1 class="top_mv_title"><%= t('.find') %></h1>
       <div class="top_mv_search_wrap">
-        <%= search_form_for @search,url: experience_index_path, class: "top_mv_form" do |f| %>
+        <%= search_form_for @search, url: experience_index_path, class: "top_mv_form" do |f| %>
           <div class="header_search_block top_mv">
-            <input type="text" name="top_date" autocomplete="off" class="header_search_date" id="MvSearchDate" placeholder="Any Time">
+            <%= f.search_field :experience_dates_expFrom, autocomplete: "off", class: "header_search_date", id: "ExSearchDate", placeholder: "Any Time" %>
             <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "MvSearchPlace", autocomplete: "off", placeholder: "Any Where" %>
             <div class="header_exp_block">
               <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "MvSearchExp", autocomplete: "off", placeholder: "All Experience" %>
@@ -68,7 +68,7 @@
       <div id="grid" class="main top_common_title">
         <div class="view">
           <div class="view-back">
-            <a href="/">more</a>
+            <a href="/"><%= t('.more') %></a>
           </div>
           <%= image_tag("top/top_title01") %>
         </div>
@@ -82,7 +82,7 @@
             <%= image_tag("common/info_icon", alt: "get information", class: "black")%>
             <%= image_tag("common/info_icon_w", alt: "get information", class: "white")%>
             <p class="text">
-              Tourist information
+              <%= t('.tourist') %>
             </p>
           </a>
         </li>
@@ -91,7 +91,7 @@
             <%= image_tag("common/calender_icon02", alt: "book experience", class: "black")%>
             <%= image_tag("common/calender_icon02_w", alt: "book experience", class: "white")%>
             <p class="text">
-              Experience booking
+              <%= t('.exp_booking') %>
             </p>
           </a>
         </li>
@@ -100,7 +100,7 @@
             <%= image_tag("common/eat_icon", alt: "eat japanese food", class: "black")%>
             <%= image_tag("common/eat_icon_w", alt: "eat japanese food", class: "white")%>
             <p class="text">
-              Japanese restaurant
+              <%= t('.restaurant') %>
             </p>
           </a>
         </li>
@@ -109,7 +109,7 @@
             <%= image_tag("common/rent_icon", alt: "rent space", class: "black")%>
             <%= image_tag("common/rent_icon_w", alt: "rent space", class: "white")%>
             <p class="text">
-              Rental space
+              <%= t('.rental_space') %>
             </p>
           </a>
         </li>
@@ -118,20 +118,20 @@
             <%= image_tag("common/bag_icon", alt: "keep baggage", class: "black")%>
             <%= image_tag("common/bag_icon_w", alt: "keep baggage", class: "white")%>
             <p class="text">
-              Luggage service
+              <%= t('.luggage') %>
             </p>
           </a>
         </li>
       </ul>
     </div>
-    <a href="" class="common_sp_more">more</a>
+    <a href="" class="common_sp_more"><%= t('.more') %></a>
   </section>
   <section class="top_hot_wrap">
     <div class="common_inner">
       <div id="grid" class="main top_common_title">
         <div class="view">
           <div class="view-back">
-            <a href="/experience">more</a>
+            <a href="/experience"><%= t('.more') %></a>
           </div>
           <%= image_tag("top/top_title02") %>
         </div>
@@ -154,7 +154,7 @@
                     </div>
                     <div class="back" style="background: rgba(0,0,0,0.8);">
                       <!-- 裏コンテンツエリア -->
-                      <h2 class="top_hot_title"><%= exp.title %></h2>
+                      <h2 class="top_hot_title"><%= exp.title.truncate(10) %></h2>
                       <%if exp.description.present?%>
                         <p class="top_hot_text">
                           <%= exp.description.truncate(90) %>
@@ -180,20 +180,20 @@
                 </div>
               </a>
             <% else %>
-              There is no data.
+              <%= t('.no_data') %>
             <% end %>
           <% end %>
         <% end %>
       </div>
     </div>
-    <a href="" class="common_sp_more">more</a>
+    <a href="" class="common_sp_more"><%= t('.more') %></a>
   </section>
   <section class="top_topics_wrap">
     <div class="common_inner">
       <div id="grid" class="main top_common_title">
         <div class="view">
           <div class="view-back">
-            <a href="/">more</a>
+            <a href="/"><%= t('.more') %></a>
           </div>
           <%= image_tag('top/top_title03')%>
         </div>
@@ -228,14 +228,14 @@
         </li>
       </ul>
     </div>
-    <a href="" class="common_sp_more">more</a>
+    <a href="" class="common_sp_more"><%= t('.more') %></a>
   </section>
   <section class="top_weather_wrap">
     <div class="common_inner">
       <div id="grid" class="main top_common_title">
         <div class="view">
           <div class="view-back">
-            <a href="/">more</a>
+            <a href="/"><%= t('.more') %></a>
           </div>
           <%= image_tag('top/top_title04')%>
         </div>
@@ -310,14 +310,14 @@
         </div>
       </div>
     </div>
-    <a href="" class="common_sp_more">more</a>
+    <a href="" class="common_sp_more"><%= t('.more') %></a>
   </section>
   <section class="top_money_wrap">
     <div class="common_inner">
       <div id="grid" class="main top_common_title">
         <div class="view">
           <div class="view-back">
-            <a href="/">more</a>
+            <a href="/"><%= t('.more') %></a>
           </div>
             <%= image_tag('top/top_title05')%>
         </div>
@@ -342,7 +342,7 @@
               <p class="money_type MoneyCountry" id="MoneyChange">EUR</p>
             </div>
           </div>
-          <button class="top_money_change_btn" id="calculate_main">calculate</button>
+          <button class="top_money_change_btn" id="calculate_main"><%= t('.calculate') %></button>
         </div>
         <div class="top_money_right clearfix">
           <ul class="top_money_list">
@@ -395,14 +395,14 @@
         </div>
       </div>
     </div>
-    <a href="" class="common_sp_more">more</a>
+    <a href="" class="common_sp_more"><%= t('.more') %></a>
   </section>
   <section class="top_blog_wrap">
     <div class="common_inner">
       <div id="grid" class="main top_common_title">
         <div class="view">
           <div class="view-back">
-            <a href="/blog">more</a>
+            <a href="/blog"><%= t('.more') %></a>
           </div>
           <%= image_tag('top/top_title06')%>
         </div>
@@ -438,14 +438,14 @@
                     </div>
                     <div class="top_blog_people_pic" style="background: url(<%= image_url('common/sample_people')%>) center center no-repeat;background-size: cover;"></div>
                   </div>
-                  <p class="top_blog_text">
+                  <p class="top_blog_text" id="block-with-text">
                     <%= blog.short_description%>
                   </p>
                 </div>
               </a>
             </article>
             <%end%>
-            <p class="common_sp_more">more</p>
+            <p class="common_sp_more"><%= t('.more') %></p>
           </div>
           <div class="top_blog_right">
             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjwebsol%2F&tabs=timeline&width=320&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="300" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
@@ -456,7 +456,7 @@
   </section>
   <section class="common_bottom_pic_block">
     <%= image_tag('common/bottom_mv_pic')%>
-    <a href="" class="common_bottom_pic_btn"><span>Japanese Restaurant SUiTO</span></a>
+    <a href="" class="common_bottom_pic_btn"><span><%= t('.restaurant_sui') %></span></a>
   </section>
 <!--
   <section class="top_movie_wrap">

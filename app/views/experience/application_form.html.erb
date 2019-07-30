@@ -11,58 +11,58 @@
         <div class="form_wrap">
           <form action="<%= confirm_experience_path(@experience.id) %>">
             <p class="form_top_text">
-              Please fill out the form shown below. <span class="red">(*Required)</span><br>
-              Let us see your offer, we will get back to you again.&nbsp; For more information click <span class="bold">[How to book]</span>.
+              <%= t('.fill') %><span class="red">(*Required)</span><br>
+              <%= t('.offer') %>&nbsp; <%= t('.information') %> <span class="bold">[<%= t('.book') %>]</span>.
             </p>
             <a href="" class="form_top_book_btn">
               <img src=<%= image_path("form/book_icon.png") %> alt="how to book">
             </a>
             <div class="form_day_wrap">
               <div class="form_day_title_block">
-                <p class="form_common_title">Day</p>
-                <p class="form_common_title">Start time</p>
+                <p class="form_common_title"><%= t('.day1') %></p>
+                <p class="form_common_title"><%= t('.start1') %></p>
               </div>
               <p class="form_common_error_msg">*Required.</p>
               <div class="form_day_common_block">
-                <p class="form_common_title sp">Day</p>
-                <input type="text" id="first-choice" name="first-choice" class="form_day_input">
-                <p class="form_common_title sp">Start time</p>
+                <p class="form_common_title sp"><%= t('.day2') %></p>
+                <input type="text" id="first-choice" name="first-choice" required="true" class="form_day_input">
+                <p class="form_common_title sp"><%= t('.start2') %></p>
                 <select name="time01" class="form_time_select">
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>
                 </select>
-                <p class="form_choice_text">First choice<span>*</span></p>
+                <p class="form_choice_text"><%= t('.first1') %><span>*</span></p>
               </div>
               <div class="form_day_common_block">
-                <p class="form_common_title sp">Day</p>
+                <p class="form_common_title sp"><%= t('.day3') %></p>
                 <input type="text" id="second-choice" name="second-choice" class="form_day_input">
-                <p class="form_common_title sp">Start time</p>
+                <p class="form_common_title sp"><%= t('.start3') %></p>
                 <select name="time01" class="form_time_select">
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>
                 </select>
-                <p class="form_choice_text">Second choice</p>
+                <p class="form_choice_text"><%= t('.second') %></p>
               </div>
               <div class="form_day_common_block">
-                <p class="form_common_title sp">Day</p>
+                <p class="form_common_title sp"><%= t('.day4') %></p>
                 <input type="text" id="third-choice" name="third-choice" class="form_day_input">
-                <p class="form_common_title sp">Start time</p>
+                <p class="form_common_title sp"><%= t('.start4') %></p>
                 <select name="time01" class="form_time_select">
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>
                 </select>
-                <p class="form_choice_text">Third choice</p>
+                <p class="form_choice_text"><%= t('.third') %></p>
               </div>
             </div>
             <div class="form_people_wrap">
-              <p class="form_common_title">Number of People<span>*</span></p>
+              <p class="form_common_title"><%= t('.number') %><span>*</span></p>
               <p class="form_common_error_msg">*Required.</p>
               <div class="form_people_inner">
                 <div class="form_people_common_block">
-                  <p class="form_people_title">Adults</p>
+                  <p class="form_people_title"><%= t('.adults') %></p>
                   <div class="num_wrap">
                     <p id="minus-adults" class="minus">−</a>
                     <p class="num num-adults" id="numAdults" name="numAdults" >0</p>
@@ -70,7 +70,7 @@
                   </div>
                 </div>
                 <div class="form_people_common_block">
-                  <p class="form_people_title">Children<span>(2-12)</span></p>
+                  <p class="form_people_title"><%= t('.children') %><span>(2-12)</span></p>
                   <div class="num_wrap">
                     <p id="minus-children" class="minus">−</a>
                     <p class="num num-children" id="numChildren" name="numChildren">0</p>
@@ -78,7 +78,7 @@
                   </div>
                 </div>
                 <div class="form_people_common_block">
-                  <p class="form_people_title">Infants<span>(&lt;2)</span></p>
+                  <p class="form_people_title"><%= t('.infant') %><span>(&lt;2)</span></p>
                   <div class="num_wrap">
                     <p id="minus-infant" class="minus">−</a>
                     <p class="num num-infant" id="numInfants" name="numInfants">0</p>
@@ -88,23 +88,23 @@
               </div>
             </div>
             <div class="form_interpreter_wrap">
-              <p class="form_common_title">Interpreter<span>*</span></p>
+              <p class="form_common_title"><%= t('.interpreter') %><span>*</span></p>
               <p class="form_common_error_msg">*Required.</p>
               <div class="form_interpreter_inner">
                 <label for="Need" class="form_interpreter_label">
-                  <input type="radio" name="interpreter" id="Need" value="true" class="form_radio_input">Need
+                  <input type="radio" name="interpreter" id="Need" value="true" class="form_radio_input"><%= t('.need') %>
                 </label>
                 <label for="Unnecessary" class="form_interpreter_label">
-                  <input type="radio" name="interpreter" id="Unnecessary" value="false" class="form_radio_input">Unnecessary
+                  <input type="radio" name="interpreter" id="Unnecessary" value="false" class="form_radio_input"><%= t('.unnecessary') %>
                 </label>
               </div>
-              <p class="form_subtext">We will charge you an additional <span>2,160yen</span> for requesting an interpreter.</p>
+              <p class="form_subtext"><%= t('.charge') %> <span>300.000 VND</span> <%= t('.requesting') %></p>
             </div>
             <div class="form_profile_wrap">
-              <p class="form_common_title">Guest Information</p>
+              <p class="form_common_title"><%= t('.guest_info') %></p>
               <div class="form_profile_inner">
                 <div class="form_profile_title">
-                  <p class="form_common_title">Title</p>
+                  <p class="form_common_title"><%= t('.title1') %></p>
                   <select id="guest-title" name="guest-title" class="form_profile_select">
                     <option value=""></option>
                     <!--                       <option value="✔">✔</option> -->
@@ -114,42 +114,42 @@
                   </select>
                 </div>
                 <div class="form_profile_name left">
-                  <p class="form_common_title">First Name<span>*</span></p>
+                  <p class="form_common_title"><%= t('.firstname1') %><span>*</span></p>
                   <p class="form_common_error_msg">*Required.</p>
                   <input type="text" required="true" id="guest-firstname" name="guest-firstname" class="form_profile_input">
                 </div>
                 <div class="form_profile_name right">
-                  <p class="form_common_title">Last Name<span>*</span></p>
+                  <p class="form_common_title"><%= t('.lastname1') %><span>*</span></p>
                   <p class="form_common_error_msg">*Required.</p>
                   <input type="text" required="true" id="guest-lastname" name="guest-lastname" class="form_profile_input">
                 </div>
               </div>
             </div>
             <div class="form_sub_profile_wrap">
-              <p class="form_common_title">Age<span>*</span></p>
+              <p class="form_common_title"><%= t('.age') %><span>*</span></p>
               <p class="form_common_error_msg">*Required.</p>
               <input type="text" required="true" id="age" name="age" class="form_sub_input_short">
-              <p class="form_common_title">Nationality</p>
+              <p class="form_common_title"><%= t('.nationality') %></p>
               <input type="text" id="nationality" name="nationality" class="form_sub_input_middle">
-              <p class="form_common_title">Language<span>*</span></p>
+              <p class="form_common_title"><%= t('.language') %><span>*</span></p>
               <p class="form_common_error_msg">*Required.</p>
               <input type="text" required="true" id="language" name="language" class="form_sub_input_middle">
-              <p class="form_common_title">Phone number</p>
+              <p class="form_common_title"><%= t('.phone') %></p>
               <input type="tel" id="phone-number" name="phone-number" class="form_sub_input_middle">
-              <p class="form_common_title">Email<span>*</span></p>
+              <p class="form_common_title"><%= t('.email') %><span>*</span></p>
               <p class="form_common_error_msg">*Required.</p>
               <input type="email" required="true" id="email" name="email" class="form_sub_input_long">
-              <p class="form_common_title">Current address in Japan</p>
+              <p class="form_common_title"><%= t('.address') %></p>
               <textarea id="address" name="address" class="form_textarea_block"></textarea>
               <div class="form_sub_others">
                 <div class="checkbox_style" id="NotGuestCheck">
                   <input type="checkbox" name="notguest" value="not guest" id="NotGuest">
-                  <label for="NotGuest"><span><small>I'm not guest.</small> I'm making this booking for someone else.</span></label>
+                  <label for="NotGuest"><span><small><%= t('.notguest') %></small> <%= t('.making') %></span></label>
                 </div>
                 <div class="form_sub_others_box">
                   <div class="form_profile_inner">
                     <div class="form_profile_title">
-                      <p class="form_common_title">Title</p>
+                      <p class="form_common_title"><%= t('.title2') %></p>
                       <select id="representative-title" name="representative-title" class="form_profile_select">
                         <option value=""></option>
                         <!--                       <option value="✔">✔</option> -->
@@ -159,22 +159,22 @@
                       </select>
                     </div>
                     <div class="form_profile_name left">
-                      <p class="form_common_title">First Name<span>*</span></p>
+                      <p class="form_common_title"><%= t('.firstname2') %><span>*</span></p>
                       <p class="form_common_error_msg">*Required.</p>
                       <input type="text" id="representative-firstname" name="representative-firstname" class="form_profile_input">
                     </div>
                     <div class="form_profile_name right">
-                      <p class="form_common_title">Last Name<span>*</span></p>
+                      <p class="form_common_title"><%= t('.lastname2') %><span>*</span></p>
                       <p class="form_common_error_msg">*Required.</p>
                       <input type="text" id="representative-lastname" name="representative-lastname" class="form_profile_input">
                     </div>
                   </div>
-                  <p class="form_common_title">Your Email<span>*</span></p>
+                  <p class="form_common_title"><%= t('.guestemail') %><span>*</span></p>
                   <p class="form_common_error_msg">*Required.</p>
                   <input type="email" id="representative-email" name="representative-email" class="form_sub_input_long">
                   <div class="form_guest_confirm">
                     <label for="Confirm01" class="form_interpreter_label">
-                      <input type="radio" name="confirm" id="Confirm01" class="form_radio_input">Please send the Confirmation Email and Payment information <span id="OnlyMeBtn">only to me</span>.
+                      <input type="radio" name="confirm" id="Confirm01" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
                     </label>
                     <div class="form_confirm_popup">
                       <p class="form_confirm_info_text">
@@ -183,7 +183,7 @@
                       </p>
                     </div>
                     <label for="Confirm02" class="form_interpreter_label">
-                      <input type="radio" name="confirm" id="Confirm02" class="form_radio_input noactive">Please send the Confirmation Email and Payment information to guest and me.
+                      <input type="radio" name="confirm" id="Confirm02" class="form_radio_input noactive"><%= t('.confirm2') %>
                     </label>
                   </div>
                 </div>
@@ -193,8 +193,8 @@
               <p class="form_common_error_msg">*Required.</p>
               <div class="checkbox_style">
                 <input type="checkbox" required="true" name="accept_notes" value="acceptnotes" id="AcceptNotes">
-                <label for="AcceptNotes"><span>have read and accepted 
-                    <p class="form_common_title">Notes<span>*</span></p>
+                <label for="AcceptNotes"><span><%= t('.accepted') %> 
+                    <p class="form_common_title"><%= t('.note') %><span>*</span></p>
                     .</span></label>
               </div>
               <div class="form_accept_block">
@@ -207,7 +207,7 @@
               <p class="form_common_error_msg">*Required.</p>
               <div class="checkbox_style">
                 <input type="checkbox" required="true" name="accept_terms" value="acceptterms" id="AcceptTerms">
-                <label for="AcceptTerms"><span>have read and accepted <a href="" class="form_common_title">Terms of service<span>*</span></a>.</span></label>
+                <label for="AcceptTerms"><span><%= t('.accept_terms') %> <a href="" class="form_common_title"><%= t('.service') %><span>*</span></a>.</span></label>
               </div>
             </div>
             <input id="btnBooking" type="submit" value="Go to Confirm page" class="form_subtmit_btn noactive" />

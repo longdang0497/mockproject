@@ -2,7 +2,7 @@ class ExperienceController < ApplicationController
   include ExperienceConcern
 
   def index
-    add_breadcrumb 'Experience', :experience_index_path
+    add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(experience)
     # @experiences = Experience.all.order(updated_at: :DESC).page(params[:page]).per(6)
     @hot_exp = ExperienceService.new.latest
 
@@ -16,6 +16,7 @@ class ExperienceController < ApplicationController
       format.html
       format.json { render json: @experiences }
     end
+    
   end
 
   def show
@@ -29,13 +30,13 @@ class ExperienceController < ApplicationController
     gon.exptos = ExperienceService.new.available_to(@exp_dates)
     
     # breacrumb
-    add_breadcrumb 'Experience', :experience_index_path
+    add_breadcrumb I18n.t('breadcrumbs.experiences'), :experience_index_path, :only => %w(experiences)
     add_breadcrumb @experience.title, :experience_path
   end
 
   def search
     if params[:q] && params[:q][:experience_dates_expFrom].present?
-      params[:q][:experience_dates_expFrom_gteq_any], params[:q][:experience_dates_expFrom_lteq_any] = params[:q][:experience_dates_expFrom].split("-") 
+      params[:q][:experience_dates_expFrom_gteq_any], params[:q][:experience_dates_expTo_lteq_any] = params[:q][:experience_dates_expFrom].split("-") 
     end
     index
     render :index

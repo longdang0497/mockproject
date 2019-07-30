@@ -1,11 +1,11 @@
 <%= content_for :title_header do %>
-  Experience | SUITO
+  <%= t('.experience') %> | SUITO
 <% end %>
 <div class="top_main_view">
   <section class="ex_mv_wrap">
     <div class="">
       <h1 class="ex_main_title">
-        Find Things to Do in Fukuoka
+        <%= t('.find') %>
         <%= image_tag("common/spring_icon", alt: "find things to do in Fukuoka") %>
       </h1>
       <div class="pankuzu_wrap">
@@ -36,7 +36,7 @@
                     <% end %>
                   </div>
                 </div>
-                <span class="ex_main_price"><%= number_to_currency(@hot_exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
+                <span class="ex_main_price"><%= number_to_currency(@hot_exp.price_adult.to_f)%></span>
               </div>
             <% end %>
           </div>
@@ -81,7 +81,7 @@
       <div class="ex_list_top_area">
         <p class="ex_list_num">  
           <%if @page > @experiences.total_pages%> 
-            No experiences found
+            <%= t('.no_exp_found') %>
           <%else%>       
             <%= page_entries_info @experiences, entry_name: 'experiences' %>
             <%= paginate @experiences%>
@@ -99,7 +99,7 @@
                 <%end%>
                   <div class="filter"></div>
                   <span class="price_tag">
-                    <%= number_to_currency(exp.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%>
+                    <%= number_to_currency(exp.price_adult.to_f)%>
                   </span>
                 </div>
                 <h1 class="title"><%= exp.title%></h1>
@@ -133,6 +133,6 @@
 -->
   <section class="common_bottom_pic_block">
     <%= image_tag("common/bottom_mv_pic") %>
-    <a href="" class="common_bottom_pic_btn"><span>Japanese Restaurant SUiTO</span></a>
+    <a href="" class="common_bottom_pic_btn"><span><%= t('.restaurant_sui') %></span></a>
   </section>
 </div>
