@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   rescue Exception => e
     puts "ActiveAdmin: #{e.class}: #{e}"
   end
-  scope '(:locale)', locale: /en|vi/ do
+  # scope '(:locale)', locale: /en|vi/ do
     resources :experience do
       member do
         get 'applicationform', to: "experience#application_form"
@@ -34,6 +34,6 @@ Rails.application.routes.draw do
       end
     end
     root 'top#index', as: 'top'
-  end
+  # end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
