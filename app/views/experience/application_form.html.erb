@@ -9,7 +9,7 @@
     <div class="exdetail_wrap clearfix">
       <section class="exdetail_left_block">
         <div class="form_wrap">
-          <form action="" method="">
+          <form action="<%= confirm_experience_path(@experience.id) %>">
             <p class="form_top_text">
               <%= t('.fill') %><span class="red">(*Required)</span><br>
               <%= t('.offer') %>&nbsp; <%= t('.information') %> <span class="bold">[<%= t('.book') %>]</span>.
@@ -65,7 +65,7 @@
                   <p class="form_people_title"><%= t('.adults') %></p>
                   <div class="num_wrap">
                     <p id="minus-adults" class="minus">−</a>
-                    <p class="num num-adults" id="adult" name="adult" >0</p>
+                    <p class="num num-adults" id="numAdults" name="numAdults" >0</p>
                     <p id="plus-adults" class="plus">＋</a>
                   </div>
                 </div>
@@ -73,7 +73,7 @@
                   <p class="form_people_title"><%= t('.children') %><span>(2-12)</span></p>
                   <div class="num_wrap">
                     <p id="minus-children" class="minus">−</a>
-                    <p class="num num-children" id="children" name="children">0</p>
+                    <p class="num num-children" id="numChildren" name="numChildren">0</p>
                     <p id="plus-children" class="plus">＋</a>
                   </div>
                 </div>
@@ -81,7 +81,7 @@
                   <p class="form_people_title"><%= t('.infant') %><span>(&lt;2)</span></p>
                   <div class="num_wrap">
                     <p id="minus-infant" class="minus">−</a>
-                    <p class="num num-infant" id="infant" name="infant">0</p>
+                    <p class="num num-infant" id="numInfants" name="numInfants">0</p>
                     <p id="plus-infant" class="plus">＋</a>
                   </div>
                 </div>
@@ -92,10 +92,10 @@
               <p class="form_common_error_msg">*Required.</p>
               <div class="form_interpreter_inner">
                 <label for="Need" class="form_interpreter_label">
-                  <input type="radio" name="interpreter" id="Need" class="form_radio_input"><%= t('.need') %>
+                  <input type="radio" name="interpreter" id="Need" value="true" class="form_radio_input"><%= t('.need') %>
                 </label>
                 <label for="Unnecessary" class="form_interpreter_label">
-                  <input type="radio" name="interpreter" id="Unnecessary" class="form_radio_input"><%= t('.unnecessary') %>
+                  <input type="radio" name="interpreter" id="Unnecessary" value="false" class="form_radio_input"><%= t('.unnecessary') %>
                 </label>
               </div>
               <p class="form_subtext"><%= t('.charge') %> <span>300.000 VND</span> <%= t('.requesting') %></p>
@@ -116,31 +116,31 @@
                 <div class="form_profile_name left">
                   <p class="form_common_title"><%= t('.firstname1') %><span>*</span></p>
                   <p class="form_common_error_msg">*Required.</p>
-                  <input type="text" name="firstname" class="form_profile_input">
+                  <input type="text" required="true" id="guest-firstname" name="guest-firstname" class="form_profile_input">
                 </div>
                 <div class="form_profile_name right">
                   <p class="form_common_title"><%= t('.lastname1') %><span>*</span></p>
                   <p class="form_common_error_msg">*Required.</p>
-                  <input type="text" name="lastname" class="form_profile_input">
+                  <input type="text" required="true" id="guest-lastname" name="guest-lastname" class="form_profile_input">
                 </div>
               </div>
             </div>
             <div class="form_sub_profile_wrap">
               <p class="form_common_title"><%= t('.age') %><span>*</span></p>
               <p class="form_common_error_msg">*Required.</p>
-              <input type="text" name="age" class="form_sub_input_short">
+              <input type="text" required="true" id="age" name="age" class="form_sub_input_short">
               <p class="form_common_title"><%= t('.nationality') %></p>
-              <input type="text" name="nationality" class="form_sub_input_middle">
+              <input type="text" id="nationality" name="nationality" class="form_sub_input_middle">
               <p class="form_common_title"><%= t('.language') %><span>*</span></p>
               <p class="form_common_error_msg">*Required.</p>
-              <input type="text" name="language" class="form_sub_input_middle">
+              <input type="text" required="true" id="language" name="language" class="form_sub_input_middle">
               <p class="form_common_title"><%= t('.phone') %></p>
-              <input type="tel" name="phone" class="form_sub_input_middle">
+              <input type="tel" id="phone-number" name="phone-number" class="form_sub_input_middle">
               <p class="form_common_title"><%= t('.email') %><span>*</span></p>
               <p class="form_common_error_msg">*Required.</p>
-              <input type="email" name="email" class="form_sub_input_long">
+              <input type="email" required="true" id="email" name="email" class="form_sub_input_long">
               <p class="form_common_title"><%= t('.address') %></p>
-              <textarea name="address" class="form_textarea_block"></textarea>
+              <textarea id="address" name="address" class="form_textarea_block"></textarea>
               <div class="form_sub_others">
                 <div class="checkbox_style" id="NotGuestCheck">
                   <input type="checkbox" name="notguest" value="not guest" id="NotGuest">
@@ -150,7 +150,7 @@
                   <div class="form_profile_inner">
                     <div class="form_profile_title">
                       <p class="form_common_title"><%= t('.title2') %></p>
-                      <select name="gender" class="form_profile_select">
+                      <select id="representative-title" name="representative-title" class="form_profile_select">
                         <option value=""></option>
                         <!--                       <option value="✔">✔</option> -->
                         <option value="Mr.">Mr.</option>
@@ -161,17 +161,17 @@
                     <div class="form_profile_name left">
                       <p class="form_common_title"><%= t('.firstname2') %><span>*</span></p>
                       <p class="form_common_error_msg">*Required.</p>
-                      <input type="text" name="firstname" class="form_profile_input">
+                      <input type="text" id="representative-firstname" name="representative-firstname" class="form_profile_input">
                     </div>
                     <div class="form_profile_name right">
                       <p class="form_common_title"><%= t('.lastname2') %><span>*</span></p>
                       <p class="form_common_error_msg">*Required.</p>
-                      <input type="text" name="lastname" class="form_profile_input">
+                      <input type="text" id="representative-lastname" name="representative-lastname" class="form_profile_input">
                     </div>
                   </div>
                   <p class="form_common_title"><%= t('.guestemail') %><span>*</span></p>
                   <p class="form_common_error_msg">*Required.</p>
-                  <input type="email" name="guestemail" class="form_sub_input_long">
+                  <input type="email" id="representative-email" name="representative-email" class="form_sub_input_long">
                   <div class="form_guest_confirm">
                     <label for="Confirm01" class="form_interpreter_label">
                       <input type="radio" name="confirm" id="Confirm01" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
@@ -192,7 +192,7 @@
             <div class="form_accept_wrap">
               <p class="form_common_error_msg">*Required.</p>
               <div class="checkbox_style">
-                <input type="checkbox" name="accept_notes" value="acceptnotes" id="AcceptNotes">
+                <input type="checkbox" required="true" name="accept_notes" value="acceptnotes" id="AcceptNotes">
                 <label for="AcceptNotes"><span><%= t('.accepted') %> 
                     <p class="form_common_title"><%= t('.note') %><span>*</span></p>
                     .</span></label>
@@ -206,18 +206,22 @@
             <div class="form_accept_wrap">
               <p class="form_common_error_msg">*Required.</p>
               <div class="checkbox_style">
-                <input type="checkbox" name="accept_terms" value="acceptterms" id="AcceptTerms">
-                <label for="AcceptTerms"><span><%= t('.accept_terms') %>  <a href="" class="form_common_title"><%= t('.service') %><span>*</span></a>.</span></label>
+                <input type="checkbox" required="true" name="accept_terms" value="acceptterms" id="AcceptTerms">
+                <label for="AcceptTerms"><span><%= t('.accept_terms') %> <a href="" class="form_common_title"><%= t('.service') %><span>*</span></a>.</span></label>
               </div>
             </div>
-            <input type="submit" value="Go to Confirm page" class="form_subtmit_btn noactive" />
+            <input id="btnBooking" type="submit" value="Go to Confirm page" class="form_subtmit_btn noactive" />
           </form>
         </div>
       </section>
       <aside class="exdetail_right_block" style="height: 2078px;">
         <div class="exdetail_right_top" style="position: absolute; top: 0px;">
+          <% if @experience.image.attached? %>
+          <div class="exdetail_main_pic" style="background: url(<%= url_for(@experience.image) %>) center center no-repeat;background-size: cover;"></div>
+          <% else %>
           <div class="exdetail_main_pic" style="background: url(<%= image_url("ex/pic01.jpg") %>) center center no-repeat;background-size: cover;"></div>
-          <p class="form_aside_pic_info"><a href="">Hosted by SUiTO</a></p>
+          <% end %>
+          <p class="form_aside_pic_info"><a href="">Hosted by <%= @experience.admin_user.fullname %></a></p>
           <table class="form_aside_table">
             <tbody>
               <tr>
@@ -225,7 +229,7 @@
                   <img src=<%= image_path("form/money.png") %> alt="money">
                 </th>
                 <td>
-                  <span>¥2,400</span>/guest
+                  <span><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>/guest
                 </td>
               </tr>
               <tr>
@@ -233,7 +237,7 @@
                   <img src=<%= image_path("form/time.png") %> alt="time">
                 </th>
                 <td>
-                  2 hours total
+                  <%= @experience.duration %> total
                 </td>
               </tr>
               <tr>
@@ -241,7 +245,7 @@
                   <img src=<%= image_path("form/place.png") %> alt="place">
                 </th>
                 <td>
-                  Momochihama
+                  <%= @experience.location.province %>
                 </td>
               </tr>
             </tbody>
@@ -266,51 +270,15 @@
   </div>
 </div>
 
-<script>
-  var count = new Array(3);
+<script type="text/javascript">
 
-  for (var i = 0; i < count.length; i++)
-    count[i] = 0;
-
-  function plus(receiver, index) {
-    if (count[index] >= 0) {
-      count[index]++;
-      $(receiver).html(count[index]);
+  $("#AcceptNotes, #AcceptTerms").click(function() {
+    if($("#AcceptNotes").prop("checked") == true && $("#AcceptTerms").prop("checked") == true){
+        $(".form_subtmit_btn").removeClass("noactive");
     }
-  }
 
-  function minus(receiver, index) {
-    if (count[index] > 0) {
-      count[index]--;
-      console.log(count[index]);
-      $(receiver).html(count[index]);
-    }
-  }
-
-$("#plus-infant").click(function() {
-    plus(".num-infant",0);
-});
-$("#plus-children").click(function() {
-    plus(".num-children",1);
-});
-$("#plus-adults").click(function() {
-    plus(".num-adults",2);
-});
-
-
-$("#minus-infant").click(function() {
-    minus(".num-infant",0);
-});
-$("#minus-children").click(function() {
-    minus(".num-children",1);
-});
-$("#minus-adults").click(function() {
-    minus(".num-adults",2);
-});
-
-$("#AcceptNotes, #AcceptTerms").click(function() {
-  if($("#AcceptNotes").prop("checked") == true && $("#AcceptTerms").prop("checked") == true){
-      $(".form_subtmit_btn").removeClass("noactive");
-  }
-});
+    if (($("#AcceptNotes").prop("checked") != true || $("#AcceptTerms").prop("checked") != true) && !$(".form_subtmit_btn").hasClass("noactive"))
+      $(".form_subtmit_btn").addClass("noactive");
+  });
+  
 </script>

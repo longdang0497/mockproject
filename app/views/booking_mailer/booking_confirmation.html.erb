@@ -1,0 +1,49 @@
+<p>Hello <%= @obj[:guest_title] + " " + @obj[:guest_firstnam] + " " + @obj[:guest_lastname] %>,</p>
+<p>This is SUITO - Japan. We want to say thank you for believing us and using our website.</p>
+<p>We will keep improving our website to satisfy our customers.</p>
+<br><br>
+<p>Furthermore, we would like you to confirm your booking right below.</p>
+<p>Guest Information</p>
+<br>
+<p>Name*</p>
+
+<p><%= @obj[:guest_title] + " " + @obj[:guest_firstnam] + " " + @obj[:guest_lastname] %></p>
+<br>
+<p>Age*</p>
+
+<p><%= @obj[:age] %></p>
+<br>
+<p>Nationality</p>
+
+<p><%= @obj[:nationality] %></p>
+<br>
+<p>Language*</p>
+
+<p><%= @obj[:language] %></p>
+<br>
+<p>Phone number</p>
+
+<p><%= @obj[:phone_number] %></p>
+<br>
+<p>Email*</p>
+
+<p><%= @obj[:email] %></p>
+<br>
+<p>Current address in Japan</p>
+
+<p><%= @obj[:address] %></p>
+<br>
+<p>----------------------------------------------------------</p>
+<br>
+<p>Im not guest. Im making this booking for someone else.</p>
+<br>
+<p>Name*</p>
+
+<p><%= @obj[:representative_title] + " " + @obj[:representative_firstname] + " " + @obj[:representative_lastname] %></p>
+<br>
+<p>Email*</p>
+
+<p><%= @obj[:representative_email] %></p>
+<br><br>
+<p>Thank you</p>
+<p>SUITO</p>
