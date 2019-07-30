@@ -6,28 +6,28 @@
 			</a>
 			<nav class="header_top_menu">
 				<a href="/experience" class="header_menu_link">
-					Experience
+					<%= t('.experience') %>
 				</a>
 				<a href="/" class="header_menu_link">
-					Restaurant
+					<%= t('.restaurant') %>
 				</a>
 				<a href="/" class="header_menu_link">
-					Rental space
+					<%= t('.rental_space') %>
 				</a>
 				<a href="/blog" class="header_menu_link">
-					Blog
+					<%= t('.blog') %>
 				</a>
 				<a href="/" class="header_menu_link">
-					AccessSUiTO
+					<%= t('.accessSUiTO') %>
 				</a>
 				<a href="/" class="header_menu_link">
-					FAQ
-				</a>				
+					<%= t('.faq') %>
+				</a>	
+				<%= form_tag top_path, :class => "select_form", :method => 'get' do %>
+     				<%= select_tag('set_locale', options_for_select(LANGUAGES, I18n.locale.to_s), onchange: 'this.form.submit();', class: "header_select") %>
+        		<% end %>			
 			</nav>
-			<select name="language_choose" class="header_select">
-				<option value="English">English</option>
-				<option value="Chinese">Chinese</option>
-			</select>
+ 			
 		</div>	
 	</div>
 	<div class="header_exp_filter" id="HeaderExpFilter"></div>
@@ -41,8 +41,6 @@
 			<% else %>
 				<%= render 'layouts/form_header_info_block' %>
 			<% end %>
-		
-
 			<div class="header_right_block">
   			<div class="header_menu" id="MenuBtn">
           <span class="header_line header_top_line"></span>
@@ -51,29 +49,23 @@
         </div>
         <nav class="header_nav_block">
       	  <a href="" class="header_menu_link">
-      			Experience
+      			<%= t('.experience') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			Restaurant
+      			<%= t('.restaurant') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			Rental space
+      			<%= t('.rental_space') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			Blog
+      			<%= t('.blog') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			AccessSUiTO
+      			<%= t('.accessSUiTO') %>
       		</a>
       		<a href="" class="header_menu_link">
-      			FAQ
+      			<%= t('.faq') %>
       		</a>
-					<% if admin_user_signed_in? %>
-					<%= link_to "Sign out", destroy_admin_user_session_path, :method => :delete, class: "header_menu_link" %>
-					<% else %>
-					<%= link_to "Sign up", new_admin_user_registration_path, class: "header_menu_link" %>
-					<%= link_to "Sign in", new_admin_user_session_path, class: "header_menu_link" %>
-					<% end %>
         </nav>
 			</div>
 		</div>

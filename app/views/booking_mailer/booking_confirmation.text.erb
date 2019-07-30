@@ -1,0 +1,49 @@
+Hello <%= @obj[:guest_title] + " " + @obj[:guest_firstnam] + " " + @obj[:guest_lastname] %>,
+This is SUITO - Japan. We want to say thank you for believing us and using our website.
+We will keep improving our website to satisfy our customers.
+
+Furthermore, we would like you to confirm your booking right below.
+Guest Information
+
+Name*
+
+<%= @obj[:guest_title] + " " + @obj[:guest_firstnam] + " " + @obj[:guest_lastname] %>
+
+Age*
+
+<%= @obj[:age] %>
+
+Nationality
+
+<%= @obj[:nationality] %>
+
+Language*
+
+<%= @obj[:language] %>
+
+Phone number
+
+<%= @obj[:phone_number] %>
+
+Email*
+
+<%= @obj[:email] %>
+
+Current address in Japan
+
+<%= @obj[:address] %>
+
+----------------------------------------------------------
+
+Im not guest. Im making this booking for someone else.
+
+Name*
+
+<%= @obj[:representative_title] + " " + @obj[:representative_firstname] + " " + @obj[:representative_lastname] %>
+
+Email*
+
+<%= @obj[:representative_email] %>
+
+Thank you
+SUITO

@@ -1,4 +1,3 @@
-require 'gon'
 class ExperienceService
 
   def recommend(exp)

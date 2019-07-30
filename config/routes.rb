@@ -13,26 +13,27 @@ Rails.application.routes.draw do
   rescue Exception => e
     puts "ActiveAdmin: #{e.class}: #{e}"
   end
-  
-  resources :experience do
-    member do
-      get 'applicationform', to: "experience#application_form"
-      get 'confirm', to: "experience#confirm"
-      get 'sendrequest', to: "experience#send_request"
-      get 'payment', to: "experience#payment"
-      get 'complete', to: "experience#complete" 
+  scope '(:locale)', locale: /en|vi/ do
+    resources :experience do
+      member do
+        get 'applicationform', to: "experience#application_form"
+        get 'confirm', to: "experience#confirm"
+        get 'sendrequest', to: "experience#send_request"
+        get 'payment', to: "experience#payment"
+        get 'complete', to: "experience#complete" 
+      end
+      
+      collection do
+        match 'search' => 'experience#search', :via => [:get, :post], :as => :search
+      end
     end
-    
-    collection do
-      match 'search' => 'experience#search', :via => [:get, :post], :as => :search
-    end
-  end
 
-  resources :blog do
-    collection do
-      match 'search' => 'blog#search', :via => [:get, :post], :as => :search
+    resources :blog do
+      collection do
+        match 'search' => 'blog#search', :via => [:get, :post], :as => :search
+      end
     end
+    root 'top#index', as: 'top'
   end
-  root 'top#index', as: 'top'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
