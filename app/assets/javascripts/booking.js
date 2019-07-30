@@ -43,9 +43,9 @@ jQuery(function($){
   $("#btnBooking").click(function() {
     localStorage.clear();
 
-    let adults = $("#numAdults").text() ? $("#numAdults").text() : 0;
-    let children= $("#numChildren").text() ? $("#numChildren").text() : 0;
-    let infants = $("#numInfants").text() ? $("#numInfants").text() : 0;
+    let adults = $("#numAdults").text() != null ? $("#numAdults").text() : 0;
+    let children= $("#numChildren").text() != null ? $("#numChildren").text() : 0;
+    let infants = $("#numInfants").text() != null ? $("#numInfants").text() : 0;
 
     console.log(gon.price_adult);
     console.log(gon.price_children);
@@ -63,7 +63,7 @@ jQuery(function($){
       numAdults: adults,
       numChildren: children,
       numInfants: infants,
-      total: expTotal,
+      total: expTotal != null ? expTotal : 0,
       guest_firstnam: $("#guest-firstname").val(),
       guest_lastname: $("#guest-lastname").val(),
       guest_title: $("#guest-title").val(),
@@ -94,30 +94,32 @@ jQuery(function($){
 function confirm_exp() {
   let myObj_deserialized = JSON.parse(localStorage.getItem("myObj"));
 
-  $("#show-total").text(myObj_deserialized.total ? "$US " + myObj_deserialized.total.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : 0);
-  $("#show-num-infants").text(myObj_deserialized.numInfants > 0 ? myObj_deserialized.numInfants : 0);
-  $("#show-num-children").text(myObj_deserialized.numChildren > 0 ? myObj_deserialized.numChildren : 0);
-  $("#show-num-adults").text(myObj_deserialized.numAdults > 0 ? myObj_deserialized.numAdults : 0);
+  if (myObj_deserialized != null) {
+    $("#show-total").text(myObj_deserialized.total ? "$US " + myObj_deserialized.total.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : 0);
+    $("#show-num-infants").text(myObj_deserialized.numInfants > 0 ? myObj_deserialized.numInfants : 0);
+    $("#show-num-children").text(myObj_deserialized.numChildren > 0 ? myObj_deserialized.numChildren : 0);
+    $("#show-num-adults").text(myObj_deserialized.numAdults > 0 ? myObj_deserialized.numAdults : 0);
 
-  $("#show-total-infants").text(myObj_deserialized.numInfants ? "$US " + (myObj_deserialized.numInfants * parseInt(gon.price_infant)).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").toString() : 0);
-  $("#show-total-children").text(myObj_deserialized.numChildren ? "$US " + (myObj_deserialized.numChildren * gon.price_children).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : 0);
-  $("#show-total-adults").text(myObj_deserialized.numAdults ? "$US " + (myObj_deserialized.numAdults * gon.price_adult).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : 0);
+    $("#show-total-infants").text(myObj_deserialized.numInfants ? "$US " + (myObj_deserialized.numInfants * parseInt(gon.price_infant)).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").toString() : 0);
+    $("#show-total-children").text(myObj_deserialized.numChildren ? "$US " + (myObj_deserialized.numChildren * gon.price_children).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : 0);
+    $("#show-total-adults").text(myObj_deserialized.numAdults ? "$US " + (myObj_deserialized.numAdults * gon.price_adult).toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") : 0);
 
-  if (myObj_deserialized.guest_title != null && myObj_deserialized.guest_firstnam != null && myObj_deserialized.guest_lastname)
-    $("#show-guest-name").text(myObj_deserialized.guest_title + " " + myObj_deserialized.guest_firstnam + " " + myObj_deserialized.guest_lastname)
-  else
-    $("#show-guest-name").text("There might be some mistakes.");
+    if (myObj_deserialized.guest_title != null && myObj_deserialized.guest_firstnam != null && myObj_deserialized.guest_lastname)
+      $("#show-guest-name").text(myObj_deserialized.guest_title + " " + myObj_deserialized.guest_firstnam + " " + myObj_deserialized.guest_lastname)
+    else
+      $("#show-guest-name").text("There might be some mistakes.");
 
-  if (myObj_deserialized.representative_title != null && myObj_deserialized.representative_firstname != null && myObj_deserialized.representative_lastname)
-    $("#show-representative-name").text(myObj_deserialized.representative_title + " " + myObj_deserialized.representative_firstname + " " + myObj_deserialized.representative_lastname)
-  else
-    $("#show-representative-name").text("There might have no representative.");
+    if (myObj_deserialized.representative_title != null && myObj_deserialized.representative_firstname != null && myObj_deserialized.representative_lastname)
+      $("#show-representative-name").text(myObj_deserialized.representative_title + " " + myObj_deserialized.representative_firstname + " " + myObj_deserialized.representative_lastname)
+    else
+      $("#show-representative-name").text("There might have no representative.");
 
-  $("#show-guest-age").text(myObj_deserialized.age);
-  $("#show-guest-nationality").text(myObj_deserialized.nationality);
-  $("#show-guest-language").text(myObj_deserialized.language);
-  $("#show-guest-email").text(myObj_deserialized.email);
-  $("#show-guest-phone").text(myObj_deserialized.phone_number.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
-  $("#show-guest-address").text(myObj_deserialized.address);
-  $("#show-representative-email").text(myObj_deserialized.representative_email);
+    $("#show-guest-age").text(myObj_deserialized.age);
+    $("#show-guest-nationality").text(myObj_deserialized.nationality);
+    $("#show-guest-language").text(myObj_deserialized.language);
+    $("#show-guest-email").text(myObj_deserialized.email);
+    $("#show-guest-phone").text(myObj_deserialized.phone_number.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3'));
+    $("#show-guest-address").text(myObj_deserialized.address);
+    $("#show-representative-email").text(myObj_deserialized.representative_email);
+  }
 }
