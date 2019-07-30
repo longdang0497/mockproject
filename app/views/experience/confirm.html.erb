@@ -43,14 +43,16 @@
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first">Adults</p>
                   <p class="form_confirm_text" id="show-num-adults"></p>
+                  <%= hidden_field_tag(:numadults, params['numAdults']) %>
                   <p class="form_confirm_text">x</p>
-                  <p class="form_confirm_text"><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
+                  <p class="form_confirm_text"><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>                  
                   <p class="form_confirm_text">=</p>
                   <p class="form_confirm_text" id="show-total-adults"></p>
                 </div>
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first">Children<span>(2-12)</span></p>
                   <p class="form_confirm_text" id="show-num-children"></p>
+                  <%= hidden_field_tag(:numchildren, params['numChildren']) %>
                   <p class="form_confirm_text">x</p>
                   <p class="form_confirm_text"><%= number_to_currency(@experience.price_children.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
                   <p class="form_confirm_text">=</p>
@@ -59,6 +61,7 @@
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first">Infants<span>(<2)</span></p>
                   <p class="form_confirm_text" id="show-num-infants"></p>
+                  <%= hidden_field_tag(:numinfants, params['numInfants']) %>
                   <p class="form_confirm_text">x</p>
                   <p class="form_confirm_text"><%= number_to_currency(@experience.price_infant.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
                   <p class="form_confirm_text">=</p>
@@ -77,6 +80,7 @@
                 <div class="total">
                   <p class="form_confirm_text">Total</p>
                   <p class="form_confirm_text" id="show-total" ></p>
+                  <%= hidden_field_tag(:total, params['total']) %>
                 </div>
               </div>
             </div>
@@ -95,28 +99,42 @@
               <p class="form_common_title">Guest Information</p>
               <p class="form_common_title">Name<span>*</span></p>
               <p class="form_confirm_text" id="show-guest-name"></p>
+              <% byebug %>
+              <%= hidden_field_tag(:guesttitle, params['guest-title']) %>
+              <%= hidden_field_tag(:guestfirstname, params['guest-firstname']) %>
+              <%= hidden_field_tag(:guestlastname, params['guest-lastname']) %>
               <p class="form_common_title">Age<span>*</span></p>
               <p class="form_confirm_text" id="show-guest-age"></p>
+              <%= hidden_field_tag(:age, params['age']) %>
               <p class="form_common_title">Nationality</p>
               <p class="form_confirm_text" id="show-guest-nationality"></p>
+              <%= hidden_field_tag(:nationality, params['nationality']) %>
               <p class="form_common_title">Language<span>*</span></p>
               <p class="form_confirm_text" id="show-guest-language"></p>
+              <%= hidden_field_tag(:language, params['language']) %>
               <p class="form_common_title">Phone number</p>
               <p class="form_confirm_text" id="show-guest-phone"></p>
+              <%= hidden_field_tag(:phonenumber, params['phone-number']) %>
               <p class="form_common_title">Email<span>*</span></p>
               <p class="form_confirm_text" id="show-guest-email"></p>
+              <%= hidden_field_tag(:email, params['email']) %>
               <p class="form_common_title">Current address in Japan</p>
               <p class="form_confirm_text" id="show-guest-address"></p>
+              <%= hidden_field_tag(:address, params['address']) %>
               <div class="form_sub_others_confirm">
                 <p class="form_sub_confirm_text"><span class="bold">I'm not guest.</span> I'm making this booking for someone else.</p>
                 <p class="form_common_title">Name<span>*</span></p>
                 <p class="form_confirm_text" id="show-representative-name"></p>
+                <%= hidden_field_tag(:representativetitle, params['representative-title']) %>
+                <%= hidden_field_tag(:representativefirstname, params['representative-firstname']) %>
+                <%= hidden_field_tag(:representativelastname, params['representative-lastname']) %>
                 <p class="form_common_title">Email<span>*</span></p>
                 <p class="form_confirm_text" id="show-representative-email"></p>
+                <%= hidden_field_tag(:representativeemail, params['representative-email']) %>
                 <p class="form_sub_confirm_text">Please send the Confirmation Email and Payment information <span class="red">only to me.</span></p>
               </div>
             </div>
-            <input type="submit" value="Send request" class="form_subtmit_btn">
+            <input type="submit" id="sendrequest" value="Send request" class="form_subtmit_btn">
           </form>
         </div>
       </section>

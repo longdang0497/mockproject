@@ -82,16 +82,13 @@ jQuery(function($){
 
 
     let myObj_serialized = JSON.stringify(myObj);
-    localStorage.setItem("myObj", myObj_serialized);    
+    localStorage.setItem("myObj", myObj_serialized);   
+    
   });
 
   confirm_exp();
-
-  $.ajax({
-    url : "/experience/" + gon.experience_id + "/complete",
-    type : "post",
-    data : { data_value: JSON.stringify(myObj) }
-  });
+  
+  
 });
 
 function confirm_exp() {

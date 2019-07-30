@@ -46,8 +46,34 @@ class ExperienceController < ApplicationController
   end
 
   def confirm 
-    call
+    call    
   end
+
+  def send_request
+    find_exp
+    byebug
+    @booking = { :experience_id => gon.experience_id,
+                :guest_title => params[:guesttitle],
+                :guest_firstnam => params[:guestfirstname],
+                :guest_lastname => params[:guestlastname],
+                :age => params[:age],
+                :language => params[:language],
+                :nationality => params[:nationality],
+                :phone_number => params[:phonenumber],
+                :email => params[:email],
+                :address => params[:address],
+                :numAdults => params[:numadults],
+                :numInfants => params[:numinfants],
+                :numChildren => params[:numchildren],
+                :total => params[:total],
+                :representative_title => params[:representativetitle],
+                :representative_firstname => params[:representativefirstname],
+                :representative_lastname => params[:representativelastname],
+                :representative_email => params[:representativeemail],
+    }
+    byebug
+    BookingMailer.booking_confirmation(@booking).deliver
+  end 
 
   def payment
     call
@@ -56,7 +82,6 @@ class ExperienceController < ApplicationController
   def complete
     find_exp
     @recommends = ExperienceService.new.recommend(@experience)
-    # @myObj = ActiveSupport::JSON.decode(params[:data_value])
   end
 
   private
