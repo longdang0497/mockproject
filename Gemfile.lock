@@ -363,6 +363,7 @@ DEPENDENCIES
   font-awesome-rails
   forecast_io
   gon
+  i18n
   impressionist
   jbuilder (~> 2.5)
   jquery-rails

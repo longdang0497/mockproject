@@ -23,6 +23,7 @@
 //= require modernizr.custom
 //= require jquery.bxslider.min
 //= require calendar
+//= require booking
 //= require jquery.hoverfold
 //= require currency.min
 //= require exchange_currency_api

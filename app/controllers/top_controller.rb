@@ -7,5 +7,8 @@ class TopController < ApplicationController
     @locations = LocationService.new.call
     @forecast = ForecastIO.forecast(10.774305, 106.6859997)
     @search = Experience.ransack(params[:q])
+    if params[:set_locale]
+      redirect_to top_url(locale: params[:set_locale])
+    end
   end
 end

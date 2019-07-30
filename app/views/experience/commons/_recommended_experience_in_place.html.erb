@@ -1,13 +1,13 @@
 <div class="common_inner">
     <div class="exdetail_bottom_slider">
-      <h3 class="exdetail_common_title">Recommended Experiences in <%= @experience.location.province%></h3>
+      <h3 class="exdetail_common_title"><%= t('.recommended') %> <%= @experience.location.province%></h3>
       <div class="exdetail_bxslider">
         <% if @recommends.present? %>      
           <% @recommends.each do |rec| %>
             <div class="slide">
               <a href="<%= experience_path(rec) %>">
                 <div class="pic" style="background: url(<%= image_url('ex/pic01')%>) center center no-repeat;background-size: cover;">
-                  <span class="price_tag"><%= number_to_currency(rec.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></span>
+                  <span class="price_tag"><%= number_to_currency(rec.price_adult.to_f)%></span>
                 </div>
                 <p class="text"><%= rec.title %></p>
               </a>

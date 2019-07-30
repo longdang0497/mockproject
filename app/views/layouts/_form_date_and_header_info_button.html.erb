@@ -1,7 +1,7 @@
 	
 <%= search_form_for @search,url: experience_index_path do |f| %>
   <div class="header_search_block">
-    <input type="text" name="header_date" class="header_search_date" id="HeaderSearchDate" placeholder="Any Time">
+    <input type="text" name="header_date" class="header_search_date" id="HeaderSearchDate" placeholder="<%= t('.any_time') %>">
     <div class="header_exp_block">
       <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "HeaderSearchPlace", autocomplete: "off", placeholder: "Any Where" %>
       <div class="header_exp_popup" id="HeaderPlacePop">

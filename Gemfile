@@ -61,6 +61,8 @@ gem 'gon'
 gem 'social-share-button'
 gem 'shareable'
 
+# Use multi language
+gem 'i18n'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes

@@ -40,7 +40,7 @@
       </div>
       <div class="blogdetail_keywords_wrap">
         <p class="blogdetail_common_title">
-          Blog keywords
+          <%= t('.keywords') %>
         </p>
         <ul class="tag_list">
           <% @hashtags.each do |hash_tag| %>
@@ -52,7 +52,7 @@
       </div>
       <div class="blogdetail_recommend_wrap">
         <p class="blogdetail_common_title">
-          Recommended blogs for you
+          <%= t('.recommended') %>
         </p>
         <% @recommend_blogs.each do |recommend_blog|%>
           <article class="blog_common_block clearfix detail">
@@ -97,7 +97,7 @@
       </div>
       <div class="blogdetail_ex_wrap clearfix">
         <p class="blogdetail_common_title sp">
-          Hot experiences in <%= @blog.location.province%>
+          <%= t('.experiences') %> <%= @blog.location.province%>
         </p>
         <div class="blogdetail_ex_inner clearfix">
           <% if @hot_exp.present? %>
@@ -137,14 +137,14 @@
           <div class="pic" style="background: url(<%= image_url('common/sample_people')%>) center center no-repeat;background-size: cover;"></div>
           <div class="right">
             <p class="writer">
-              Writer<span>youyou</span>
+              <%= t('.writer') %><span>youyou</span>
             </p>
           </div>
         </div>
         <p class="writer_talk">No ramen, No life !!</p>
       </div>
       <div class="blodetail_aside_ranking">
-        <p class="blogdetail_aside_title">Blog ranking</p>
+        <p class="blogdetail_aside_title"><%= t('.ranking') %></p>
         <%@popular_blogs.each_with_index do |blog, index|%>
           <article class="blogdetail_ranking_block">
             <a href="<%= blog_path(blog) %>" class="link clearfix">
@@ -161,7 +161,7 @@
         <%end%>
       </div>
       <div class="blodetail_aside_ranking">
-        <p class="blogdetail_aside_title">Blog category</p>
+        <p class="blogdetail_aside_title"><%= t('.category') %></p>
         <%= form_tag search_blog_index_path, :method => 'get' do %>
           
      <%= select_tag("q[categories_category_name_has_any_term]", options_for_select(@categories.collect{|cat| [cat.category_name, cat.category_name]}), onchange: 'this.form.submit();', class: "blogdetail_aside_select") %>

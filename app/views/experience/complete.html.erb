@@ -1,3 +1,7 @@
+<%= content_for :title_header do %>
+  Booking - Complete | SUITO
+<% end %>
+
 <div class="top_main_view">
     <%= render 'experience/commons/ex_mv_wrap' %>
     <div class="common_inner">
@@ -16,13 +20,13 @@
           </p>
           <div class="thanks_sns_mail_block">
             <div class="thanks_sns_block">
-              <a href="" class="thanks_sns_btn">
+              <a href="https://www.facebook.com/share.php?u=http%3A%2F%2Fsuitojp.herokuapp.com%2F&title=Home%20-%20SUITO" class="thanks_sns_btn">
                 <img src=<%= image_path("common/side_fb.png") %> >
               </a>
               <a href="" class="thanks_sns_btn">
                 <img src=<%= image_path("common/side_insta.png") %> >
               </a>
-              <a href="" class="thanks_sns_btn">
+              <a href="http://twitter.com/home?status=Home%20-%20SUITO+http%3A%2F%2Fsuitojp.herokuapp.com%2F" class="thanks_sns_btn">
                 <img src=<%= image_path("common/side_twitter.png") %> >
               </a>
               <p class="thanks_mail_btn" id="ThanksMail">
@@ -99,7 +103,8 @@
               </p>
               <a href="" class="payment_map_btn">Map</a>
             </div>
-<!--
+            
+<!--      
             <div class="form_aside_box">
 	            <p class="form_aside_box_title">SUiTO FUKUOKA Rental space</p>
               <p class="payment_aside_address">
@@ -111,6 +116,7 @@
           </div>
         </aside>
       </div>
+      <%# <%= @myObj.inspect  %>
       <%= render 'experience/commons/recommended_experience_in_place'%>
 	  </div>
   </div>

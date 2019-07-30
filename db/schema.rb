@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_25_042944) do
+ActiveRecord::Schema.define(version: 2019_07_29_043203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2019_07_25_042944) do
     t.string "first_choice"
     t.string "second_choice"
     t.string "third_choice"
-    t.integer "num_of_people"
+    t.integer "numAdults"
     t.boolean "interpreter", default: false
     t.bigint "experience_id"
     t.string "guest_firstnam"
@@ -121,6 +121,9 @@ ActiveRecord::Schema.define(version: 2019_07_25_042944) do
     t.string "representative_title"
     t.string "representative_email"
     t.boolean "send_mail_only_representative", default: false
+    t.integer "total"
+    t.integer "numChildren"
+    t.integer "numInfants"
     t.index ["experience_id"], name: "index_bookings_on_experience_id"
   end
 
