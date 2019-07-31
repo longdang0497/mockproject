@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def active_process path
-    return 'active' if path == request.path
+    return 'active' if path == request.fullpath
     nil
   end
 
