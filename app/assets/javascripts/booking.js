@@ -105,8 +105,8 @@ jQuery(function($){
 
     myObj['payment_type'] = $("#payment_type").val();
     myObj['card_num'] = $("#card_num").val();
-    myObj['card_exp_month'] = $("#card_exp_month").val();
-    myObj['card_exp_year'] = $("#card_exp_year").val();
+    myObj['card_exp_month'] = parseInt($("#card_exp_month").val());
+    myObj['card_exp_year'] = parseInt($("#card_exp_year").val());
     myObj['security_code'] = $("#security_code").val();
     myObj['card_firstname'] = $("#card_firstname").val();
     myObj['card_lastname'] = $("#card_lastname").val();

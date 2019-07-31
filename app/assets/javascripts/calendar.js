@@ -182,11 +182,11 @@ $(document).on('turbolinks:load', function() {
           $(this).hide();
         }
       });      
-    });
-    
+    });      
+  
     $(".fair_calendar_date.old").off("click");
-      
-  
-  
+    $(".fair_calendar_date.holiday").on("click",function(){
+      $(".exdetail_book_btn").removeClass("disable_apply");
+    });
 });
 

@@ -92,7 +92,7 @@ class ExperienceController < ApplicationController
   end
 
   def complete
-    call    
+    call
     @recommends = ExperienceService.new.recommend(@experience)
     if !$booking.nil?
       $booking[:payment_type] = params['payment_type']
@@ -101,9 +101,9 @@ class ExperienceController < ApplicationController
       $booking[:card_exp_year] = params['card_exp_year']
       $booking[:security_code] = params['security_code']
       $booking[:card_firstname] = params['card_firstname']
-      $booking[:card_lastname] = params['card_lastname']
-      @new_booking = Booking.create($booking)
+      $booking[:card_lastname] = params['card_lastname']      
     end 
+    @new_booking = Booking.create($booking)
   end
 
   private 
@@ -124,4 +124,5 @@ class ExperienceController < ApplicationController
     @experience = find_exp_id(params[:id])
     gon.experience_id = @experience.id 
   end
+
 end

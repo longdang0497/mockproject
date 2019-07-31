@@ -3058,6 +3058,13 @@ footer {
   color: #fff;
   text-decoration: none;
 }
+
+.disable_apply{
+  pointer-events: none;
+  cursor: default;
+  display: none;
+}
+
 @media only screen and (max-width: 960px) {
   .exdetail_book_btn:hover {
     background: #fff;
