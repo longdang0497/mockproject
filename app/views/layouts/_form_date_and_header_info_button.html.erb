@@ -17,17 +17,12 @@
     <div class="header_exp_block">    
       <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "HeaderSearchExp", autocomplete: "off", placeholder: "All Experience" %> 
       <div class="header_exp_popup" id="HeaderExpPop">
-        <div class="checkbox_style">
-          <input type="checkbox" name="experience" value="header_exp01" id="Exp01" data-hdex="アート">
-          <label for="Exp01"><span>アート</span></label>
-        </div>
-        <div class="checkbox_style">
-          <input type="checkbox" name="experience" value="header_exp02" id="Exp02" data-hdex="ライフスタイル">
-          <label for="Exp02"><span>ライフスタイル</span></label>
-        </div>
-        <div class="checkbox_style">
-          <input type="checkbox" name="experience" value="header_exp03" id="Exp03" data-hdex="フード＆ドリンク">
-          <label for="Exp03"><span>フード＆ドリンク</span></label>
+        <div class="" id="HeaderSearchExp_Choose">
+          <ul class="top_mv_place_list">
+            <% @categories.each do |cate| %>
+              <li class="top_mv_place_item <%= cur_stick_active(cate.category_name, :categories_category_name_has_any_term) %>" data-hdex="<%= cate.category_name %>"><%= cate.category_name %></li>
+            <%end%>
+          </ul>
         </div>
       </div>
     </div>
