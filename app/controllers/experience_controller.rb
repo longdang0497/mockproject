@@ -6,18 +6,15 @@ class ExperienceController < ApplicationController
     add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(experience)
     # @experiences = Experience.all.order(updated_at: :DESC).page(params[:page]).per(6)
     @hot_exp = ExperienceService.new.latest
-
-    @search = Experience.ransack(params[:q])
     @categories = CategoryService.new.call
     @locations = LocationService.new.call
-    @search.sorts = 'title desc' if @search.sorts.empty?
-    @experiences = @search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
+
+    @experiences = @exp_search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
     @page = params[:page].to_i
     respond_to do |format|
       format.html
       format.json { render json: @experiences }
     end
-    
   end
 
   def show
@@ -73,7 +70,6 @@ class ExperienceController < ApplicationController
                 :representative_lastname => params[:representativelastname],
                 :representative_email => params[:representativeemail],
     }
-    byebug
     BookingMailer.booking_confirmation(@booking).deliver
   end 
 

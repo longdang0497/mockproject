@@ -1,21 +1,21 @@
 	
-<%# <%= search_form_for @search,url: experience_index_path do |f| %> %>
+<%= search_form_for @exp_search,url: experience_index_path do |f| %>
   <div class="header_search_block">
     <input type="text" name="header_date" class="header_search_date" id="HeaderSearchDate" placeholder="<%= t('.any_time') %>">
     <div class="header_exp_block">
-      <%# <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "HeaderSearchPlace", autocomplete: "off", placeholder: "Any Where" %> 
+      <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "HeaderSearchPlace", autocomplete: "off", placeholder: "Any Where" %>
       <div class="header_exp_popup" id="HeaderPlacePop">
         <div class="" id="HeaderSearchPlace_Choose">
           <ul class="top_mv_place_list">
-            <%# <% @locations.each do |loca| %> 
-              <%# <li class="top_mv_place_item <%= cur_stick_active(loca.province, :location_province_has_any_term) " data-place="<%= loca.province "><%= loca.province </li> 
-            <%# <% end %> 
+            <% @locations.each do |loca| %>
+              <li class="top_mv_place_item <%= cur_stick_active(loca.province, :location_province_has_any_term) %> " data-place="<%= loca.province %>"><%= loca.province %></li> 
+            <% end %>
           </ul>
         </div>
       </div>
     </div>
     <div class="header_exp_block">    
-      <%# <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "HeaderSearchExp", autocomplete: "off", placeholder: "All Experience" %> 
+      <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "HeaderSearchExp", autocomplete: "off", placeholder: "All Experience" %> 
       <div class="header_exp_popup" id="HeaderExpPop">
         <div class="checkbox_style">
           <input type="checkbox" name="experience" value="header_exp01" id="Exp01" data-hdex="アート">
@@ -33,7 +33,7 @@
     </div>
     <input type="submit" value="検索" class="header_search_submit">
   </div>
-<%# <% end %> %>
+<% end %>
 <a href="" class="header_info_btn">
   <%= image_tag("common/info_book_icon.png", alt: "how to book") %>
 </a>
