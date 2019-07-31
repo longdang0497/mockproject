@@ -11,6 +11,7 @@ class Experience < ApplicationRecord
   has_many :experience_dates
   has_many :impressions, as: :impressionable
   has_many :category_experiences
+  has_many :bookings
   has_many :categories, -> { distinct },through: :category_experiences
   accepts_nested_attributes_for :category_experiences, allow_destroy: true
   validates :title, :price_adult, :price_children, :price_infant, :duration, :age,
