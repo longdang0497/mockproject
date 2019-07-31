@@ -3,7 +3,7 @@ class ExperienceController < ApplicationController
   include ExperienceConcern
 
   def index
-    add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(experience)
+    add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(index show)
     # @experiences = Experience.all.order(updated_at: :DESC).page(params[:page]).per(6)
     @hot_exp = ExperienceService.new.latest
     @categories = CategoryService.new.call
@@ -26,7 +26,7 @@ class ExperienceController < ApplicationController
     load_availableDates
 
     # breacrumb
-    add_breadcrumb I18n.t('breadcrumbs.experiences'), :experience_index_path, :only => %w(experiences)
+    add_breadcrumb I18n.t('breadcrumbs.experience'), :experience_index_path, :only => %w(index show)
     add_breadcrumb @experience.title, :experience_path
   end
 

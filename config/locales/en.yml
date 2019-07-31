@@ -199,7 +199,6 @@ en:
   breadcrumbs:
     top: "Top"
     experience: "Experience"
-    experiences: "Experience"
   components:
     form_step_list:
       complete: "Complete"

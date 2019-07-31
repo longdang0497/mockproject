@@ -23,14 +23,7 @@ class ApplicationController < ActionController::Base
   end
   protected
     def set_i18n_locale_from_params
-      if params[:locale]
-        if I18n.available_locales.map(&:to_s).include?(params[:locale])
-          I18n.locale = params[:locale]
-        else
-          flash.now[:notice] = "#{params[:locale]} translation not available"
-          logger.error flash.now[:notice]
-        end
-      end
+      I18n.locale = params[:locale] || I18n.default_locale
     end
     def default_url_options
       { locale: I18n.locale }
@@ -39,5 +32,7 @@ class ApplicationController < ActionController::Base
     def set_exp_search_variable
       @exp_search = Experience.ransack(params[:q])
       @exp_search.sorts = 'title desc' if @exp_search.sorts.empty?
+      @locations = LocationService.new.call
+      @categories = CategoryService.new.call
     end
 end

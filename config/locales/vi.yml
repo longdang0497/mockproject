@@ -199,7 +199,6 @@ vi:
   breadcrumbs:
     top: "Trang chủ"
     experience: "Trải nghiệm"
-    experiences: "Trải nghiệm"
   components:
     form_step_list:
       complete: "Hoàn thành"
