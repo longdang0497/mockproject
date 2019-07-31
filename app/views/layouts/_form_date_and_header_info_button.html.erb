@@ -1,44 +1,34 @@
 	
-<form action="" method="">
+<%= search_form_for @exp_search,url: experience_index_path do |f| %>
   <div class="header_search_block">
     <input type="text" name="header_date" class="header_search_date" id="HeaderSearchDate" placeholder="<%= t('.any_time') %>">
     <div class="header_exp_block">
-      <input type="text" name="header_place" class="header_search_place" id="HeaderSearchPlace" placeholder="<%= t('.any_where') %>">
+      <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "HeaderSearchPlace", autocomplete: "off", placeholder: "Any Where" %>
       <div class="header_exp_popup" id="HeaderPlacePop">
         <div class="" id="HeaderSearchPlace_Choose">
           <ul class="top_mv_place_list">
-            <li class="top_mv_place_item" data-place="博多 hakata">博多 hakata</li>
-            <li class="top_mv_place_item" data-place="天神 tenjin">天神 tenjin</li>
-            <li class="top_mv_place_item" data-place="中洲 Nakasu">中洲 Nakasu</li>
-            <li class="top_mv_place_item" data-place="大濠公園 Ohori Park">大濠公園 Ohori Park</li>
-            <li class="top_mv_place_item" data-place="百道浜 Momochihama">百道浜 Momochihama</li>
-            <li class="top_mv_place_item" data-place="西新 Nishijin">西新 Nishijin</li>
-            <li class="top_mv_place_item" data-place="西区 Nishiku">西区 Nishiku</li>
-            <li class="top_mv_place_item" data-place="東区 Higashiku">東区 Higashiku</li>
+            <% @locations.each do |loca| %>
+              <li class="top_mv_place_item <%= cur_stick_active(loca.province, :location_province_has_any_term) %> " data-place="<%= loca.province %>"><%= loca.province %></li> 
+            <% end %>
           </ul>
         </div>
       </div>
     </div>
-    <div class="header_exp_block">
-      <input type="text" name="header_exp" class="header_search_exp" id="HeaderSearchExp" placeholder="<%= t('.all_exp') %>">
+    <div class="header_exp_block">    
+      <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "HeaderSearchExp", autocomplete: "off", placeholder: "All Experience" %> 
       <div class="header_exp_popup" id="HeaderExpPop">
-        <div class="checkbox_style">
-          <input type="checkbox" name="experience" value="header_exp01" id="Exp01" data-hdex="アート">
-          <label for="Exp01"><span>アート</span></label>
-        </div>
-        <div class="checkbox_style">
-          <input type="checkbox" name="experience" value="header_exp02" id="Exp02" data-hdex="ライフスタイル">
-          <label for="Exp02"><span>ライフスタイル</span></label>
-        </div>
-        <div class="checkbox_style">
-          <input type="checkbox" name="experience" value="header_exp03" id="Exp03" data-hdex="フード＆ドリンク">
-          <label for="Exp03"><span>フード＆ドリンク</span></label>
+        <div class="" id="HeaderSearchExp_Choose">
+          <ul class="top_mv_place_list">
+            <% @categories.each do |cate| %>
+              <li class="top_mv_place_item <%= cur_stick_active(cate.category_name, :categories_category_name_has_any_term) %>" data-hdex="<%= cate.category_name %>"><%= cate.category_name %></li>
+            <%end%>
+          </ul>
         </div>
       </div>
     </div>
     <input type="submit" value="検索" class="header_search_submit">
   </div>
-</form>
+<% end %>
 <a href="" class="header_info_btn">
   <%= image_tag("common/info_book_icon.png", alt: "how to book") %>
 </a>

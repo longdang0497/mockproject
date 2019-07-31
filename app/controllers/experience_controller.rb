@@ -1,22 +1,19 @@
+require 'date'
 class ExperienceController < ApplicationController
   include ExperienceConcern
   $booking = nil
   def index
-    add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(experience)
+    add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(index show)
     # @experiences = Experience.all.order(updated_at: :DESC).page(params[:page]).per(6)
     @hot_exp = ExperienceService.new.latest
-
-    @search = Experience.ransack(params[:q])
-    @categories = CategoryService.new.call
-    @locations = LocationService.new.call
-    @search.sorts = 'title desc' if @search.sorts.empty?
-    @experiences = @search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
+    @exp_search = Experience.ransack(params[:q])
+    @exp_search.sorts = 'title desc' if @exp_search.sorts.empty?
+    @experiences = @exp_search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
     @page = params[:page].to_i
     respond_to do |format|
       format.html
       format.json { render json: @experiences }
     end
-    
   end
 
   def show
@@ -25,25 +22,25 @@ class ExperienceController < ApplicationController
     @recommends = ExperienceService.new.recommend(@experience)
     @host = AdminUser.find(@experience.admin_user_id)
 
-    @exp_dates = ExperienceDate.where(["experience_id = ?", @experience.id])
-    gon.expfroms = ExperienceService.new.available_from(@exp_dates)
-    gon.exptos = ExperienceService.new.available_to(@exp_dates)
-    
+    load_availableDates
+
     # breacrumb
-    add_breadcrumb I18n.t('breadcrumbs.experiences'), :experience_index_path, :only => %w(experiences)
+    add_breadcrumb I18n.t('breadcrumbs.experience'), :experience_index_path, :only => %w(index show)
     add_breadcrumb @experience.title, :experience_path
   end
 
+
   def search
-    if params[:q] && params[:q][:experience_dates_expFrom].present?
-      params[:q][:experience_dates_expFrom_gteq_any], params[:q][:experience_dates_expTo_lteq_any] = params[:q][:experience_dates_expFrom].split("-") 
-    end
+    # if params[:q] && params[:q][:experience_dates_expFrom].present?
+    #   params[:q][:experience_dates_expFrom_gteq_all], params[:q][:experience_dates_expTo_lteq_all] = params[:q][:experience_dates_expFrom].split("-") 
+    # end
     index
     render :index
   end
   
   def application_form
     call
+    @dates = @experience.available_dates
   end
 
   def confirm 
@@ -110,7 +107,13 @@ class ExperienceController < ApplicationController
     end 
   end
 
-  private
+  private 
+  def load_availableDates
+    @exp_dates = ExperienceDate.where(["experience_id = ?", @experience.id])
+    @mergeddates = ExperienceService.new.available_dates(@exp_dates)
+    Gon.global.avalailabledates = @mergeddates
+  end
+
   def call
     find_exp
     gon.price_adult = @experience.price_adult.to_f

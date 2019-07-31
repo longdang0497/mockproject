@@ -7,18 +7,26 @@
       <ul class="top_mv_bxslider">
         <li class="top_mv_list" style="background: url(<%= image_url('top/top_slide01')%>) center center no-repeat;background-size: cover;">
           <div class="top_mv_info_block">
-            <a href="" class="top_mv_info_title">Mandala Workshop @Sep 23th</a>
+            <a href="" class="top_mv_info_title"><%= @head_exp.title %> @Sep 23th</a>
             <div class="top_mv_info_bottom">
-              <a href="" class="top_mv_info_place">Momochihama</a>
-              <a href="" class="top_mv_info_tag">Entertainment</a>
+              <a href="" class="top_mv_info_place"><%= @head_exp.location.province %></a>
+              
+              <% if @head_exp.categories.present? %>
+              <a href="" class="top_mv_info_tag">
+                <% @head_exp.categories.each do |exp| %>
+                  <%= exp.category_name %>
+                <% end %>
+              </a>
+              <% end %>
+              
             </div>
           </div>
         </li>
         <li class="top_mv_list" style="background: url(<%= image_url('top/top_slide02')%>) center center no-repeat;background-size: cover;">
           <div class="top_mv_info_block">
-            <a href="" class="top_mv_info_title">Mandala Workshop @Sep 23th</a>
+            <a href="" class="top_mv_info_title"><%= @head_exp.title %> @Sep 23th</a>
             <div class="top_mv_info_bottom">
-              <a href="" class="top_mv_info_place">Momochihama</a>
+              <a href="" class="top_mv_info_place"><%= @head_exp.location.province %></a>
               <a href="" class="top_mv_info_tag">Entertainment</a>
             </div>
           </div>
@@ -27,12 +35,12 @@
       <div class="top_mv_filter" id="MvExpFilter"></div>
       <h1 class="top_mv_title"><%= t('.find') %></h1>
       <div class="top_mv_search_wrap">
-        <%= search_form_for @search, url: experience_index_path, class: "top_mv_form" do |f| %>
+        <%= search_form_for @exp_search, url: experience_index_path, class: "top_mv_form" do |f| %>
           <div class="header_search_block top_mv">
-            <%= f.search_field :experience_dates_expFrom, autocomplete: "off", class: "header_search_date", id: "ExSearchDate", placeholder: "Any Time" %>
-            <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "MvSearchPlace", autocomplete: "off", placeholder: "Any Where" %>
+            <%= f.search_field :experience_dates_expFrom, autocomplete: "off", class: "header_search_date", id: "ExSearchDate", placeholder: t('.any_time') %>
+            <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "MvSearchPlace", autocomplete: "off", placeholder: t('.any_where') %>
             <div class="header_exp_block">
-              <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "MvSearchExp", autocomplete: "off", placeholder: "All Experience" %>
+              <%= f.search_field :categories_category_name_has_any_term, class: "header_search_exp", id: "MvSearchExp", autocomplete: "off", placeholder: t('.any_exp') %>
             </div>
             <input type="submit" value="検索" class="header_search_submit">
           </div>

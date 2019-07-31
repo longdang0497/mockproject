@@ -1,3 +1,4 @@
+require 'date'
 class Experience < ApplicationRecord
   is_impressionable
 
@@ -17,5 +18,17 @@ class Experience < ApplicationRecord
   validates :title, :price_adult, :price_children, :price_infant, :duration, :age,
             :language, :short_description, :description, presence: true  
   validates :title, uniqueness: true, length: {maximum: 40}
+
+
+  def available_dates
+    @result = []
+    @dates = self.experience_dates
+    @dates.each do |d| 
+      (Date.parse(d.expFrom.to_s)..Date.parse(d.expTo.to_s)).each do |expday|
+        @result.push expday.strftime('%Y-%m-%d')
+      end
+    end
+    @result
+  end
 
 end

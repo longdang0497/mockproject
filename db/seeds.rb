@@ -122,7 +122,7 @@ ExperienceDate.create(expFrom: '12/06/2019', expTo: '14/07/2019', month: '7', ye
 ExperienceDate.create(expFrom: '01/08/2019', expTo: '02/08/2019', month: '8', year: '2019', experience_id: '4')
 ExperienceDate.create(expFrom: '04/08/2019', expTo: '06/08/2019', month: '8', year: '2019', experience_id: '4')
 ExperienceDate.create(expFrom: '03/08/2019', expTo: '03/08/2019', month: '8', year: '2019', experience_id: '5')
-ExperienceDate.create(expFrom: '05/08/2019', expTo: '05/08/2019', month: '8', year: '2019', experience_id: '5')
+ExperienceDate.create(expFrom: '05/08/2019', expTo: '05/09/2019', month: '8', year: '2019', experience_id: '5')
 ExperienceDate.create(expFrom: '07/08/2019', expTo: '07/08/2019', month: '8', year: '2019', experience_id: '5')
 ExperienceDate.create(expFrom: '01/09/2019', expTo: '03/10/2019', month: '10', year: '2019', experience_id: '1')
 ExperienceDate.create(expFrom: '08/10/2019', expTo: '10/10/2019', month: '10', year: '2019', experience_id: '1')

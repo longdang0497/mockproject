@@ -1,5 +1,4 @@
-jQuery(function($){
-  
+$(document).on('turbolinks:load', function() {
   $('input[name="header_date"]').daterangepicker({
 			autoUpdateInput: false,
 			locale: {
@@ -83,13 +82,15 @@ jQuery(function($){
   	$("#HeaderSearchPlace").attr("value",Header_Place);
   	
 	});
-	
+
+	//Search exp
+
 	var HExpChecked = [];
-	var HExpText;
-	$("input[name='experience']").on("click",function(){
-		HExpChecked = [];
+	
+	$("#HeaderSearchExp_Choose .top_mv_place_item").on("click",function(){
+  	HExpChecked = [];
   	$(this).toggleClass("active");
-  	$("input[name='experience']").each(function(){
+  	$("#HeaderSearchExp_Choose .top_mv_place_item").each(function(){
     	if($(this).hasClass("active")){
       	
       	HExpChecked.push($(this).data("hdex"));
@@ -97,9 +98,30 @@ jQuery(function($){
     	
   	});
   	
-  	$("#HeaderSearchExp").attr("value",HExpChecked );
-
+  	$("#HeaderSearchExp").attr("value",HExpChecked);
+  	
 	});
+
+
+
+
+	
+	// var HExpChecked = [];
+	// var HExpText;
+	// $("input[name='experience']").on("click",function(){
+	// 	HExpChecked = [];
+  // 	$(this).toggleClass("active");
+  // 	$("input[name='experience']").each(function(){
+  //   	if($(this).hasClass("active")){
+      	
+  //     	HExpChecked.push($(this).data("hdex"));
+  //   	}
+    	
+  // 	});
+  	
+  // 	$("#HeaderSearchExp").attr("value",HExpChecked );
+
+	// });
 
 
   
