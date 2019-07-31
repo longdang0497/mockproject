@@ -21,7 +21,7 @@
                   
                 <p class="payment_common_title">Payment type<span>*</span></p>
                 <div class="payment_choose_card_block">
-                  <select name="card" class="payment_select_long" id="CardChoose">
+                  <select name="card" required="true" class="payment_select_long" id="CardChoose">
                     <option value=""></option>
                     <option value="VISA">VISA</option>
                     <option value="MASTER CARD">MASTER CARD</option>
@@ -43,13 +43,13 @@
                 <div class="payment_card_information">
 	                <p class="payment_common_title">Card number<span>*</span></p>
 	                <div class="payment_card_num">
-	                  <input type="text" name="card_num" class="payment_card_input_long">
+	                  <input type="text" id="card_num" name="card_num" required="true" class="payment_card_input_long">
                     <%= hidden_field_tag(:card_num, params['card_num']) %>
 	                </div>
 	                <div class="payment_card_info_block">
 	                  <div class="payment_card_info_left">
 	                    <p class="payment_common_title">Expiration<span>*</span></p>
-	                    <select name="cardmonth" class="payment_select_short">
+	                    <select name="cardmonth" id="cardmonth" required="true" class="payment_select_short">
 	                      <option>MM</option>
 	                      <option value="01">01</option>
 	                      <option value="02">02</option>
@@ -65,7 +65,7 @@
 	                      <option value="12">12</option>
 	                    </select>
                       <%= hidden_field_tag(:card_exp_month, params['card_exp_month']) %>
-	                    <select name="cardyear" class="payment_select_short">
+	                    <select name="cardyear" id="cardyear" required="true" class="payment_select_short">
 	                      <option>YYYY</option>
 	                      <option value="2018">2018</option>
 	                      <option value="2019">2019</option>
@@ -85,7 +85,7 @@
 	                  <div class="payment_card_info_right">
 	                    <p class="payment_common_title">Security code<span>*</span><small id="CardInfo">?</small></p>
 	                    <div class="payment_card_security_block">
-	                      <input type="text" name="security" class="payment_card_input_short">
+	                      <input type="text" name="security" id="security" required="true" class="payment_card_input_short">
                         <%= hidden_field_tag(:security_code, params['security_code']) %>
 	                      <img src=<%= image_path("form/card_back01.png") %> id="Others" class="payment_security_pic" style="display: none;">
 	                      <img src=<%= image_path("form/card_back02.png") %> id="American" class="payment_security_pic active" style="display: none;">
@@ -94,8 +94,8 @@
 	                </div> 
 	                <p class="payment_common_title">Name on card<span>*</span></p>
 	                <div class="payment_card_name">
-	                  <input type="text" name="card_firstname" class="payment_card_input_long" placeholder="First name">
-	                  <input type="text" name="card_lastname" class="payment_card_input_long" placeholder="Last name">
+	                  <input type="text" name="card_firstname" id="card_firstname" required="true" class="payment_card_input_long" placeholder="First name">
+	                  <input type="text" name="card_lastname" id="card_lastname" required="true" class="payment_card_input_long" placeholder="Last name">
                     <%= hidden_field_tag(:card_firstname, params['card_firstname']) %>
                     <%= hidden_field_tag(:card_lastname, params['card_lastname']) %>
 	                </div>

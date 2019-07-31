@@ -42,7 +42,7 @@ jQuery(function($){
 
   $("#btnBooking").click(function() {
     localStorage.clear();
-
+    debugger;
     let adults = $("#numAdults").text() != null ? $("#numAdults").text() : 0;
     let children= $("#numChildren").text() != null ? $("#numChildren").text() : 0;
     let infants = $("#numInfants").text() != null ? $("#numInfants").text() : 0;
@@ -90,7 +90,7 @@ jQuery(function($){
       representative_title: $("#representative-title").val(),
       representative_email: $("#representative-email").val(),
       send_mail_only_representative: $("input[name='confirm']:checked").val(),
-    }
+    };
 
 
     let myObj_serialized = JSON.stringify(myObj);
@@ -100,7 +100,20 @@ jQuery(function($){
 
   confirm_exp();
   
-  
+  $("#BookNow").click(function() {
+    let myObj = JSON.parse(localStorage.getItem("myObj"));
+
+    myObj['payment_type'] = $("#CardChoose").val();
+    myObj['card_num'] = $("#card_num").val();
+    myObj['card_exp_month'] = $("#cardmonth").val();
+    myObj['card_exp_year'] = $("#cardyear").val();
+    myObj['security_code'] = $("#security").val();
+    myObj['card_firstname'] = $("#card_firstname").val();
+    myObj['card_lastname'] = $("#card_lastname").val();
+
+    let myObj_serialized = JSON.stringify(myObj);
+    localStorage.setItem("myObj", myObj_serialized); 
+  });
 });
 
 function confirm_exp() {
