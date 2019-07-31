@@ -1,4 +1,7 @@
 vi:
+  breadcrumbs:
+    top: "Trang chủ"
+    experience: "Trải nghiệm"
   hello: "Xin chào"
   helpers:
       page_entries_info:
@@ -59,6 +62,9 @@ vi:
       no_data: "Không có dữ liệu"
       restaurant_sui: "Nhà hàng Việt Nam SUiTO"
       calculate: "chuyển"
+      any_time: "Thời gian"
+      any_where: "Địa điểm"
+      any_exp: "TRải nghiệm" 
   blog:
     index:
       blog: "Blog"
@@ -109,6 +115,37 @@ vi:
     send_request:
       thank: "Cảm ơn bạn đã sử dụng ứng dụng này."
       thanks: "Chúng tôi sẽ quay lại với bạn ngay khi có thể."
+      send: "Gửi yêu cầu"
+    confirm:
+      day: "Ngày"
+      start: "Bắt đầu"
+      first: "Lựa chọn thứ nhất"
+      second: "Lựa chọn thứ hai"
+      third: "Lựa chọn thứ ba"
+      number: "Số lượng người"
+      adults: "Người lớn"
+      children: "Trẻ em"
+      infant: "Sơ sinh"
+      interpreter: "Thông dịch viên"
+      charge: "Chúng tôi sẽ thu phí thêm"
+      requesting: "nếu bạn thuê thông dịch viên"
+      need: "Cần"
+      total1: "Tổng"
+      guest_info: "Thông tin khách"
+      name: "Tên"
+      age: "Tuổi"
+      nationality: "Quốc tịch"
+      language: "Ngôn ngữ"
+      phone: "Số điện thoại"
+      email: "Email"
+      address: "Địa chỉ hiện tại ở Việt Nam"
+      notguest: "Tôi không phải khách."
+      making: "Tôi đang thực hiện đặt cho người khác."
+      confirm: "Vui lòng gửi Email xác nhận và thông tin thanh toán"
+      confirm1: "chỉ cho tôi"
+      provide: "Cung cấp"
+      cancellation: "Chính sách hủy bỏ"
+      cancellation1: "Được hoàn trả đầy đủ nếu bạn hủy trong vòng 24 giờ sau khi mua."
     application_form:
       fill: "Vui lòng điền vào mẫu dưới đây. "
       offer: "Hãy cho chúng tôi xem đề nghị của bạn, chúng tôi sẽ lấy lại cho bạn một lần nữa."
@@ -156,10 +193,12 @@ vi:
       unnecessary: "Không cần thiết"
       charge: "Chúng tôi sẽ tính phí cho bạn thêm"
       requesting: "yêu cầu thông dịch viên"
-  breadcrumbs:
-    top: "Trang chủ"
-    experience: "Trải nghiệm"
-    experiences: "Trải nghiệm"
+      select: "Hãy chọn"
+      cancellation: "Chính sách hủy bỏ"
+      cancellation1: "Được hoàn trả đầy đủ nếu bạn hủy trong vòng 24 giờ sau khi mua."
+      provide: "Cung cấp"
+      total: "tổng"
+      text: "Chúng tôi không có tùy chọn  miễn phí ... xin lỗi. Vui lòng mang theo máy ảnh và khăn tắm của bạn"
   components:
     form_step_list:
       complete: "Hoàn thành"
@@ -167,6 +206,7 @@ vi:
       request: "Gửi yêu cầu"
       confirm: "Xác nhận"
       application: "Biểu mẫu"
+      receive: "Nhận email xác thực"
   number:
     currency:
       format:

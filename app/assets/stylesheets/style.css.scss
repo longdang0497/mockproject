@@ -66,6 +66,7 @@
   padding: 3px 0 2px 3px;
   outline: none;
   margin: 0 10px 0 0;
+  float: right;
 }
 
 .select_form{
@@ -257,6 +258,10 @@
   font-size: 14px;
   color: #000;
   background-size: 25px;
+}
+.header_search_date_span {
+  background-color: unset !important; 
+  border: none !important; 
 }
 .header_search_block .header_search_place {
   border: 2px #000 solid;

@@ -43,9 +43,15 @@
           <div class="ex_main_right">
             <div class="header_search_block ex_main_search">
             <%= search_form_for @exp_search,url: search_experience_index_path , class: "ex_main_form" do |f| %>
-              <%= f.search_field :experience_dates_expFrom, autocomplete: "off", class: "header_search_date", id: "ExSearchDate" %>
               <div class="header_exp_block">
-                <%= f.search_field :location_province_has_any_term, autocomplete: "off", class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
+                <div class="input-daterange input-group" data-provide='datepicker'>
+                  <%= f.search_field :experience_dates_expFrom_gteq, autocomplete: "off", class: "header_search_date datepicker input-sm form-control", placeholder: "From date"%>
+                  <span class="input-group-addon header_search_date_span">to</span>
+                  <%= f.search_field :experience_dates_expTo_lteq, autocomplete: "off", class: "header_search_date datepicker input-sm form-control", placeholder: "To date"%>
+                </div>
+              </div>
+              <div class="header_exp_block">
+                <%= f.search_field :location_province_has_any_term, class: "header_search_place", id: "ExSearchPlace", autocomplete: "off" %>
                 <div class="header_exp_popup" id="ExPlacePop">
                   <div class="" id="EXSearchPlace_Choose">
                     <ul class="top_mv_place_list">
@@ -136,3 +142,10 @@
     <a href="" class="common_bottom_pic_btn"><span><%= t('.restaurant_sui') %></span></a>
   </section>
 </div>
+<script type='text/javascript'>
+  $(document).ready(function(){
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd'
+    });
+  });
+</script>
