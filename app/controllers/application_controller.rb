@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action :set_exp_search_variable
   # breadcrumb root
   before_action :set_i18n_locale_from_params
   protect_from_forgery
@@ -33,5 +34,10 @@ class ApplicationController < ActionController::Base
     end
     def default_url_options
       { locale: I18n.locale }
+    end
+
+    def set_exp_search_variable
+      @exp_search = Experience.ransack(params[:q])
+      @exp_search.sorts = 'title desc' if @exp_search.sorts.empty?
     end
 end
