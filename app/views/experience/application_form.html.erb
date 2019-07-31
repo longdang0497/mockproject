@@ -27,7 +27,8 @@
                 <p class="form_common_title sp"><%= t('.day2') %></p>
                 <input type="text" id="first-choice" name="first-choice" required="true" class="form_day_input">
                 <p class="form_common_title sp"><%= t('.start2') %></p>
-                <select name="time01" class="form_time_select">
+                <select name="time01" id="first-starttime" name="first-starttime" class="form_time_select">
+                  <option value="09:00">09:00</option>
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>
@@ -38,7 +39,8 @@
                 <p class="form_common_title sp"><%= t('.day3') %></p>
                 <input type="text" id="second-choice" name="second-choice" class="form_day_input">
                 <p class="form_common_title sp"><%= t('.start3') %></p>
-                <select name="time01" class="form_time_select">
+                <select name="time01" id="second-starttime" name="second-starttime" class="form_time_select">
+                  <option value="09:00">09:00</option>
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>
@@ -49,7 +51,8 @@
                 <p class="form_common_title sp"><%= t('.day4') %></p>
                 <input type="text" id="third-choice" name="third-choice" class="form_day_input">
                 <p class="form_common_title sp"><%= t('.start4') %></p>
-                <select name="time01" class="form_time_select">
+                <select name="time01" id="third-starttime" name="third-starttime" class="form_time_select">
+                  <option value="09:00">09:00</option>
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>
@@ -98,7 +101,7 @@
                   <input type="radio" name="interpreter" id="Unnecessary" value="false" class="form_radio_input"><%= t('.unnecessary') %>
                 </label>
               </div>
-              <p class="form_subtext"><%= t('.charge') %> <span>300.000 VND</span> <%= t('.requesting') %></p>
+              <p class="form_subtext"><%= t('.charge') %> <span>$US 200.00</span> <%= t('.requesting') %></p>
             </div>
             <div class="form_profile_wrap">
               <p class="form_common_title"><%= t('.guest_info') %></p>
@@ -174,7 +177,7 @@
                   <input type="email" id="representative-email" name="representative-email" class="form_sub_input_long">
                   <div class="form_guest_confirm">
                     <label for="Confirm01" class="form_interpreter_label">
-                      <input type="radio" name="confirm" id="Confirm01" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
+                      <input type="radio" name="confirm" id="Confirm01" value="true" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
                     </label>
                     <div class="form_confirm_popup">
                       <p class="form_confirm_info_text">
@@ -183,7 +186,7 @@
                       </p>
                     </div>
                     <label for="Confirm02" class="form_interpreter_label">
-                      <input type="radio" name="confirm" id="Confirm02" class="form_radio_input noactive"><%= t('.confirm2') %>
+                      <input type="radio" name="confirm" id="Confirm02" value="false" class="form_radio_input noactive"><%= t('.confirm2') %>
                     </label>
                   </div>
                 </div>

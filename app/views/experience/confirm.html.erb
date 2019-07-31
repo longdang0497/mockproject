@@ -17,23 +17,23 @@
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
-                <p class="form_confirm_text big">Sat, October 7</p>
+                <p class="form_confirm_text big" id="show-first-choice"></p>
                 <p class="form_common_title sp">Start time</p>
-                <p class="form_confirm_text small">10:00</p>
+                <p class="form_confirm_text small" id="show-first-starttime"></p>
                 <p class="form_choice_text">First choice<span>*</span></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
-                <p class="form_confirm_text big">Sat, October 7</p>
+                <p class="form_confirm_text big" id="show-second-choice"></p>
                 <p class="form_common_title sp">Start time</p>
-                <p class="form_confirm_text small">10:00</p>
+                <p class="form_confirm_text small" id="show-second-starttime"></p>
                 <p class="form_choice_text">Second choice</p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
-                <p class="form_confirm_text big">Sat, October 7</p>
+                <p class="form_confirm_text big" id="show-third-choice"></p>
                 <p class="form_common_title sp">Start time</p>
-                <p class="form_confirm_text small">10:00</p>
+                <p class="form_confirm_text small" id="show-third-starttime"></p>
                 <p class="form_choice_text">Third choice</p>
               </div>
             </div>
@@ -72,10 +72,11 @@
             <div class="form_interpreter_wrap">
               <p class="form_common_title">Interpreter<span>*</span></p>
               <div class="form_confirm_interpreter_inner">
-                <p class="form_confirm_text">Need</p>
-                <p class="form_confirm_text">¥2,160</p>
+                <p class="form_confirm_text" id="interpret"></p>
+                <p class="form_confirm_text" id="interpret-price"></p>
+                <%= hidden_field_tag(:interpreter, params['interpreter']) %>
               </div>
-              <p class="form_subtext">We will charge you an additional <span>2,160yen</span> for requesting an interpreter.</p>
+              <p class="form_subtext">We will charge you an additional <span>$US 200.00</span> for requesting an interpreter.</p>
               <div class="form_confirm_interpreter_bottom clearfix">
                 <div class="total">
                   <p class="form_confirm_text">Total</p>
@@ -99,7 +100,6 @@
               <p class="form_common_title">Guest Information</p>
               <p class="form_common_title">Name<span>*</span></p>
               <p class="form_confirm_text" id="show-guest-name"></p>
-              <% byebug %>
               <%= hidden_field_tag(:guesttitle, params['guest-title']) %>
               <%= hidden_field_tag(:guestfirstname, params['guest-firstname']) %>
               <%= hidden_field_tag(:guestlastname, params['guest-lastname']) %>
@@ -131,7 +131,7 @@
                 <p class="form_common_title">Email<span>*</span></p>
                 <p class="form_confirm_text" id="show-representative-email"></p>
                 <%= hidden_field_tag(:representativeemail, params['representative-email']) %>
-                <p class="form_sub_confirm_text">Please send the Confirmation Email and Payment information <span class="red">only to me.</span></p>
+                <p class="form_sub_confirm_text" id="show-confirm-email"></span></p>
               </div>
             </div>
             <input type="submit" id="sendrequest" value="Send request" class="form_subtmit_btn">

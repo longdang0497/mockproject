@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_043203) do
+ActiveRecord::Schema.define(version: 2019_07_31_023950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,16 @@ ActiveRecord::Schema.define(version: 2019_07_29_043203) do
     t.integer "total"
     t.integer "numChildren"
     t.integer "numInfants"
+    t.string "payment_type"
+    t.string "card_num"
+    t.string "card_firstname"
+    t.string "card_lastname"
+    t.integer "card_exp_month"
+    t.integer "card_exp_year"
+    t.string "security_code"
+    t.string "first_starttime"
+    t.string "second_starttime"
+    t.string "third_starttime"
     t.index ["experience_id"], name: "index_bookings_on_experience_id"
   end
 
@@ -143,6 +153,17 @@ ActiveRecord::Schema.define(version: 2019_07_29_043203) do
     t.bigint "experience_id"
     t.index ["category_id"], name: "index_category_experiences_on_category_id"
     t.index ["experience_id"], name: "index_category_experiences_on_experience_id"
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string "data_file_name", null: false
+    t.string "data_content_type"
+    t.integer "data_file_size"
+    t.string "data_fingerprint"
+    t.string "type", limit: 30
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type"
   end
 
   create_table "experience_dates", force: :cascade do |t|

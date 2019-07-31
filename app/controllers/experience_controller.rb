@@ -52,8 +52,14 @@ class ExperienceController < ApplicationController
 
   def send_request
     find_exp
-    byebug
     @booking = { :experience_id => gon.experience_id,
+                :first_choice => params[:first_choice],
+                :second => params[:second_choice],
+                :third_choice => params[:third_choice],
+                :first_starttime => params[:first_starttime],
+                :second_starttime => params[:second_starttime],
+                :third_starttime => params[:third_starttime],
+                :interpreter => params[:interpreter],
                 :guest_title => params[:guesttitle],
                 :guest_firstnam => params[:guestfirstname],
                 :guest_lastname => params[:guestlastname],
@@ -71,8 +77,8 @@ class ExperienceController < ApplicationController
                 :representative_firstname => params[:representativefirstname],
                 :representative_lastname => params[:representativelastname],
                 :representative_email => params[:representativeemail],
+                :send_mail_only_representative => params[:send_mail_only_representative]
     }
-    byebug
     BookingMailer.booking_confirmation(@booking).deliver
   end 
 

@@ -45,5 +45,8 @@ Email*
 
 <%= @obj[:representative_email] %>
 
+If your booking Information are all correct, please click the link below to continue your booking process.
+<%= link_to "Continue your booking process", payment_experience_url(@obj[:experience_id]) %>
+
 Thank you
 SUITO
