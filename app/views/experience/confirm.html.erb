@@ -96,42 +96,42 @@
               </div>
 -->
             <div class="form_sub_profile_wrap">
-              <p class="form_common_title">Guest Information</p>
-              <p class="form_common_title">Name<span>*</span></p>
+              <p class="form_common_title"><%= t('.guest_info') %></p>
+              <p class="form_common_title"><%= t('.name') %><span>*</span></p>
               <p class="form_confirm_text" id="show-guest-name"></p>
               <% byebug %>
               <%= hidden_field_tag(:guesttitle, params['guest-title']) %>
               <%= hidden_field_tag(:guestfirstname, params['guest-firstname']) %>
               <%= hidden_field_tag(:guestlastname, params['guest-lastname']) %>
-              <p class="form_common_title">Age<span>*</span></p>
+              <p class="form_common_title"><%= t('.age') %><span>*</span></p>
               <p class="form_confirm_text" id="show-guest-age"></p>
               <%= hidden_field_tag(:age, params['age']) %>
-              <p class="form_common_title">Nationality</p>
+              <p class="form_common_title"><%= t('.nationality') %></p>
               <p class="form_confirm_text" id="show-guest-nationality"></p>
               <%= hidden_field_tag(:nationality, params['nationality']) %>
-              <p class="form_common_title">Language<span>*</span></p>
+              <p class="form_common_title"><%= t('.language') %><span>*</span></p>
               <p class="form_confirm_text" id="show-guest-language"></p>
               <%= hidden_field_tag(:language, params['language']) %>
-              <p class="form_common_title">Phone number</p>
+              <p class="form_common_title"><%= t('.phone') %></p>
               <p class="form_confirm_text" id="show-guest-phone"></p>
               <%= hidden_field_tag(:phonenumber, params['phone-number']) %>
-              <p class="form_common_title">Email<span>*</span></p>
+              <p class="form_common_title"><%= t('.email') %><span>*</span></p>
               <p class="form_confirm_text" id="show-guest-email"></p>
               <%= hidden_field_tag(:email, params['email']) %>
-              <p class="form_common_title">Current address in Japan</p>
+              <p class="form_common_title"><%= t('.address') %></p>
               <p class="form_confirm_text" id="show-guest-address"></p>
               <%= hidden_field_tag(:address, params['address']) %>
               <div class="form_sub_others_confirm">
-                <p class="form_sub_confirm_text"><span class="bold">I'm not guest.</span> I'm making this booking for someone else.</p>
-                <p class="form_common_title">Name<span>*</span></p>
+                <p class="form_sub_confirm_text"><span class="bold"><%= t('.notguest') %></span><%= t('.making') %> </p>
+                <p class="form_common_title"><%= t('.name') %><span>*</span></p>
                 <p class="form_confirm_text" id="show-representative-name"></p>
                 <%= hidden_field_tag(:representativetitle, params['representative-title']) %>
                 <%= hidden_field_tag(:representativefirstname, params['representative-firstname']) %>
                 <%= hidden_field_tag(:representativelastname, params['representative-lastname']) %>
-                <p class="form_common_title">Email<span>*</span></p>
+                <p class="form_common_title"><%= t('.email') %><span>*</span></p>
                 <p class="form_confirm_text" id="show-representative-email"></p>
                 <%= hidden_field_tag(:representativeemail, params['representative-email']) %>
-                <p class="form_sub_confirm_text">Please send the Confirmation Email and Payment information <span class="red">only to me.</span></p>
+                <p class="form_sub_confirm_text"><%= t('.confirm') %><span class="red"><%= t('.confirm1') %></span></p>
               </div>
             </div>
             <input type="submit" id="sendrequest" value="Send request" class="form_subtmit_btn">
@@ -145,7 +145,7 @@
           <% else %>
           <div class="exdetail_main_pic" style="background: url(<%= image_url("ex/pic01.jpg") %>) center center no-repeat;background-size: cover;"></div>
           <% end %>
-          <p class="form_aside_pic_info"><a href="">Hosted by <%= @experience.admin_user.fullname %></a></p>
+          <p class="form_aside_pic_info"><a href="">Host <%= @experience.admin_user.fullname %></a></p>
           <table class="form_aside_table">
             <tbody>
               <tr>
@@ -162,7 +162,7 @@
                   <img src=<%= image_path("form/time.png") %> alt="time">
                 </th>
                 <td>
-                  <%= @experience.duration %> total
+                  <%= @experience.duration %> <%= t('.total1') %>
                 </td>
               </tr>
               <tr>
@@ -176,7 +176,7 @@
             </tbody>
           </table>
           <div class="form_aside_box">
-            <p class="form_aside_box_title">Provided</p>
+            <p class="form_aside_box_title"><%= t('.provide') %></p>
             <p class="form_aside_box_text">
               ・Shodo trial set<br>
               ・T-Shirt<br>
@@ -184,9 +184,9 @@
             </p>
           </div>
           <div class="form_aside_box">
-            <p class="form_aside_box_title">Cancellation policy</p>
+            <p class="form_aside_box_title"><%= t('.cancellation') %></p>
             <p class="form_aside_box_text">
-              Get a full refund if you cancel within 24 hours of purchase.
+              <%= t('.cancellation1') %>
             </p>
           </div>
         </div>

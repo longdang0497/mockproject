@@ -128,7 +128,21 @@ en:
       requesting: "for requesting an interpreter."
       need: "Need"
       total1: "Total"
-      
+      guest_info: "Guest Information"
+      name: "Name"
+      age: "Age"
+      nationality: "Nationality"
+      language: "Language"
+      phone: "Phone number"
+      email: "Email"
+      address: "Current address in Viet Nam"
+      notguest: "I'm not guest."
+      making: "I'm making this booking for someone else."
+      confirm: "Please send the Confirmation Email and Payment information "
+      confirm1: "only to me."
+      provide: "Provided"
+      cancellation: "Cancellation policy"
+      cancellation1: "Get a full refund if you cancel within 24 hours of purchase."
     application_form:
       fill: "Please fill out the form shown below. "
       offer: "Let us see your offer, we will get back to you again."
@@ -193,6 +207,7 @@ en:
       request: "Send Request"
       confirm: "Confirm"
       application: "Application form"
+      receive: "Receive Confirmation Email"
   number:
     currency:
       format:

@@ -115,7 +115,34 @@ vi:
       send: "Gửi yêu cầu"
     confirm:
       day: "Ngày"
-      
+      start: "Bắt đầu"
+      first: "Lựa chọn thứ nhất"
+      second: "Lựa chọn thứ hai"
+      third: "Lựa chọn thứ ba"
+      number: "Số lượng người"
+      adults: "Người lớn"
+      children: "Trẻ em"
+      infant: "Sơ sinh"
+      interpreter: "Thông dịch viên"
+      charge: "Chúng tôi sẽ thu phí thêm"
+      requesting: "nếu bạn thuê thông dịch viên"
+      need: "Cần"
+      total1: "Tổng"
+      guest_info: "Thông tin khách"
+      name: "Tên"
+      age: "Tuổi"
+      nationality: "Quốc tịch"
+      language: "Ngôn ngữ"
+      phone: "Số điện thoại"
+      email: "Email"
+      address: "Địa chỉ hiện tại ở Việt Nam"
+      notguest: "Tôi không phải khách."
+      making: "Tôi đang thực hiện đặt cho người khác."
+      confirm: "Vui lòng gửi Email xác nhận và thông tin thanh toán"
+      confirm1: "chỉ cho tôi"
+      provide: "Cung cấp"
+      cancellation: "Chính sách hủy bỏ"
+      cancellation1: "Được hoàn trả đầy đủ nếu bạn hủy trong vòng 24 giờ sau khi mua."
     application_form:
       fill: "Vui lòng điền vào mẫu dưới đây. "
       offer: "Hãy cho chúng tôi xem đề nghị của bạn, chúng tôi sẽ lấy lại cho bạn một lần nữa."
@@ -180,6 +207,7 @@ vi:
       request: "Gửi yêu cầu"
       confirm: "Xác nhận"
       application: "Biểu mẫu"
+      receive: "Nhận email xác thực"
   number:
     currency:
       format:
