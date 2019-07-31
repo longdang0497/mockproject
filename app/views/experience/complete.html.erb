@@ -50,32 +50,37 @@
         <aside class="exdetail_right_block" style="height: 646px; padding-bottom: 100px;">
           <div class="exdetail_right_top thanks" style="position: absolute; top: 0px;">
             <div class="panment_aside_top">
-              <p class="payment_aside_date">Sat, October 7</p>
+              <p class="payment_aside_date" id="show-first-choice"></p>
               <p class="payment_aside_time">
-                <span class="start">10:00 start</span>
-                <span class="range">2 hours total</span>
+                <span class="start"><span id="show-first-starttime"></span> start</span>
+                <span class="range"><%= @experience.duration %> total</span>
               </p>
             </div>
             <div class="form_aside_box">
-              <p class="form_aside_box_title">Ms. Abby Suzuki</p>
+              <p class="form_aside_box_title" id="show-guest-name"></p>
               <table class="payment_aside_table">
                 <tbody><tr>
-                  <td>¥2,400</td>
-                  <td>2 adults</td>
-                  <td>¥4,800</td>
+                  <td><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></td>
+                  <td><span id="show-num-adults"></span> adults</td>
+                  <td><span id="show-total-adults"></span></td>
                 </tr>
                 <tr>
-                  <td>¥1,200</td>
-                  <td>1 child</td>
-                  <td>¥1,200</td>
+                  <td><%= number_to_currency(@experience.price_children.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></td>
+                  <td><span id="show-num-children"></span> children</td>
+                  <td><span id="show-total-children"></span></td>
+                </tr>
+                <tr>
+                  <td><%= number_to_currency(@experience.price_infant.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></td>
+                  <td><span id="show-num-infants"></span> infants</td>
+                  <td><span id="show-total-infants"></span></td>
                 </tr>
                 <tr>
                   <td colspan="2" class="big">Interpreter</td>
-                  <td>¥2,160</td>
+                  <td>$US 200.00</td>
                 </tr>
                 <tr>
                   <td colspan="2" class="bold">Total</td>
-                  <td class="bold">¥8,160</td>
+                  <td class="bold"><span id="show-total"></span></td>
                 </tr>
               </tbody></table>
             </div>
@@ -116,7 +121,6 @@
           </div>
         </aside>
       </div>
-      <%# <%= @myObj.inspect  %>
       <%= render 'experience/commons/recommended_experience_in_place'%>
 	  </div>
   </div>

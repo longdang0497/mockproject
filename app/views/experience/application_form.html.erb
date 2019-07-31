@@ -11,7 +11,7 @@
         <div class="form_wrap">
           <form action="<%= confirm_experience_path(@experience.id) %>">
             <p class="form_top_text">
-              <%= t('.fill') %><span class="red">(*Required)</span><br>
+              <%= t('.fill') %><span class="red">(*)</span><br>
               <%= t('.offer') %>&nbsp; <%= t('.information') %> <span class="bold">[<%= t('.book') %>]</span>.
             </p>
             <a href="" class="form_top_book_btn">
@@ -22,32 +22,32 @@
                 <p class="form_common_title"><%= t('.day1') %></p>
                 <p class="form_common_title"><%= t('.start1') %></p>
               </div>
-              <p class="form_common_error_msg">*Required.</p>
+              <p class="form_common_error_msg">*.</p>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day2') %></p>
-                <%= select_tag "first-choice", options_for_select(@dates, @dates[0]), class: 'form_day_input', required: true %>
+                <%= select_tag "first_choice", options_for_select(@dates, @dates[0]), id: "first_choice", class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start2') %></p>
-                <%= select_tag "time01", options_for_select([ "10:00", "11:00", "12:00" ], "10:00"), class: 'form_time_select' %>
+                <%= select_tag "first_starttime", options_for_select([ "10:00", "11:00", "12:00" ], "10:00"), id: "first_starttime", class: 'form_time_select', required: true %>
                 <p class="form_choice_text"><%= t('.first1') %><span>*</span></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day3') %></p>
-                <%= select_tag "second-choice", options_for_select(@dates, ''), include_blank: "Please select", class: 'form_day_input', required: true %>
+                <%= select_tag "second_choice", id: "second_choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start3') %></p>
-                <%= select_tag "time02", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
+                <%= select_tag "second_starttime", options_for_select([ "10:00", "11:00", "12:00" ]), id: "second_starttime", include_blank: "--:--", class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.second') %></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day4') %></p>
-                <%= select_tag "third-choice", options_for_select(@dates, ''), include_blank: "Please select", class: 'form_day_input', required: true %>
+                <%= select_tag "third_choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start4') %></p>
-                <%= select_tag "time03", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
+                <%= select_tag "third_starttime", id: "third_starttime", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.third') %></p>
               </div>
             </div>
             <div class="form_people_wrap">
               <p class="form_common_title"><%= t('.number') %><span>*</span></p>
-              <p class="form_common_error_msg">*Required.</p>
+              <p class="form_common_error_msg">*.</p>
               <div class="form_people_inner">
                 <div class="form_people_common_block">
                   <p class="form_people_title"><%= t('.adults') %></p>
@@ -77,7 +77,7 @@
             </div>
             <div class="form_interpreter_wrap">
               <p class="form_common_title"><%= t('.interpreter') %><span>*</span></p>
-              <p class="form_common_error_msg">*Required.</p>
+              <p class="form_common_error_msg">*.</p>
               <div class="form_interpreter_inner">
                 <label for="Need" class="form_interpreter_label">
                   <input type="radio" name="interpreter" id="Need" value="true" class="form_radio_input"><%= t('.need') %>
@@ -86,7 +86,7 @@
                   <input type="radio" name="interpreter" id="Unnecessary" value="false" class="form_radio_input"><%= t('.unnecessary') %>
                 </label>
               </div>
-              <p class="form_subtext"><%= t('.charge') %> <span>300.000 VND</span> <%= t('.requesting') %></p>
+              <p class="form_subtext"><%= t('.charge') %> <span>$US 200.00</span> <%= t('.requesting') %></p>
             </div>
             <div class="form_profile_wrap">
               <p class="form_common_title"><%= t('.guest_info') %></p>
@@ -103,29 +103,29 @@
                 </div>
                 <div class="form_profile_name left">
                   <p class="form_common_title"><%= t('.firstname1') %><span>*</span></p>
-                  <p class="form_common_error_msg">*Required.</p>
+                  <p class="form_common_error_msg">*.</p>
                   <input type="text" required="true" id="guest-firstname" name="guest-firstname" class="form_profile_input">
                 </div>
                 <div class="form_profile_name right">
                   <p class="form_common_title"><%= t('.lastname1') %><span>*</span></p>
-                  <p class="form_common_error_msg">*Required.</p>
+                  <p class="form_common_error_msg">*.</p>
                   <input type="text" required="true" id="guest-lastname" name="guest-lastname" class="form_profile_input">
                 </div>
               </div>
             </div>
             <div class="form_sub_profile_wrap">
               <p class="form_common_title"><%= t('.age') %><span>*</span></p>
-              <p class="form_common_error_msg">*Required.</p>
+              <p class="form_common_error_msg">*.</p>
               <input type="text" required="true" id="age" name="age" class="form_sub_input_short">
               <p class="form_common_title"><%= t('.nationality') %></p>
               <input type="text" id="nationality" name="nationality" class="form_sub_input_middle">
               <p class="form_common_title"><%= t('.language') %><span>*</span></p>
-              <p class="form_common_error_msg">*Required.</p>
+              <p class="form_common_error_msg">*.</p>
               <input type="text" required="true" id="language" name="language" class="form_sub_input_middle">
               <p class="form_common_title"><%= t('.phone') %></p>
               <input type="tel" id="phone-number" name="phone-number" class="form_sub_input_middle">
               <p class="form_common_title"><%= t('.email') %><span>*</span></p>
-              <p class="form_common_error_msg">*Required.</p>
+              <p class="form_common_error_msg">*.</p>
               <input type="email" required="true" id="email" name="email" class="form_sub_input_long">
               <p class="form_common_title"><%= t('.address') %></p>
               <textarea id="address" name="address" class="form_textarea_block"></textarea>
@@ -148,21 +148,21 @@
                     </div>
                     <div class="form_profile_name left">
                       <p class="form_common_title"><%= t('.firstname2') %><span>*</span></p>
-                      <p class="form_common_error_msg">*Required.</p>
+                      <p class="form_common_error_msg">*.</p>
                       <input type="text" id="representative-firstname" name="representative-firstname" class="form_profile_input">
                     </div>
                     <div class="form_profile_name right">
                       <p class="form_common_title"><%= t('.lastname2') %><span>*</span></p>
-                      <p class="form_common_error_msg">*Required.</p>
+                      <p class="form_common_error_msg">*.</p>
                       <input type="text" id="representative-lastname" name="representative-lastname" class="form_profile_input">
                     </div>
                   </div>
                   <p class="form_common_title"><%= t('.guestemail') %><span>*</span></p>
-                  <p class="form_common_error_msg">*Required.</p>
+                  <p class="form_common_error_msg">*.</p>
                   <input type="email" id="representative-email" name="representative-email" class="form_sub_input_long">
                   <div class="form_guest_confirm">
-                    <label for="Confirm01" class="form_interpreter_label active">
-                      <input type="radio" name="confirm" id="Confirm01" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
+                    <label for="Confirm01" class="form_interpreter_label">
+                      <input type="radio" name="confirm" id="Confirm01" value="true" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
                     </label>
                     <div class="form_confirm_popup">
                       <p class="form_confirm_info_text">
@@ -171,14 +171,14 @@
                       </p>
                     </div>
                     <label for="Confirm02" class="form_interpreter_label">
-                      <input type="radio" name="confirm" id="Confirm02" class="form_radio_input noactive"><%= t('.confirm2') %>
+                      <input type="radio" name="confirm" id="Confirm02" value="false" class="form_radio_input noactive"><%= t('.confirm2') %>
                     </label>
                   </div>
                 </div>
               </div>
             </div>
             <div class="form_accept_wrap">
-              <p class="form_common_error_msg">*Required.</p>
+              <p class="form_common_error_msg">*.</p>
               <div class="checkbox_style">
                 <input type="checkbox" required="true" name="accept_notes" value="acceptnotes" id="AcceptNotes">
                 <label for="AcceptNotes"><span><%= t('.accepted') %> 
@@ -187,12 +187,12 @@
               </div>
               <div class="form_accept_block">
                 <p class="text">
-                  We don't have a gluten free option ... sorry.  Please bring your camera and towels
+                  <%= t('.text')%>
                 </p>
               </div>
             </div>
             <div class="form_accept_wrap">
-              <p class="form_common_error_msg">*Required.</p>
+              <p class="form_common_error_msg">*.</p>
               <div class="checkbox_style">
                 <input type="checkbox" required="true" name="accept_terms" value="acceptterms" id="AcceptTerms">
                 <label for="AcceptTerms"><span><%= t('.accept_terms') %> <a href="" class="form_common_title"><%= t('.service') %><span>*</span></a>.</span></label>
@@ -209,7 +209,7 @@
           <% else %>
           <div class="exdetail_main_pic" style="background: url(<%= image_url("ex/pic01.jpg") %>) center center no-repeat;background-size: cover;"></div>
           <% end %>
-          <p class="form_aside_pic_info"><a href="">Hosted by <%= @experience.admin_user.fullname %></a></p>
+          <p class="form_aside_pic_info"><a href="">Host <%= @experience.admin_user.fullname %></a></p>
           <table class="form_aside_table">
             <tbody>
               <tr>
@@ -225,7 +225,7 @@
                   <img src=<%= image_path("form/time.png") %> alt="time">
                 </th>
                 <td>
-                  <%= @experience.duration %> total
+                  <%= @experience.duration %> <%= t('.total') %>
                 </td>
               </tr>
               <tr>
@@ -239,7 +239,7 @@
             </tbody>
           </table>
           <div class="form_aside_box">
-            <p class="form_aside_box_title">Provided</p>
+            <p class="form_aside_box_title"><%= t('.provide') %></p>
             <p class="form_aside_box_text">
               ・Shodo trial set<br>
               ・T-Shirt<br>
@@ -247,9 +247,9 @@
             </p>
           </div>
           <div class="form_aside_box">
-            <p class="form_aside_box_title">Cancellation policy</p>
+            <p class="form_aside_box_title"><%= t('.cancellation') %></p>
             <p class="form_aside_box_text">
-              Get a full refund if you cancel within 24 hours of purchase.
+              <%= t('.cancellation1') %>
             </p>
           </div>
         </div>

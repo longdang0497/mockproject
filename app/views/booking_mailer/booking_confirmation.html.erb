@@ -45,5 +45,7 @@
 
 <p><%= @obj[:representative_email] %></p>
 <br><br>
+<p><b>If your booking Information are all correct, please click the link below to continue your booking process.</b></p>
+<p><%= link_to "Continue your booking process", payment_experience_url(@obj[:experience_id]) %></p>
 <p>Thank you</p>
 <p>SUITO</p>

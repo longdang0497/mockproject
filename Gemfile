@@ -29,6 +29,7 @@ gem 'jquery-rails'
 gem 'momentjs-rails'
 gem 'bootstrap-daterangepicker-rails'
 gem 'bxslider-rails'
+gem 'bootstrap-datepicker-rails'
 
 gem 'sass-rails', '~> 5.0'
 gem 'compass-rails'

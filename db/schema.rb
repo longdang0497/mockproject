@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_29_043203) do
+ActiveRecord::Schema.define(version: 2019_07_31_023950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,16 @@ ActiveRecord::Schema.define(version: 2019_07_29_043203) do
     t.integer "total"
     t.integer "numChildren"
     t.integer "numInfants"
+    t.string "payment_type"
+    t.string "card_num"
+    t.string "card_firstname"
+    t.string "card_lastname"
+    t.integer "card_exp_month"
+    t.integer "card_exp_year"
+    t.string "security_code"
+    t.string "first_starttime"
+    t.string "second_starttime"
+    t.string "third_starttime"
     t.index ["experience_id"], name: "index_bookings_on_experience_id"
   end
 
