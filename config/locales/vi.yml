@@ -59,6 +59,9 @@ vi:
       no_data: "Không có dữ liệu"
       restaurant_sui: "Nhà hàng Việt Nam SUiTO"
       calculate: "chuyển"
+      any_time: "Thời gian"
+      any_where: "Địa điểm"
+      any_exp: "TRải nghiệm" 
   blog:
     index:
       blog: "Blog"
@@ -109,6 +112,10 @@ vi:
     send_request:
       thank: "Cảm ơn bạn đã sử dụng ứng dụng này."
       thanks: "Chúng tôi sẽ quay lại với bạn ngay khi có thể."
+      send: "Gửi yêu cầu"
+    confirm:
+      day: "Ngày"
+      
     application_form:
       fill: "Vui lòng điền vào mẫu dưới đây. "
       offer: "Hãy cho chúng tôi xem đề nghị của bạn, chúng tôi sẽ lấy lại cho bạn một lần nữa."
@@ -156,6 +163,12 @@ vi:
       unnecessary: "Không cần thiết"
       charge: "Chúng tôi sẽ tính phí cho bạn thêm"
       requesting: "yêu cầu thông dịch viên"
+      select: "Hãy chọn"
+      cancellation: "Chính sách hủy bỏ"
+      cancellation1: "Được hoàn trả đầy đủ nếu bạn hủy trong vòng 24 giờ sau khi mua."
+      provide: "Cung cấp"
+      total: "tổng"
+      text: "Chúng tôi không có tùy chọn  miễn phí ... xin lỗi. Vui lòng mang theo máy ảnh và khăn tắm của bạn"
   breadcrumbs:
     top: "Trang chủ"
     experience: "Trải nghiệm"

@@ -12,36 +12,36 @@
           <form action="<%= sendrequest_experience_path(@experience.id) %>">
             <div class="form_day_wrap">
               <div class="form_day_title_block">
-                <p class="form_common_title">Day</p>
-                <p class="form_common_title">Start time</p>
+                <p class="form_common_title"><%= t('.day') %></p>
+                <p class="form_common_title"><%= t('.start') %></p>
               </div>
               <div class="form_day_common_block">
-                <p class="form_common_title sp">Day</p>
+                <p class="form_common_title sp"><%= t('.day') %></p>
                 <p class="form_confirm_text big">Sat, October 7</p>
-                <p class="form_common_title sp">Start time</p>
+                <p class="form_common_title sp"><%= t('.start') %></p>
                 <p class="form_confirm_text small">10:00</p>
-                <p class="form_choice_text">First choice<span>*</span></p>
+                <p class="form_choice_text"><%= t('.first') %><span>*</span></p>
               </div>
               <div class="form_day_common_block">
-                <p class="form_common_title sp">Day</p>
+                <p class="form_common_title sp"><%= t('.day') %></p>
                 <p class="form_confirm_text big">Sat, October 7</p>
-                <p class="form_common_title sp">Start time</p>
+                <p class="form_common_title sp"><%= t('.start') %></p>
                 <p class="form_confirm_text small">10:00</p>
-                <p class="form_choice_text">Second choice</p>
+                <p class="form_choice_text"><%= t('.second') %></p>
               </div>
               <div class="form_day_common_block">
-                <p class="form_common_title sp">Day</p>
+                <p class="form_common_title sp"><%= t('.day') %></p>
                 <p class="form_confirm_text big">Sat, October 7</p>
-                <p class="form_common_title sp">Start time</p>
+                <p class="form_common_title sp"><%= t('.start') %></p>
                 <p class="form_confirm_text small">10:00</p>
-                <p class="form_choice_text">Third choice</p>
+                <p class="form_choice_text"><%= t('.third') %></p>
               </div>
             </div>
             <div class="form_people_wrap">
-              <p class="form_common_title">Number of People<span>*</span></p>
+              <p class="form_common_title"><%= t('.number') %><span>*</span></p>
               <div class="form_confirm_people_inner">
                 <div class="form_confirm_people_common">
-                  <p class="form_confirm_text first">Adults</p>
+                  <p class="form_confirm_text first"><%= t('.adults') %></p>
                   <p class="form_confirm_text" id="show-num-adults"></p>
                   <%= hidden_field_tag(:numadults, params['numAdults']) %>
                   <p class="form_confirm_text">x</p>
@@ -50,7 +50,7 @@
                   <p class="form_confirm_text" id="show-total-adults"></p>
                 </div>
                 <div class="form_confirm_people_common">
-                  <p class="form_confirm_text first">Children<span>(2-12)</span></p>
+                  <p class="form_confirm_text first"><%= t('.children') %><span>(2-12)</span></p>
                   <p class="form_confirm_text" id="show-num-children"></p>
                   <%= hidden_field_tag(:numchildren, params['numChildren']) %>
                   <p class="form_confirm_text">x</p>
@@ -59,7 +59,7 @@
                   <p class="form_confirm_text" id="show-total-children"></p>
                 </div>
                 <div class="form_confirm_people_common">
-                  <p class="form_confirm_text first">Infants<span>(<2)</span></p>
+                  <p class="form_confirm_text first"><%= t('.infant') %><span>(<2)</span></p>
                   <p class="form_confirm_text" id="show-num-infants"></p>
                   <%= hidden_field_tag(:numinfants, params['numInfants']) %>
                   <p class="form_confirm_text">x</p>
@@ -70,15 +70,15 @@
               </div>
             </div>
             <div class="form_interpreter_wrap">
-              <p class="form_common_title">Interpreter<span>*</span></p>
+              <p class="form_common_title"><%= t('.interpreter') %><span>*</span></p>
               <div class="form_confirm_interpreter_inner">
-                <p class="form_confirm_text">Need</p>
+                <p class="form_confirm_text"><%= t('.need') %></p>
                 <p class="form_confirm_text">¥2,160</p>
               </div>
-              <p class="form_subtext">We will charge you an additional <span>2,160yen</span> for requesting an interpreter.</p>
+              <p class="form_subtext"><%= t('.charge') %> <span>2,160yen</span> <%= t('.requesting') %></p>
               <div class="form_confirm_interpreter_bottom clearfix">
                 <div class="total">
-                  <p class="form_confirm_text">Total</p>
+                  <p class="form_confirm_text"><%= t('.total1') %></p>
                   <p class="form_confirm_text" id="show-total" ></p>
                   <%= hidden_field_tag(:total, params['total']) %>
                 </div>
