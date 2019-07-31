@@ -1,7 +1,7 @@
 require 'date'
 class ExperienceController < ApplicationController
   include ExperienceConcern
-
+  $booking = nil
   def index
     add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(index show)
     # @experiences = Experience.all.order(updated_at: :DESC).page(params[:page]).per(6)
@@ -49,27 +49,42 @@ class ExperienceController < ApplicationController
 
   def send_request
     find_exp
-    byebug
-    @booking = { :experience_id => gon.experience_id,
-                :guest_title => params[:guesttitle],
+    @booking_temp = { :experience_id => gon.experience_id,
+                :first_choice => params[:first_choice],
+                :second_choice => params[:second_choice],
+                :third_choice => params[:third_choice],
+                :numAdults => params[:numAdults],
+                :interpreter => params[:interpreter],
                 :guest_firstnam => params[:guestfirstname],
                 :guest_lastname => params[:guestlastname],
+                :guest_title => params[:guesttitle],
                 :age => params[:age],
-                :language => params[:language],
                 :nationality => params[:nationality],
+                :language => params[:language],
                 :phone_number => params[:phonenumber],
                 :email => params[:email],
                 :address => params[:address],
-                :numAdults => params[:numadults],
-                :numInfants => params[:numinfants],
-                :numChildren => params[:numchildren],
-                :total => params[:total],
-                :representative_title => params[:representativetitle],
                 :representative_firstname => params[:representativefirstname],
                 :representative_lastname => params[:representativelastname],
-                :representative_email => params[:representativeemail],
+                :representative_title => params[:representativetitle],
+                :representative_email => params[:representativeemail],    
+                :send_mail_only_representative => params[:send_mail_only_representative],                          
+                :total => params[:total],
+                :numChildren => params[:numChildren],
+                :numInfants => params[:numInfants],      
+                :payment_type => params[:payment_type],
+                :card_num => params[:card_num],
+                :card_firstname => params[:card_firstname],
+                :card_lastname => params[:card_lastname],
+                :card_exp_month => params[:card_exp_month],
+                :card_exp_year => params[:card_exp_year],
+                :security_code => params[:security_code],
+                :first_starttime => params[:first_starttime],
+                :second_starttime => params[:second_starttime],
+                :third_starttime => params[:third_starttime],
     }
-    BookingMailer.booking_confirmation(@booking).deliver
+    $booking = @booking_temp
+    BookingMailer.booking_confirmation(@booking_temp).deliver
   end 
 
   def payment
@@ -77,8 +92,19 @@ class ExperienceController < ApplicationController
   end
 
   def complete
-    find_exp
+    call    
     @recommends = ExperienceService.new.recommend(@experience)
+    if !$booking.nil?
+      $booking[:payment_type] = params['payment_type']
+      $booking[:card_num] = params['card_num']
+      $booking[:card_exp_month] = params['card_exp_month']
+      $booking[:card_exp_year] = params['card_exp_year']
+      $booking[:security_code] = params['security_code']
+      $booking[:card_firstname] = params['card_firstname']
+      $booking[:card_lastname] = params['card_lastname']
+      byebug
+      @new_booking = Booking.create($booking)
+    end 
   end
 
   private 

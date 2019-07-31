@@ -25,23 +25,23 @@
               <p class="form_common_error_msg">*.</p>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day2') %></p>
-                <%= select_tag "first-choice", options_for_select(@dates, @dates[0]), class: 'form_day_input', required: true %>
+                <%= select_tag "first_choice", options_for_select(@dates, @dates[0]), id: "first_choice", class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start2') %></p>
-                <%= select_tag "time01", options_for_select([ "10:00", "11:00", "12:00" ], "10:00"), class: 'form_time_select' %>
+                <%= select_tag "first_starttime", options_for_select([ "10:00", "11:00", "12:00" ], "10:00"), id: "first_starttime", class: 'form_time_select', required: true %>
                 <p class="form_choice_text"><%= t('.first1') %><span>*</span></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day3') %></p>
-                <%= select_tag "second-choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input', required: true %>
+                <%= select_tag "second_choice", id: "second_choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start3') %></p>
-                <%= select_tag "time02", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
+                <%= select_tag "second_starttime", options_for_select([ "10:00", "11:00", "12:00" ]), id: "second_starttime", include_blank: "--:--", class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.second') %></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day4') %></p>
-                <%= select_tag "third-choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input', required: true %>
+                <%= select_tag "third_choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input', required: true %>
                 <p class="form_common_title sp"><%= t('.start4') %></p>
-                <%= select_tag "time03", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
+                <%= select_tag "third_starttime", id: "third_starttime", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.third') %></p>
               </div>
             </div>
@@ -86,7 +86,7 @@
                   <input type="radio" name="interpreter" id="Unnecessary" value="false" class="form_radio_input"><%= t('.unnecessary') %>
                 </label>
               </div>
-              <p class="form_subtext"><%= t('.charge') %> <span>300.000 VND</span> <%= t('.requesting') %></p>
+              <p class="form_subtext"><%= t('.charge') %> <span>$US 200.00</span> <%= t('.requesting') %></p>
             </div>
             <div class="form_profile_wrap">
               <p class="form_common_title"><%= t('.guest_info') %></p>
@@ -161,8 +161,8 @@
                   <p class="form_common_error_msg">*.</p>
                   <input type="email" id="representative-email" name="representative-email" class="form_sub_input_long">
                   <div class="form_guest_confirm">
-                    <label for="Confirm01" class="form_interpreter_label active">
-                      <input type="radio" name="confirm" id="Confirm01" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
+                    <label for="Confirm01" class="form_interpreter_label">
+                      <input type="radio" name="confirm" id="Confirm01" value="true" class="form_radio_input"><%= t('.confirm') %><span id="OnlyMeBtn">only to me</span>.
                     </label>
                     <div class="form_confirm_popup">
                       <p class="form_confirm_info_text">
@@ -171,7 +171,7 @@
                       </p>
                     </div>
                     <label for="Confirm02" class="form_interpreter_label">
-                      <input type="radio" name="confirm" id="Confirm02" class="form_radio_input noactive"><%= t('.confirm2') %>
+                      <input type="radio" name="confirm" id="Confirm02" value="false" class="form_radio_input noactive"><%= t('.confirm2') %>
                     </label>
                   </div>
                 </div>

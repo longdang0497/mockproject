@@ -17,23 +17,29 @@
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day') %></p>
-                <p class="form_confirm_text big">Sat, October 7</p>
+                <p class="form_confirm_text big" id="show-first-choice"></p>
+                <%= hidden_field_tag(:first_choice, params['first_choice']) %>
                 <p class="form_common_title sp"><%= t('.start') %></p>
-                <p class="form_confirm_text small">10:00</p>
+                <p class="form_confirm_text small" id="show-first-starttime"></p>
+                <%= hidden_field_tag(:first_starttime, params['first_starttime']) %>
                 <p class="form_choice_text"><%= t('.first') %><span>*</span></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day') %></p>
-                <p class="form_confirm_text big">Sat, October 7</p>
+                <p class="form_confirm_text big" id="show-second-choice"></p>
+                <%= hidden_field_tag(:second_choice, params['second_choice']) %>
                 <p class="form_common_title sp"><%= t('.start') %></p>
-                <p class="form_confirm_text small">10:00</p>
+                <p class="form_confirm_text small" id="show-second-starttime"></p>
+                <%= hidden_field_tag(:second_starttime, params['second_starttime']) %>
                 <p class="form_choice_text"><%= t('.second') %></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day') %></p>
-                <p class="form_confirm_text big">Sat, October 7</p>
+                <p class="form_confirm_text big" id="show-third-choice"></p>
+                <%= hidden_field_tag(:third_choice, params['third_choice']) %>
                 <p class="form_common_title sp"><%= t('.start') %></p>
-                <p class="form_confirm_text small">10:00</p>
+                <p class="form_confirm_text small" id="show-third-starttime"></p>
+                <%= hidden_field_tag(:third_starttime, params['third_starttime']) %>
                 <p class="form_choice_text"><%= t('.third') %></p>
               </div>
             </div>
@@ -43,7 +49,7 @@
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first"><%= t('.adults') %></p>
                   <p class="form_confirm_text" id="show-num-adults"></p>
-                  <%= hidden_field_tag(:numadults, params['numAdults']) %>
+                  <%= hidden_field_tag(:numAdults, params['numAdults']) %>
                   <p class="form_confirm_text">x</p>
                   <p class="form_confirm_text"><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>                  
                   <p class="form_confirm_text">=</p>
@@ -52,7 +58,7 @@
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first"><%= t('.children') %><span>(2-12)</span></p>
                   <p class="form_confirm_text" id="show-num-children"></p>
-                  <%= hidden_field_tag(:numchildren, params['numChildren']) %>
+                  <%= hidden_field_tag(:numChildren, params['numChildren']) %>
                   <p class="form_confirm_text">x</p>
                   <p class="form_confirm_text"><%= number_to_currency(@experience.price_children.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
                   <p class="form_confirm_text">=</p>
@@ -61,7 +67,7 @@
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first"><%= t('.infant') %><span>(<2)</span></p>
                   <p class="form_confirm_text" id="show-num-infants"></p>
-                  <%= hidden_field_tag(:numinfants, params['numInfants']) %>
+                  <%= hidden_field_tag(:numInfants, params['numInfants']) %>
                   <p class="form_confirm_text">x</p>
                   <p class="form_confirm_text"><%= number_to_currency(@experience.price_infant.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
                   <p class="form_confirm_text">=</p>
@@ -72,10 +78,11 @@
             <div class="form_interpreter_wrap">
               <p class="form_common_title"><%= t('.interpreter') %><span>*</span></p>
               <div class="form_confirm_interpreter_inner">
-                <p class="form_confirm_text"><%= t('.need') %></p>
-                <p class="form_confirm_text">¥2,160</p>
+                <p class="form_confirm_text" id="interpret"></p>
+                <p class="form_confirm_text" id="interpret-price"></p>
+                <%= hidden_field_tag(:interpreter, params['interpreter']) %>
               </div>
-              <p class="form_subtext"><%= t('.charge') %> <span>2,160yen</span> <%= t('.requesting') %></p>
+              <p class="form_subtext"><%= t('.charge') %> <span>$US 200.00</span> <%= t('.requesting') %></p>
               <div class="form_confirm_interpreter_bottom clearfix">
                 <div class="total">
                   <p class="form_confirm_text"><%= t('.total1') %></p>
@@ -99,7 +106,6 @@
               <p class="form_common_title"><%= t('.guest_info') %></p>
               <p class="form_common_title"><%= t('.name') %><span>*</span></p>
               <p class="form_confirm_text" id="show-guest-name"></p>
-              <% byebug %>
               <%= hidden_field_tag(:guesttitle, params['guest-title']) %>
               <%= hidden_field_tag(:guestfirstname, params['guest-firstname']) %>
               <%= hidden_field_tag(:guestlastname, params['guest-lastname']) %>
@@ -131,7 +137,7 @@
                 <p class="form_common_title"><%= t('.email') %><span>*</span></p>
                 <p class="form_confirm_text" id="show-representative-email"></p>
                 <%= hidden_field_tag(:representativeemail, params['representative-email']) %>
-                <p class="form_sub_confirm_text"><%= t('.confirm') %><span class="red"><%= t('.confirm1') %></span></p>
+                <p class="form_sub_confirm_text" id="show-confirm-email"></span></p>
               </div>
             </div>
             <input type="submit" id="sendrequest" value="Send request" class="form_subtmit_btn">
