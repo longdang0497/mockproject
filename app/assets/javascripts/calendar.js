@@ -184,8 +184,11 @@ $(document).on('turbolinks:load', function() {
       });      
     });
     
+    //if user click available day then button application-form show.
     $(".fair_calendar_date.old").off("click");
-      
+     $(".fair_calendar_date.holiday").on("click",function(){
+      $(".exdetail_book_btn").removeClass("disable_apply");
+    }); 
   
   
 });
