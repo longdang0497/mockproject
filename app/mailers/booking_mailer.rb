@@ -8,7 +8,7 @@ class BookingMailer < ApplicationMailer
   #
   def booking_confirmation(obj)
     @obj = obj
-    if @obj[:send_mail_only_representative].present?
+    if !@obj[:send_mail_only_representative].nil?
       if @obj[:send_mail_only_representative] == "true" || @obj[:send_mail_only_representative] == true
         if !@obj[:representative_email].nil? 
           mail to: @obj[:representative_email], subject: "Booking Confirmation"

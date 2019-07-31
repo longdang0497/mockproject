@@ -21,7 +21,7 @@
                   
                 <p class="payment_common_title">Payment type<span>*</span></p>
                 <div class="payment_choose_card_block">
-                  <select name="card" required="true" class="payment_select_long" id="CardChoose">
+                  <select name="payment_type" required="true" class="payment_select_long" id="payment_type">
                     <option value=""></option>
                     <option value="VISA">VISA</option>
                     <option value="MASTER CARD">MASTER CARD</option>
@@ -30,7 +30,6 @@
                     <option value="DINERS CLUB">DINERS CLUB</option>
                     <option value="PAYPAL">PAY PAL</option>
                   </select>
-                  <%= hidden_field_tag(:payment_type, params['payment_type']) %>
                   <div class="payment_pic_block">
                     <img src=<%= image_path("form/card_pic01.png") %>>
                     <img src=<%= image_path("form/card_pic02.png") %>>
@@ -44,12 +43,11 @@
 	                <p class="payment_common_title">Card number<span>*</span></p>
 	                <div class="payment_card_num">
 	                  <input type="text" id="card_num" name="card_num" required="true" class="payment_card_input_long">
-                    <%= hidden_field_tag(:card_num, params['card_num']) %>
 	                </div>
 	                <div class="payment_card_info_block">
 	                  <div class="payment_card_info_left">
 	                    <p class="payment_common_title">Expiration<span>*</span></p>
-	                    <select name="cardmonth" id="cardmonth" required="true" class="payment_select_short">
+	                    <select name="card_exp_month" id="card_exp_month" required="true" class="payment_select_short">
 	                      <option>MM</option>
 	                      <option value="01">01</option>
 	                      <option value="02">02</option>
@@ -64,8 +62,7 @@
 	                      <option value="11">11</option>
 	                      <option value="12">12</option>
 	                    </select>
-                      <%= hidden_field_tag(:card_exp_month, params['card_exp_month']) %>
-	                    <select name="cardyear" id="cardyear" required="true" class="payment_select_short">
+	                    <select name="card_exp_year" id="card_exp_year" required="true" class="payment_select_short">
 	                      <option>YYYY</option>
 	                      <option value="2018">2018</option>
 	                      <option value="2019">2019</option>
@@ -80,13 +77,11 @@
 	                      <option value="2028">2028</option>
 	                      <option value="2029">2029</option>
 	                    </select>
-                      <%= hidden_field_tag(:card_exp_year, params['card_exp_year']) %>
 	                  </div>
 	                  <div class="payment_card_info_right">
 	                    <p class="payment_common_title">Security code<span>*</span><small id="CardInfo">?</small></p>
 	                    <div class="payment_card_security_block">
-	                      <input type="text" name="security" id="security" required="true" class="payment_card_input_short">
-                        <%= hidden_field_tag(:security_code, params['security_code']) %>
+	                      <input type="text" name="security_code" id="security_code" required="true" class="payment_card_input_short">
 	                      <img src=<%= image_path("form/card_back01.png") %> id="Others" class="payment_security_pic" style="display: none;">
 	                      <img src=<%= image_path("form/card_back02.png") %> id="American" class="payment_security_pic active" style="display: none;">
 	                    </div>
@@ -96,8 +91,6 @@
 	                <div class="payment_card_name">
 	                  <input type="text" name="card_firstname" id="card_firstname" required="true" class="payment_card_input_long" placeholder="First name">
 	                  <input type="text" name="card_lastname" id="card_lastname" required="true" class="payment_card_input_long" placeholder="Last name">
-                    <%= hidden_field_tag(:card_firstname, params['card_firstname']) %>
-                    <%= hidden_field_tag(:card_lastname, params['card_lastname']) %>
 	                </div>
                 </div>
                 
@@ -194,12 +187,10 @@
 </div>
 
 <script type="text/javascript">
-
   $("#AcceptTermsPayment").click(function() {
     if ($("#AcceptTermsPayment").prop("checked") == true)
       $("#BookNow").removeClass("noactive");
     else if ($("#AcceptTermsPayment").prop("checked") != true && !$("#BookNow").hasClass("noactive"))
       $("#BookNow").addClass("noactive");
-  });
-  
+  });  
 </script>

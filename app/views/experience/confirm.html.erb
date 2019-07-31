@@ -18,22 +18,28 @@
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
                 <p class="form_confirm_text big" id="show-first-choice"></p>
+                <%= hidden_field_tag(:first_choice, params['first_choice']) %>
                 <p class="form_common_title sp">Start time</p>
                 <p class="form_confirm_text small" id="show-first-starttime"></p>
+                <%= hidden_field_tag(:first_starttime, params['first_starttime']) %>
                 <p class="form_choice_text">First choice<span>*</span></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
                 <p class="form_confirm_text big" id="show-second-choice"></p>
+                <%= hidden_field_tag(:second_choice, params['second_choice']) %>
                 <p class="form_common_title sp">Start time</p>
                 <p class="form_confirm_text small" id="show-second-starttime"></p>
+                <%= hidden_field_tag(:second_starttime, params['second_starttime']) %>
                 <p class="form_choice_text">Second choice</p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp">Day</p>
                 <p class="form_confirm_text big" id="show-third-choice"></p>
+                <%= hidden_field_tag(:third_choice, params['third_choice']) %>
                 <p class="form_common_title sp">Start time</p>
                 <p class="form_confirm_text small" id="show-third-starttime"></p>
+                <%= hidden_field_tag(:third_starttime, params['third_starttime']) %>
                 <p class="form_choice_text">Third choice</p>
               </div>
             </div>
@@ -43,7 +49,7 @@
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first">Adults</p>
                   <p class="form_confirm_text" id="show-num-adults"></p>
-                  <%= hidden_field_tag(:numadults, params['numAdults']) %>
+                  <%= hidden_field_tag(:numAdults, params['numAdults']) %>
                   <p class="form_confirm_text">x</p>
                   <p class="form_confirm_text"><%= number_to_currency(@experience.price_adult.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>                  
                   <p class="form_confirm_text">=</p>
@@ -52,7 +58,7 @@
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first">Children<span>(2-12)</span></p>
                   <p class="form_confirm_text" id="show-num-children"></p>
-                  <%= hidden_field_tag(:numchildren, params['numChildren']) %>
+                  <%= hidden_field_tag(:numChildren, params['numChildren']) %>
                   <p class="form_confirm_text">x</p>
                   <p class="form_confirm_text"><%= number_to_currency(@experience.price_children.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
                   <p class="form_confirm_text">=</p>
@@ -61,7 +67,7 @@
                 <div class="form_confirm_people_common">
                   <p class="form_confirm_text first">Infants<span>(<2)</span></p>
                   <p class="form_confirm_text" id="show-num-infants"></p>
-                  <%= hidden_field_tag(:numinfants, params['numInfants']) %>
+                  <%= hidden_field_tag(:numInfants, params['numInfants']) %>
                   <p class="form_confirm_text">x</p>
                   <p class="form_confirm_text"><%= number_to_currency(@experience.price_infant.to_f, unit: "$US", precision: 2, separator: ".", delimiter: ",", format: "%u %n")%></p>
                   <p class="form_confirm_text">=</p>

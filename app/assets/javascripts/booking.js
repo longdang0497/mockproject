@@ -72,9 +72,9 @@ jQuery(function($){
       third_starttime: $("#third-starttime").val(),
       interpreter: $("input[name='interpreter']:checked").val(),
       experience_id: gon.experience_id,
-      numAdults: adults,
-      numChildren: children,
-      numInfants: infants,
+      numAdults: parseInt(adults),
+      numChildren: parseInt(children),
+      numInfants: parseInt(infants),
       total: expTotal != null ? expTotal : 0,
       guest_firstnam: $("#guest-firstname").val(),
       guest_lastname: $("#guest-lastname").val(),
@@ -103,11 +103,11 @@ jQuery(function($){
   $("#BookNow").click(function() {
     let myObj = JSON.parse(localStorage.getItem("myObj"));
 
-    myObj['payment_type'] = $("#CardChoose").val();
+    myObj['payment_type'] = $("#payment_type").val();
     myObj['card_num'] = $("#card_num").val();
-    myObj['card_exp_month'] = $("#cardmonth").val();
-    myObj['card_exp_year'] = $("#cardyear").val();
-    myObj['security_code'] = $("#security").val();
+    myObj['card_exp_month'] = $("#card_exp_month").val();
+    myObj['card_exp_year'] = $("#card_exp_year").val();
+    myObj['security_code'] = $("#security_code").val();
     myObj['card_firstname'] = $("#card_firstname").val();
     myObj['card_lastname'] = $("#card_lastname").val();
 
