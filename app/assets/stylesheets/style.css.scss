@@ -259,6 +259,10 @@
   color: #000;
   background-size: 25px;
 }
+.header_search_date_span {
+  background-color: unset !important; 
+  border: none !important; 
+}
 .header_search_block .header_search_place {
   border: 2px #000 solid;
   height: 43px;

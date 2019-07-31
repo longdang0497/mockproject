@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # breadcrumb root
   before_action :set_i18n_locale_from_params
   protect_from_forgery
-  add_breadcrumb I18n.t("breadcrumbs.top"), :top_path
+  add_breadcrumb 'Top', :top_path
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   protected

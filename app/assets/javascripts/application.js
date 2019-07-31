@@ -20,6 +20,7 @@
 //= require bootstrap.min
 //= require moment.min
 //= require daterangepicker
+//= require bootstrap-datepicker
 //= require modernizr.custom
 //= require jquery.bxslider.min
 //= require calendar

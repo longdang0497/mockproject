@@ -6,7 +6,8 @@ class ExperienceController < ApplicationController
     add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(index show)
     # @experiences = Experience.all.order(updated_at: :DESC).page(params[:page]).per(6)
     @hot_exp = ExperienceService.new.latest
-
+    @exp_search = Experience.ransack(params[:q])
+    @exp_search.sorts = 'title desc' if @exp_search.sorts.empty?
     @experiences = @exp_search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
     @page = params[:page].to_i
     respond_to do |format|
@@ -30,9 +31,9 @@ class ExperienceController < ApplicationController
 
 
   def search
-    if params[:q] && params[:q][:experience_dates_expFrom].present?
-      params[:q][:experience_dates_expFrom_gteq_any], params[:q][:experience_dates_expTo_lteq_any] = params[:q][:experience_dates_expFrom].split("-") 
-    end
+    # if params[:q] && params[:q][:experience_dates_expFrom].present?
+    #   params[:q][:experience_dates_expFrom_gteq_all], params[:q][:experience_dates_expTo_lteq_all] = params[:q][:experience_dates_expFrom].split("-") 
+    # end
     index
     render :index
   end
