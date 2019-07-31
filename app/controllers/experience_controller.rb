@@ -102,7 +102,6 @@ class ExperienceController < ApplicationController
       $booking[:security_code] = params['security_code']
       $booking[:card_firstname] = params['card_firstname']
       $booking[:card_lastname] = params['card_lastname']
-      byebug
       @new_booking = Booking.create($booking)
     end 
   end
