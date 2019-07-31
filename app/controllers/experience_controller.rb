@@ -6,8 +6,6 @@ class ExperienceController < ApplicationController
     add_breadcrumb I18n.t("breadcrumbs.experience"), :experience_index_path, :only => %w(index show)
     # @experiences = Experience.all.order(updated_at: :DESC).page(params[:page]).per(6)
     @hot_exp = ExperienceService.new.latest
-    @categories = CategoryService.new.call
-    @locations = LocationService.new.call
 
     @experiences = @exp_search.result(distinct: true).order(created_at: :DESC).page(params[:page]).per(6)
     @page = params[:page].to_i

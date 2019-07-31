@@ -1,4 +1,7 @@
 vi:
+  breadcrumbs:
+    top: "Trang chủ"
+    experience: "Trải nghiệm"
   hello: "Xin chào"
   helpers:
       page_entries_info:
@@ -196,9 +199,6 @@ vi:
       provide: "Cung cấp"
       total: "tổng"
       text: "Chúng tôi không có tùy chọn  miễn phí ... xin lỗi. Vui lòng mang theo máy ảnh và khăn tắm của bạn"
-  breadcrumbs:
-    top: "Trang chủ"
-    experience: "Trải nghiệm"
   components:
     form_step_list:
       complete: "Hoàn thành"

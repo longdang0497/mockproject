@@ -1,4 +1,7 @@
 en:
+  breadcrumbs:
+    top: "Top"
+    experience: "Experience"
   hello: "Hello world"
   helpers:
       page_entries_info:
@@ -196,9 +199,6 @@ en:
       provide: "Provided"
       total: "total"
       text: "We don't have a gluten free option ... sorry.  Please bring your camera and towels"
-  breadcrumbs:
-    top: "Top"
-    experience: "Experience"
   components:
     form_step_list:
       complete: "Complete"

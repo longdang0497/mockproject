@@ -21,18 +21,26 @@ class ApplicationController < ActionController::Base
   def access_denied(exception)
     redirect_to top_path, alert: exception.message
   end
-  protected
-    def set_i18n_locale_from_params
-      I18n.locale = params[:locale] || I18n.default_locale
+  
+  def set_i18n_locale_from_params
+    if params[:locale]
+      if I18n.available_locales.map(&:to_s).include?(params[:locale])
+        I18n.locale = params[:locale]
+      else
+        flash.now[:notice] = "#{params[:locale]} translation not available"
+        logger.error flash.now[:notice]
+      end
     end
-    def default_url_options
-      { locale: I18n.locale }
-    end
+  end
+  
+  def default_url_options
+    { locale: I18n.locale }
+  end
 
-    def set_exp_search_variable
-      @exp_search = Experience.ransack(params[:q])
-      @exp_search.sorts = 'title desc' if @exp_search.sorts.empty?
-      @locations = LocationService.new.call
-      @categories = CategoryService.new.call
-    end
+  def set_exp_search_variable
+    @locations = LocationService.new.call
+    @categories = CategoryService.new.call
+    @exp_search = Experience.ransack(params[:q])
+    @exp_search.sorts = 'title desc' if @exp_search.sorts.empty?
+  end
 end
