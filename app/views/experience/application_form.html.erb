@@ -32,16 +32,16 @@
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day3') %></p>
-                <%= select_tag "second_choice", id: "second_choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input', required: true %>
+                <%= select_tag "second_choice", options_for_select(@dates, ''), id: "second_choice", include_blank: t('.select'), class: 'form_day_input' %>
                 <p class="form_common_title sp"><%= t('.start3') %></p>
                 <%= select_tag "second_starttime", options_for_select([ "10:00", "11:00", "12:00" ]), id: "second_starttime", include_blank: "--:--", class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.second') %></p>
               </div>
               <div class="form_day_common_block">
                 <p class="form_common_title sp"><%= t('.day4') %></p>
-                <%= select_tag "third_choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input', required: true %>
+                <%= select_tag "third_choice", options_for_select(@dates, ''), include_blank: t('.select'), class: 'form_day_input' %>
                 <p class="form_common_title sp"><%= t('.start4') %></p>
-                <%= select_tag "third_starttime", id: "third_starttime", options_for_select([ "10:00", "11:00", "12:00" ]), include_blank: "--:--", class: 'form_time_select' %>
+                <%= select_tag "third_starttime", options_for_select([ "10:00", "11:00", "12:00" ]), id: "third_starttime", include_blank: "--:--", class: 'form_time_select' %>
                 <p class="form_choice_text"><%= t('.third') %></p>
               </div>
             </div>
