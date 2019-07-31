@@ -64,12 +64,12 @@ jQuery(function($){
     let expTotal = parseInt(adults) * gon.price_adult + parseInt(infants) * gon.price_infant + parseInt(children) * gon.price_children + interpret;
 
     var myObj = {
-      first_choice: $("#first-choice").val(),
-      second_choice: $("#second-choice").val(),
-      third_choice: $("#third-choice").val(),
-      first_starttime: $("#first-starttime").val(),
-      second_starttime: $("#second-starttime").val(),
-      third_starttime: $("#third-starttime").val(),
+      first_choice: $("#first_choice").val(),
+      second_choice: $("#second_choice").val(),
+      third_choice: $("#third_choice").val(),
+      first_starttime: $("#first_starttime").val(),
+      second_starttime: $("#second_starttime").val(),
+      third_starttime: $("#third_starttime").val(),
       interpreter: $("input[name='interpreter']:checked").val(),
       experience_id: gon.experience_id,
       numAdults: parseInt(adults),
